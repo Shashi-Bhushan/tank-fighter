@@ -1,0 +1,10 @@
+*.class
+*.swp
+.idea
+*.log
+*.iml
+target
+out
+runner
+
+.DS_Store
