@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.objects;
 
 import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.game.Game;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -11,8 +12,8 @@ import java.awt.geom.Ellipse2D;
 public class Circle extends GameObject {
     private int width, height;
 
-    public Circle(int x, int y, int radius, Color color) {
-        super(x, y, ID.PLAYER);
+    public Circle(int x, int y, int radius, Color color, Game game) {
+        super(x, y, ID.PLAYER, game);
 
         setColor(color);
         setVelocityX(random.nextInt(6) + 64);
@@ -22,9 +23,9 @@ public class Circle extends GameObject {
     }
 
     public void update() {
-        if (positionX < 0 || positionX > getWidth() - width) // check left/right bounds
+        if (positionX < 0 || positionX > game.getWidth() - width) // check left/right bounds
             velocityX *= -1; // reverse horizontal velocity
-        if (positionY < 0 || positionY > getHeight() - height) // check top/bottom bounds
+        if (positionY < 0 || positionY > game.getHeight() - height) // check top/bottom bounds
             velocityY *= -1; // reverse vertical velocity
 
         positionX += velocityX;

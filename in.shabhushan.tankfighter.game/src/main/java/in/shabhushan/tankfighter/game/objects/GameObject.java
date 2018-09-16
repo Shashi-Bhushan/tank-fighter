@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.objects;
 
 import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.game.Game;
 
 import java.awt.*;
 import java.util.Random;
@@ -9,25 +10,27 @@ import java.util.Random;
  * @author Shashi Bhushan
  * @date 16/9/18
  */
-public abstract class GameObject extends Canvas {
+public abstract class GameObject {
 
-    protected static Random random = new Random();
+    protected static final Random random = new Random();
 
     // position attributes
     protected int positionX;
     protected int positionY;
 
     protected Color color;
+    protected Game game;
 
     protected int velocityX;
     protected int velocityY;
 
     protected ID id;
 
-    public GameObject(int positionX, int positionY, ID id) {
+    public GameObject(int positionX, int positionY, ID id, Game game) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.id = id;
+        this.game = game;
     }
 
     public int getPositionX() {
@@ -44,6 +47,14 @@ public abstract class GameObject extends Canvas {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public int getPositionY() {
