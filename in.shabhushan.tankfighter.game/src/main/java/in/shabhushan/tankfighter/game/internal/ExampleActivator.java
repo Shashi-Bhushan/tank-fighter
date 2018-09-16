@@ -3,10 +3,14 @@ package in.shabhushan.tankfighter.game.internal;
 import java.util.Dictionary;
 import java.util.Properties;
 
+import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.game.Game;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import in.shabhushan.tankfighter.game.ExampleService;
+
+import javax.swing.*;
 
 /**
  * Extension of the default OSGi bundle activator
@@ -14,6 +18,9 @@ import in.shabhushan.tankfighter.game.ExampleService;
 public final class ExampleActivator
     implements BundleActivator
 {
+
+    private GameEngine game;
+
     /**
      * Called whenever the OSGi framework starts our bundle
      */
@@ -29,6 +36,14 @@ public final class ExampleActivator
 
         // Register our example service implementation in the OSGi service registry
         bc.registerService( ExampleService.class.getName(), new ExampleServiceImpl(), props );
+
+        JFrame frame = new JFrame();
+        game = new Game();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(game);
+        frame.pack();
+        frame.setVisible(true);
+        game.start();
     }
 
     /**
@@ -37,6 +52,7 @@ public final class ExampleActivator
     public void stop( BundleContext bc )
         throws Exception
     {
+        game.stop();
         System.out.println( "STOPPING in.shabhushan.tankfighter.game" );
 
         // no need to unregister our service - the OSGi framework handles it for us
