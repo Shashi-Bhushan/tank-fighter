@@ -25,6 +25,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     private static final long nanosecondsPerSecond = 10000000000L;
     private static final long millisecondsPerNanosecond = 1000000L;
+    private static final int DEFAULT_FRAME_RATE = 60;
 
     protected int frameRate; // how many times per second to (ideally) run the game loop
     private long timePerFrame; // nanoseconds per frame based on framerate
@@ -42,12 +43,12 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GameEngine() {
-        this(new Dimension(800, 600), 60);
+        this(new Dimension(800, 600), DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at 60 fps
     public GameEngine(Dimension resolution) {
-        this(resolution, 60);
+        this(resolution, DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at passed fps
@@ -72,6 +73,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
         gameThread.stop();
     }
 
+    @Override
     public void run() {
         // game loop
         while (running) {
@@ -89,8 +91,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
     }
 
     // update everything in the game, should be overridden
-    public void update() {
-    }
+    abstract public void update();
 
     // draw everything in the game, should be overridden
     public void draw() {
