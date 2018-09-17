@@ -102,12 +102,12 @@ public class Tank extends GameObject implements KeyListener {
     public void keyPressed(KeyEvent e) {
         System.out.println("Key Event : " + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-            this.setDirection(Direction.DOWN);
-            this.setPositionY(this.getPositionY() + this.getSpeed());
+            setDirection(Direction.DOWN);
+            setPositionY(getPositionY() + getSpeed());
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-            this.setDirection(Direction.UP);
-            this.setPositionY(this.getPositionY() - this.getSpeed());
+            setDirection(Direction.UP);
+            setPositionY(getPositionY() - getSpeed());
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
             setDirection(Direction.LEFT);
