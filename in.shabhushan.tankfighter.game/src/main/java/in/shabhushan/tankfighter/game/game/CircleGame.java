@@ -2,12 +2,9 @@ package in.shabhushan.tankfighter.game.game;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
-import in.shabhushan.tankfighter.game.enumeration.ID;
 import in.shabhushan.tankfighter.game.objects.Circle;
-import in.shabhushan.tankfighter.game.objects.GameObject;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
 /**
