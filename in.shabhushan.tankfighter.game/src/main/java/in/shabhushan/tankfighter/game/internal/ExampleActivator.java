@@ -4,7 +4,7 @@ import java.util.Dictionary;
 import java.util.Properties;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.game.Game;
+import in.shabhushan.tankfighter.game.game.CircleGame;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -38,7 +38,7 @@ public final class ExampleActivator
         bc.registerService( ExampleService.class.getName(), new ExampleServiceImpl(), props );
 
         JFrame frame = new JFrame();
-        game = new Game();
+        game = new CircleGame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(game);
         frame.pack();

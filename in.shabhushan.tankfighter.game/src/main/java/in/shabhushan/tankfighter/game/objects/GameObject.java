@@ -1,7 +1,7 @@
 package in.shabhushan.tankfighter.game.objects;
 
+import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.game.Game;
 
 import java.awt.*;
 import java.util.Random;
@@ -19,14 +19,14 @@ public abstract class GameObject {
     protected int positionY;
 
     protected Color color;
-    protected Game game;
+    protected GameEngine game;
 
     protected int velocityX;
     protected int velocityY;
 
     protected ID id;
 
-    public GameObject(int positionX, int positionY, ID id, Game game) {
+    public GameObject(int positionX, int positionY, ID id, GameEngine game) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.id = id;
@@ -49,11 +49,11 @@ public abstract class GameObject {
         this.color = color;
     }
 
-    public Game getGame() {
+    public GameEngine getGame() {
         return game;
     }
 
-    public void setGame(Game game) {
+    public void setGame(GameEngine game) {
         this.game = game;
     }
 

@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.window;
 
-import in.shabhushan.tankfighter.game.game.Game;
+import in.shabhushan.tankfighter.game.game.CircleGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Shashi Bhushan
  */
 public class Window extends Canvas {
-    public Window(int width, int height, String title, Game game) {
+    public Window(int width, int height, String title, CircleGame game) {
         JFrame frame = new JFrame(title);
 
         frame.setPreferredSize(new Dimension(width, height));

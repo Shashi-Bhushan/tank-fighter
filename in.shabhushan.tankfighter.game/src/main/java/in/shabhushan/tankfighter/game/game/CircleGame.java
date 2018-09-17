@@ -14,13 +14,13 @@ import java.util.Random;
  * @author Shashi Bhushan
  * @date 16/9/18
  */
-public class Game extends GameEngine {
+public class CircleGame extends GameEngine {
     private static final int NUM_CIRCLES = 2;
     private static Random random = new Random();
 
     private Handler handler;
 
-    public Game() {
+    public CircleGame() {
          handler = new Handler();
 
         // create some random circles
