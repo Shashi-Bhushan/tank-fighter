@@ -14,19 +14,19 @@ import java.awt.event.KeyListener;
  * @author Shashi Bhushan
  * @date 17/9/18
  */
-public class TankFighterGame extends GameEngine implements KeyListener {
+public class TankFighterGame extends GameEngine {
 
     private Handler handler;
 
-    private Tank tank;
+    private Tank playerTank;
 
     public TankFighterGame() {
         handler = new Handler();
 
-        tank = new Tank(10,10, ID.PLAYER, this);
-        tank.setSpeed(5);
+        playerTank = new Tank(10,10, ID.PLAYER, this);
+        playerTank.setSpeed(5);
 
-        handler.addObject(tank);
+        handler.addObject(playerTank);
     }
 
     @Override
@@ -40,34 +40,7 @@ public class TankFighterGame extends GameEngine implements KeyListener {
         handler.draw(drawGraphics);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("Key Event : " + e.getKeyCode());
-        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-            tank.setDirection(Direction.DOWN);
-            tank.setPositionY(tank.getPositionY() + tank.getSpeed());
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-            tank.setDirection(Direction.UP);
-            tank.setPositionY(tank.getPositionY() - tank.getSpeed());
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-            tank.setDirection(Direction.LEFT);
-            tank.setPositionX(tank.getPositionX() - tank.getSpeed());
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-            tank.setDirection(Direction.RIGHT);
-            tank.setPositionX(tank.getPositionX() + tank.getSpeed());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+    public Tank getPlayerTank() {
+        return playerTank;
     }
 }
