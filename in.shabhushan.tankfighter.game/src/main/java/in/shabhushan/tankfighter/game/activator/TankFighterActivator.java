@@ -27,7 +27,7 @@ public class TankFighterActivator implements BundleActivator {
         out.println("Starting " + this.getClass().getName() + "#start");
 
         Hashtable properties = new Hashtable();
-        properties.put("osgi.command.scope", "tank");
+        properties.put("osgi.command.scope", "circle");
         properties.put("osgi.command.function", new String[]{"startGame", "stopGame"});
 
         bundleContext.registerService(CircleGameService.class.getName(), new CircleGameServiceImpl(), properties);
