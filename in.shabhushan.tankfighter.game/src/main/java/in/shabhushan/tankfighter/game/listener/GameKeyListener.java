@@ -2,6 +2,7 @@ package in.shabhushan.tankfighter.game.listener;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
+import in.shabhushan.tankfighter.game.objects.Bullet;
 import in.shabhushan.tankfighter.game.objects.Tank;
 
 import java.awt.event.KeyEvent;
@@ -59,6 +60,11 @@ public class GameKeyListener implements KeyListener {
             if(objectWithinBoundary(playerTank.getPositionX(), RIGHT, game)){
                 playerTank.setPositionX(playerTank.getPositionX() + playerTank.getSpeed());
             }
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_SPACE ) {
+            Bullet bullet = new Bullet(playerTank);
+
+            playerTank.addBullet(bullet);
         }
     }
 

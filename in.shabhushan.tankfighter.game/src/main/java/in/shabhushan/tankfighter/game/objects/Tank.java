@@ -7,6 +7,10 @@ import in.shabhushan.tankfighter.game.util.Defaults;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.ArrayList;
+
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
 
 /**
  * @author Shashi Bhushan
@@ -14,7 +18,7 @@ import java.awt.event.KeyEvent;
  */
 public class Tank extends GameObject {
 
-    private Bullet bullet;
+    private List<Bullet> bullets = new ArrayList<>();
 
     public Tank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
@@ -30,7 +34,19 @@ public class Tank extends GameObject {
 
     @Override
     public void update() {
+        for(Bullet bullet: bullets) {
+            bullet.update();
+        }
+    }
 
+    public void addBullet(Bullet bullet) {
+        if(bullets.size() < DEFAULT_BULLET_COUNT) {
+            bullets.add(bullet);
+        }
+    }
+
+    public void removeBullet(Bullet bullet) {
+        bullets.remove(bullet);
     }
 
     /**
@@ -73,6 +89,9 @@ public class Tank extends GameObject {
                 graphics.fillOval(positionX + 15, positionY + 10, 10, 10);
                 graphics.drawLine(positionX + 20, positionY + 15, positionX + 40, positionY + 15);
                 break;
+        }
+        for(Bullet bullet: bullets) {
+            bullet.draw(graphics);
         }
     }
 }
