@@ -17,7 +17,6 @@ public class TankGameServiceImpl implements TankGameService {
 
     @Override
     public void startGame() {
-        System.out.println("CircleGameServiceImpl#startGame");
         JFrame frame = new JFrame();
 
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();

@@ -35,6 +35,7 @@ public class Tank extends GameObject {
     @Override
     public void update() {
         for(Bullet bullet: bullets) {
+            // Remove Last Bullet if it exceeds boundary
             bullet.update();
         }
     }
