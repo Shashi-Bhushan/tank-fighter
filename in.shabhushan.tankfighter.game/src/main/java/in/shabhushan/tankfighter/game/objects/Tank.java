@@ -3,16 +3,16 @@ package in.shabhushan.tankfighter.game.objects;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.util.Defaults;
 import in.shabhushan.tankfighter.game.util.TankUtil;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_COLOR;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_SPEED;
 
 /**
  * @author Shashi Bhushan
@@ -25,7 +25,8 @@ public class Tank extends GameObject {
     public Tank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
 
-        setColor(Defaults.DEFAULT_TANK_COLOR);
+        setColor(DEFAULT_TANK_COLOR);
+        setSpeed(DEFAULT_TANK_SPEED);
     }
 
     public Tank(int positionX, int positionY, ID id, GameEngine game, Direction direction) {

@@ -6,6 +6,7 @@ import in.shabhushan.tankfighter.game.service.TankGameService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 /**
  * @author Shashi Bhushan
@@ -13,22 +14,24 @@ import java.awt.*;
  */
 public class TankGameServiceImpl implements TankGameService {
 
+    JFrame gameFrame;
     private TankFighterGame tankFighterGame;
 
     @Override
     public void startGame() {
-        JFrame frame = new JFrame();
+        gameFrame = new JFrame();
 
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = defaultToolkit.getScreenSize();
 
         tankFighterGame = new TankFighterGame(screenSize);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(tankFighterGame);
-        frame.pack();
-        frame.setVisible(true);
-        frame.addKeyListener(new GameKeyListener(tankFighterGame.getPlayerTank()));
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameFrame.add(tankFighterGame);
+        gameFrame.pack();
+        gameFrame.setVisible(true);
+        gameFrame.addKeyListener(new GameKeyListener(tankFighterGame.getPlayerTank()));
         tankFighterGame.start();
+
     }
 
     @Override
@@ -36,5 +39,6 @@ public class TankGameServiceImpl implements TankGameService {
         tankFighterGame.stop();
 
         tankFighterGame = null;
+        gameFrame.dispatchEvent(new WindowEvent(gameFrame, WindowEvent.WINDOW_CLOSING));
     }
 }
