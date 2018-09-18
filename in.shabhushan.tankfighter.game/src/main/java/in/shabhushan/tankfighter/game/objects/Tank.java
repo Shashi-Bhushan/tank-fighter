@@ -3,6 +3,7 @@ package in.shabhushan.tankfighter.game.objects;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.util.Defaults;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,36 +13,19 @@ import java.awt.event.KeyEvent;
  * @date 17/9/18
  */
 public class Tank extends GameObject {
-    // Default Direction
-    private Direction direction = Direction.UP;
-    private int speed;
+
+    private Bullet bullet;
 
     public Tank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
 
-        setColor(Color.BLACK);
+        setColor(Defaults.DEFAULT_TANK_COLOR);
     }
 
     public Tank(int positionX, int positionY, ID id, GameEngine game, Direction direction) {
         this(positionX, positionY, id, game);
 
         setDirection(direction);
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 
     @Override

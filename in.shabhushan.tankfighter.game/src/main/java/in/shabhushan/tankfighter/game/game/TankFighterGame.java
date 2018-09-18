@@ -2,13 +2,11 @@ package in.shabhushan.tankfighter.game.game;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
-import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
 import in.shabhushan.tankfighter.game.objects.Tank;
+import in.shabhushan.tankfighter.game.util.Defaults;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * @author Shashi Bhushan
@@ -26,7 +24,7 @@ public class TankFighterGame extends GameEngine {
 
         playerTank = new Tank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
                 ID.PLAYER, this);
-        playerTank.setSpeed(5);
+        playerTank.setSpeed(Defaults.DEFAULT_TANK_SPEED);
 
         handler.addObject(playerTank);
     }

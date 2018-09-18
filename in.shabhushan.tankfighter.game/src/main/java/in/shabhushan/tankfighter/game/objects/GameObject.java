@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.objects;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
 
 import java.awt.*;
@@ -14,17 +15,32 @@ public abstract class GameObject {
 
     protected static final Random random = new Random();
 
-    // position attributes
+    /**
+     * Position attributes
+     */
     protected int positionX;
     protected int positionY;
 
-    protected Color color;
-    protected GameEngine game;
-
+    // TODO: Remove VelocityX and velocityY, use speed instead
+    /**
+     * Velocity Attributed
+     * @Deprecated
+     */
     protected int velocityX;
     protected int velocityY;
 
+    // Velocity Attribute
+    protected int speed;
+
+    // Direction Attribute
+    protected Direction direction = Direction.UP;
+
+    protected Color color;
+
+    // Unique Identifier of Game Object
     protected ID id;
+
+    protected GameEngine game;
 
     public GameObject(int positionX, int positionY, ID id, GameEngine game) {
         this.positionX = positionX;
@@ -87,6 +103,22 @@ public abstract class GameObject {
 
     public void setId(ID id) {
         this.id = id;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public abstract void update();

@@ -1,5 +1,7 @@
 package in.shabhushan.tankfighter.game.engine;
 
+import in.shabhushan.tankfighter.game.util.Defaults;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,7 +27,6 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     private static final long nanosecondsPerSecond = 10000000000L;
     private static final long millisecondsPerNanosecond = 1000000L;
-    private static final int DEFAULT_FRAME_RATE = 60;
 
     protected int frameRate; // how many times per second to (ideally) run the game loop
     private long timePerFrame; // nanoseconds per frame based on framerate
@@ -35,7 +36,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
     private Image drawImage;
     protected Graphics2D drawGraphics; // reference to drawImage's graphics
 
-    protected Color backgroundColor = Color.WHITE;
+    protected Color backgroundColor = Defaults.DEFAULT_BG_COLOR;
 
     protected boolean running;
 
@@ -43,12 +44,12 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GameEngine() {
-        this(new Dimension(800, 600), DEFAULT_FRAME_RATE);
+        this(new Dimension(800, 600), Defaults.DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at 60 fps
     public GameEngine(Dimension resolution) {
-        this(resolution, DEFAULT_FRAME_RATE);
+        this(resolution, Defaults.DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at passed fps
