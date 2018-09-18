@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_COLOR;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_SPEED;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
 
 /**
  * @author Shashi Bhushan
@@ -20,14 +20,22 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_SPEED;
  */
 public class Tank extends GameObject {
 
-    private List<Bullet> bullets = new ArrayList<>();
+    final protected List<Bullet> bullets = new ArrayList<>();
 
     public Tank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
 
-        setColor(DEFAULT_TANK_COLOR);
-        setSpeed(DEFAULT_TANK_SPEED);
+        setColor(DEFAULT_PLAYER_TANK_COLOR);
+        setSpeed(DEFAULT_PLAYER_TANK_SPEED);
     }
+
+    public Tank(int positionX, int positionY, ID id, GameEngine game, int speed, Color color) {
+        this(positionX, positionY, id, game);
+
+        setColor(color);
+        setSpeed(speed);
+    }
+
 
     public Tank(int positionX, int positionY, ID id, GameEngine game, Direction direction) {
         this(positionX, positionY, id, game);

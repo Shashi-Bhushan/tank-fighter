@@ -9,7 +9,7 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>in.shabhushan.tankfighter.game</bundle.symbolicName>
+    <bundle.symbolicName>Tank Fighter - Core Module</bundle.symbolicName>
     <bundle.namespace>in.shabhushan.tankfighter.game</bundle.namespace>
   </properties>
 
