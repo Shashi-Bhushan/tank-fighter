@@ -2,7 +2,7 @@ package in.shabhushan.tankfighter.game.util;
 
 import java.awt.*;
 
-public class Defaults {
+public final class Defaults {
     private Defaults() {}
 
     public static final Color DEFAULT_BG_COLOR = Color.WHITE;

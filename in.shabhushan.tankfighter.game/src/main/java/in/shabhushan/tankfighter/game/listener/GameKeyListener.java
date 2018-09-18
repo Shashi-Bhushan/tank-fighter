@@ -7,6 +7,9 @@ import in.shabhushan.tankfighter.game.objects.Tank;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
+import static in.shabhushan.tankfighter.game.util.TankUtil.objectWithinBoundary;
+
 /**
  * @author Shashi Bhushan
  * @date 17/9/18
@@ -28,37 +31,32 @@ public class GameKeyListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         GameEngine game = playerTank.getGame();
 
-
         if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-            System.out.println("Key Event DOWN");
-            System.out.println("getPositionY() : " + playerTank.getPositionY() + " game height " + game.getHeight());
-            playerTank.setDirection(Direction.DOWN);
-            if(playerTank.getPositionY() < game.getHeight() - 33 ) {
+            playerTank.setDirection(DOWN);
+
+            if(objectWithinBoundary(playerTank.getPositionY(), DOWN, game)) {
                 playerTank.setPositionY(playerTank.getPositionY() + playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-            System.out.println("Key Event UP");
-            System.out.println("getPositionY() : " + playerTank.getPositionY() + " game height " + game.getHeight());
-            playerTank.setDirection(Direction.UP);
-            if(0 < playerTank.getPositionY()) {
+            playerTank.setDirection(UP);
+
+            if(objectWithinBoundary(playerTank.getPositionY(), UP, game)) {
                 playerTank.setPositionY(playerTank.getPositionY() - playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-            System.out.println("Key Event LEFT");
-            System.out.println("getPositionX() : " + playerTank.getPositionX() + " game width " + game.getWidth());
             playerTank.setDirection(Direction.LEFT);
+
             // if player tank's x position is zero, don't allow further left move
-            if(0 < playerTank.getPositionX()) {
+            if(objectWithinBoundary(playerTank.getPositionX(), LEFT, game)) {
                 playerTank.setPositionX(playerTank.getPositionX() - playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-            System.out.println("Key Event RIGHT");
-            System.out.println("getPositionX() : " + playerTank.getPositionX() + " game width " + game.getWidth());
             playerTank.setDirection(Direction.RIGHT);
-            if(playerTank.getPositionX() < game.getWidth() - 33 ) {
+
+            if(objectWithinBoundary(playerTank.getPositionX(), RIGHT, game)){
                 playerTank.setPositionX(playerTank.getPositionX() + playerTank.getSpeed());
             }
         }
