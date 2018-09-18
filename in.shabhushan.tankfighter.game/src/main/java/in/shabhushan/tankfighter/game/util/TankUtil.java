@@ -1,7 +1,6 @@
 package in.shabhushan.tankfighter.game.util;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.objects.GameObject;
 
 public final class TankUtil {
