@@ -5,6 +5,7 @@ import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author Shashi Bhushan
@@ -18,7 +19,11 @@ public class TankGameServiceImpl implements TankGameService {
     public void startGame() {
         System.out.println("CircleGameServiceImpl#startGame");
         JFrame frame = new JFrame();
-        tankFighterGame = new TankFighterGame();
+
+        Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = defaultToolkit.getScreenSize();
+
+        tankFighterGame = new TankFighterGame(screenSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(tankFighterGame);
         frame.pack();

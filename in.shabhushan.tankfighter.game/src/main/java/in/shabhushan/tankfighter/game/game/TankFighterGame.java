@@ -20,10 +20,12 @@ public class TankFighterGame extends GameEngine {
 
     private Tank playerTank;
 
-    public TankFighterGame() {
+    public TankFighterGame(Dimension resolution) {
+        super(resolution);
         handler = new Handler();
 
-        playerTank = new Tank(10,10, ID.PLAYER, this);
+        playerTank = new Tank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
+                ID.PLAYER, this);
         playerTank.setSpeed(5);
 
         handler.addObject(playerTank);

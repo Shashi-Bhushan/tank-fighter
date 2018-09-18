@@ -23,9 +23,8 @@ public class Tank extends GameObject {
     }
 
     public Tank(int positionX, int positionY, ID id, GameEngine game, Direction direction) {
-        super(positionX, positionY, id, game);
+        this(positionX, positionY, id, game);
 
-        setColor(Color.BLACK);
         setDirection(direction);
     }
 
