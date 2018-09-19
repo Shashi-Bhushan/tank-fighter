@@ -22,6 +22,11 @@ public class Tank extends GameObject implements Runnable {
 
     final protected List<Bullet> bullets = new ArrayList<>();
 
+    protected boolean interrupted = false;
+
+    protected int timeToSleep = 1000;
+
+
     public Tank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
 
@@ -116,8 +121,18 @@ public class Tank extends GameObject implements Runnable {
         }
     }
 
+    /**
+     * Thread will call update method periodically
+     */
     @Override
     public void run() {
-        update();
+        while(!interrupted) {
+            try {
+                Thread.currentThread().sleep(timeToSleep);
+                update();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

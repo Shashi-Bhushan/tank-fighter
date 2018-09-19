@@ -7,6 +7,8 @@ import in.shabhushan.tankfighter.game.util.TankUtil;
 
 import java.awt.*;
 
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
+
 public class EnemyTank extends Tank {
     public EnemyTank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
@@ -23,10 +25,8 @@ public class EnemyTank extends Tank {
 
     @Override
     public void update() {
-        //super.update();
-
         if(TankUtil.objectWithinBoundary(this, game)) {
-            //positionY += positionY + 1;
+            positionY += DEFAULT_AI_TANK_SPEED;
             System.out.println("Position Y is : " + positionY);
         }
     }

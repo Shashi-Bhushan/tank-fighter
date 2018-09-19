@@ -40,14 +40,14 @@ public class TankFighterGame extends GameEngine {
                      this, DOWN, DEFAULT_AI_TANK_SPEED, DEFAULT_AI_TANK_COLOR);
 
             enemyTankHandler.addObject(tank);
+            Thread enemyTankThread = new Thread(tank);
+            enemyTankThread.start();
         }
     }
 
     @Override
     public void update() {
         handler.update();
-
-        enemyTankHandler.update();
     }
 
     @Override
