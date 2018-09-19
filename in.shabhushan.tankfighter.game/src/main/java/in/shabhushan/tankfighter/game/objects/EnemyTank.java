@@ -26,8 +26,8 @@ public class EnemyTank extends Tank {
         //super.update();
 
         if(TankUtil.objectWithinBoundary(this, game)) {
-            positionY += positionY + 1;
-            //System.out.println("Position X is : " + positionX);
+            //positionY += positionY + 1;
+            System.out.println("Position Y is : " + positionY);
         }
     }
 }

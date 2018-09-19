@@ -18,7 +18,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_S
  * @author Shashi Bhushan
  * @date 17/9/18
  */
-public class Tank extends GameObject {
+public class Tank extends GameObject implements Runnable {
 
     final protected List<Bullet> bullets = new ArrayList<>();
 
@@ -114,5 +114,10 @@ public class Tank extends GameObject {
         for(Bullet bullet: bullets) {
             bullet.draw(graphics);
         }
+    }
+
+    @Override
+    public void run() {
+        update();
     }
 }
