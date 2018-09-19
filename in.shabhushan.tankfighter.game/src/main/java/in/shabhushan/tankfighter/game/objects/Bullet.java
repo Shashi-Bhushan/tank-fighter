@@ -5,10 +5,10 @@ import java.awt.*;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_SPEED;
 
-public class Bullet extends GameObject {
+public class Bullet extends GenericGameObject {
 
     public Bullet(Tank tank) {
-        super(tank.getPositionX(), tank.getPositionY(), tank.getId(), tank.getGame());
+        super(tank.getHorizontalPosition(), tank.getVerticalPosition(), tank.getId(), tank.getGame());
         setDirection(tank.getDirection());
         setSpeed(DEFAULT_BULLET_SPEED);
     }
@@ -17,16 +17,16 @@ public class Bullet extends GameObject {
     public void update() {
         switch (direction) {
             case UP:
-                positionY -= speed;
+                verticalPosition -= speed;
                 break;
             case DOWN:
-                positionY += speed;
+                verticalPosition += speed;
                 break;
             case LEFT:
-                positionX -= speed;
+                horizontalPosition -= speed;
                 break;
             case RIGHT:
-                positionX += speed;
+                horizontalPosition += speed;
                 break;
         }
     }
@@ -34,6 +34,6 @@ public class Bullet extends GameObject {
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(DEFAULT_BULLET_COLOR);
-        graphics.drawLine(positionX + 5, positionY + 5, positionX + 8, positionY + 8);
+        graphics.drawLine(horizontalPosition + 5, verticalPosition + 5, horizontalPosition + 8, verticalPosition + 8);
     }
 }

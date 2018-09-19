@@ -31,14 +31,14 @@ public class GameKeyListener extends KeyAdapter {
             playerTank.setDirection(DOWN);
 
             if(objectWithinBoundary(playerTank, game)) {
-                playerTank.setPositionY(playerTank.getPositionY() + playerTank.getSpeed());
+                playerTank.setVerticalPosition(playerTank.getVerticalPosition() + playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
             playerTank.setDirection(UP);
 
             if(objectWithinBoundary(playerTank, game)) {
-                playerTank.setPositionY(playerTank.getPositionY() - playerTank.getSpeed());
+                playerTank.setVerticalPosition(playerTank.getVerticalPosition() - playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
@@ -46,14 +46,14 @@ public class GameKeyListener extends KeyAdapter {
 
             // if player tank's x position is zero, don't allow further left move
             if(objectWithinBoundary(playerTank, game)) {
-                playerTank.setPositionX(playerTank.getPositionX() - playerTank.getSpeed());
+                playerTank.setHorizontalPosition(playerTank.getHorizontalPosition() - playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
             playerTank.setDirection(Direction.RIGHT);
 
             if(objectWithinBoundary(playerTank, game)){
-                playerTank.setPositionX(playerTank.getPositionX() + playerTank.getSpeed());
+                playerTank.setHorizontalPosition(playerTank.getHorizontalPosition() + playerTank.getSpeed());
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE ) {

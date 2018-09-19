@@ -1,8 +1,6 @@
 package in.shabhushan.tankfighter.game.activator;
 
-import in.shabhushan.tankfighter.game.service.CircleGameService;
 import in.shabhushan.tankfighter.game.service.TankGameService;
-import in.shabhushan.tankfighter.game.service.internal.CircleGameServiceImpl;
 import in.shabhushan.tankfighter.game.service.internal.TankGameServiceImpl;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -27,12 +25,6 @@ public class TankFighterActivator implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         out.println("Starting " + this.getClass().getName() + "#start");
-
-        Hashtable circleProperties = new Hashtable();
-        circleProperties.put("osgi.command.scope", "circle");
-        circleProperties.put("osgi.command.function", new String[]{"startGame", "stopGame"});
-
-        bundleContext.registerService(CircleGameService.class.getName(), new CircleGameServiceImpl(), circleProperties);
 
         Hashtable tankProperties = new Hashtable();
         tankProperties.put("osgi.command.scope", "tank");

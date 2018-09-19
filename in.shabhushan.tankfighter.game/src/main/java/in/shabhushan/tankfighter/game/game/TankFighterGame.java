@@ -5,12 +5,12 @@ import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ID;
 import in.shabhushan.tankfighter.game.objects.EnemyTank;
+import in.shabhushan.tankfighter.game.objects.PlayerTank;
 import in.shabhushan.tankfighter.game.objects.Tank;
 
 import java.awt.*;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
-import static in.shabhushan.tankfighter.game.enumeration.Direction.LEFT;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
 
 /**
@@ -30,7 +30,7 @@ public class TankFighterGame extends GameEngine {
         handler = new Handler();
         enemyTankHandler = new EnemyTankHandler();
 
-        playerTank = new Tank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
+        playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
                 ID.PLAYER, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
 
         handler.addObject(playerTank);

@@ -4,122 +4,28 @@ import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
 
-import java.awt.*;
-import java.util.Random;
+import java.awt.Graphics2D;
+import java.awt.Color;
 
 /**
  * @author Shashi Bhushan
  * @date 16/9/18
  */
-public abstract class GameObject {
+public interface GameObject {
 
-    protected static final Random random = new Random();
+    public int getVerticalPosition();
 
-    /**
-     * Position attributes
-     */
-    protected int positionX;
-    protected int positionY;
+    public int getHorizontalPosition();
 
-    // TODO: Remove VelocityX and velocityY, use speed instead
-    /**
-     * Velocity Attributed
-     * @Deprecated
-     */
-    protected int velocityX;
-    protected int velocityY;
+    public Color getColor();
 
-    // Velocity Attribute
-    protected int speed;
+    public GameEngine getGame();
 
-    // Direction Attribute
-    protected Direction direction = Direction.UP;
+    public ID getId();
 
-    protected Color color;
+    public int getSpeed();
 
-    // Unique Identifier of Game Object
-    protected ID id;
-
-    protected GameEngine game;
-
-    public GameObject(int positionX, int positionY, ID id, GameEngine game) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.id = id;
-        this.game = game;
-    }
-
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public GameEngine getGame() {
-        return game;
-    }
-
-    public void setGame(GameEngine game) {
-        this.game = game;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
-    }
-
-    public int getVelocityX() {
-        return velocityX;
-    }
-
-    public void setVelocityX(int velocityX) {
-        this.velocityX = velocityX;
-    }
-
-    public int getVelocityY() {
-        return velocityY;
-    }
-
-    public void setVelocityY(int velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    public ID getId() {
-        return id;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
+    public Direction getDirection();
 
     public abstract void update();
 
