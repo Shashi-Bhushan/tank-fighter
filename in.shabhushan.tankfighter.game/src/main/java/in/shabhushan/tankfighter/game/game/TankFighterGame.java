@@ -23,7 +23,7 @@ public class TankFighterGame extends GameEngine {
 
     private EnemyTankHandler enemyTankHandler;
 
-    private Tank playerTank;
+    private static Tank playerTank;
 
     public TankFighterGame(Dimension resolution) {
         super(resolution);
@@ -59,7 +59,7 @@ public class TankFighterGame extends GameEngine {
         enemyTankHandler.draw(drawGraphics);
     }
 
-    public Tank getPlayerTank() {
+    public static Tank getPlayerTank() {
         return playerTank;
     }
 }

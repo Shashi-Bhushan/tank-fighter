@@ -3,7 +3,8 @@ package in.shabhushan.tankfighter.game.objects;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.util.TankUtil;
+import in.shabhushan.tankfighter.game.game.TankFighterGame;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 
@@ -25,9 +26,27 @@ public class EnemyTank extends Tank {
 
     @Override
     public void update() {
-        if(TankUtil.objectWithinBoundary(this, game)) {
-            positionY += DEFAULT_AI_TANK_SPEED;
-            System.out.println("Position Y is : " + positionY);
+
+        Direction direction = GameUtil.getShortestDistanceDirection(this, TankFighterGame.getPlayerTank());
+
+        this.setDirection(direction);
+
+        // TODO: set speed in direction of tank
+        if(GameUtil.objectWithinBoundary(this, game)) {
+            switch(direction) {
+                case UP:
+                    positionY -= DEFAULT_AI_TANK_SPEED;
+                    break;
+                case DOWN:
+                    positionY += DEFAULT_AI_TANK_SPEED;
+                    break;
+                case LEFT:
+                    positionX -= DEFAULT_AI_TANK_SPEED;
+                    break;
+                case RIGHT:
+                    positionX += DEFAULT_AI_TANK_SPEED;
+                    break;
+            }
         }
     }
 }

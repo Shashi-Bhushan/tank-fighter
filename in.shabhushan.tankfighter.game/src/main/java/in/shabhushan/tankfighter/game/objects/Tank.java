@@ -3,7 +3,7 @@ package in.shabhushan.tankfighter.game.objects;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.util.TankUtil;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 import java.util.List;
@@ -50,14 +50,14 @@ public class Tank extends GameObject implements Runnable {
 
     @Override
     public void update() {
-        // bullets.removeIf(bullet -> !TankUtil.objectWithinBoundary(bullet, game));
+        // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
 
         ListIterator<Bullet> bulletListIterator = bullets.listIterator();
         while(bulletListIterator.hasNext()) {
             Bullet bullet = bulletListIterator.next();
 
             // Remove Last Bullet if it exceeds boundary
-            if(!TankUtil.objectWithinBoundary(bullet, game)) {
+            if(!GameUtil.objectWithinBoundary(bullet, game)) {
                 bulletListIterator.remove();
             }
 

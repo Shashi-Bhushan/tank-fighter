@@ -7,10 +7,9 @@ import in.shabhushan.tankfighter.game.objects.Tank;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
-import static in.shabhushan.tankfighter.game.util.TankUtil.objectWithinBoundary;
+import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
 
 /**
  * @author Shashi Bhushan
