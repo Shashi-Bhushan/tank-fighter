@@ -4,11 +4,14 @@ import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGame;
+import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
+import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
+import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 public class EnemyTank extends GenericTank {
 
@@ -55,6 +58,12 @@ public class EnemyTank extends GenericTank {
                     break;
             }
         }
+
+        if(objectInLineOfSight(this, TankFighterGame.getPlayerTank())) {
+            this.addBullet(new Bullet(this));
+        }
+
+        updateBulletsPosition(bullets, game);
     }
 
     /**

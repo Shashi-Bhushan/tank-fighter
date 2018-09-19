@@ -3,15 +3,13 @@ package in.shabhushan.tankfighter.game.model.impl;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
-import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
-import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
+import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
  * This is an Implementation of {@link Tank} for Player.
@@ -44,16 +42,6 @@ public class PlayerTank extends GenericTank {
     public void update() {
         // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
 
-        ListIterator<Bullet> bulletListIterator = bullets.listIterator();
-        while(bulletListIterator.hasNext()) {
-            Bullet bullet = bulletListIterator.next();
-
-            // Remove Last Bullet if it exceeds boundary
-            if(!GameUtil.objectWithinBoundary(bullet, game)) {
-                bulletListIterator.remove();
-            }
-
-            bullet.update();
-        }
+        updateBulletsPosition(bullets, game);
     }
 }
