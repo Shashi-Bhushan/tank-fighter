@@ -1,8 +1,9 @@
-package in.shabhushan.tankfighter.game.objects;
+package in.shabhushan.tankfighter.game.model.impl;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.model.GameObject;
 
 import java.awt.*;
 import java.util.Random;

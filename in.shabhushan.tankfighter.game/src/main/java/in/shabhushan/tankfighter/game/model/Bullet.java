@@ -1,4 +1,6 @@
-package in.shabhushan.tankfighter.game.objects;
+package in.shabhushan.tankfighter.game.model;
+
+import in.shabhushan.tankfighter.game.model.impl.GenericGameObject;
 
 import java.awt.*;
 

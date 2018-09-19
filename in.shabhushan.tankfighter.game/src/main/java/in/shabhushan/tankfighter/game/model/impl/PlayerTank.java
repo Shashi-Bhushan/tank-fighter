@@ -1,16 +1,15 @@
-package in.shabhushan.tankfighter.game.objects;
+package in.shabhushan.tankfighter.game.model.impl;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.model.Bullet;
+import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
 

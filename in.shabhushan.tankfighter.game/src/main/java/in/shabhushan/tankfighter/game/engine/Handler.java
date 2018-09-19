@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.engine;
 
-import in.shabhushan.tankfighter.game.objects.GameObject;
+import in.shabhushan.tankfighter.game.model.GameObject;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -22,7 +22,7 @@ public class Handler {
     }
 
     /**
-     * Loops through all the game objects and render them on the Frame
+     * Loops through all the game model and render them on the Frame
      * @param graphics
      */
     public void draw(Graphics2D graphics) {

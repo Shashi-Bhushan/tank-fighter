@@ -1,4 +1,4 @@
-package in.shabhushan.tankfighter.game.objects;
+package in.shabhushan.tankfighter.game.model;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 
 /**
- * This is a Game Object, which all the objects in the Game that are going to be placed, inherits from. It provides some
+ * This is a Game Object, which all the model in the Game that are going to be placed, inherits from. It provides some
  * common methods across different types of GameObjects viz position, speed, direction's Getter and Setters, {@link #update()}
  * and {@link #draw(Graphics2D)}
  *

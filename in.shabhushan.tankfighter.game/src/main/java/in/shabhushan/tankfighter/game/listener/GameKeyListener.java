@@ -2,8 +2,8 @@ package in.shabhushan.tankfighter.game.listener;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
-import in.shabhushan.tankfighter.game.objects.Bullet;
-import in.shabhushan.tankfighter.game.objects.Tank;
+import in.shabhushan.tankfighter.game.model.Bullet;
+import in.shabhushan.tankfighter.game.model.Tank;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

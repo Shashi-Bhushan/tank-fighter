@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.engine;
 
-import in.shabhushan.tankfighter.game.objects.GameObject;
+import in.shabhushan.tankfighter.game.model.GameObject;
 
 public class EnemyTankHandler extends Handler {
     @Override

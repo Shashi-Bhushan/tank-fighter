@@ -1,4 +1,4 @@
-package in.shabhushan.tankfighter.game.objects;
+package in.shabhushan.tankfighter.game.model;
 
 /**
  * This is an API for Tank, which adds additional functionality on top of Game Object to Signify how a tank should behave.

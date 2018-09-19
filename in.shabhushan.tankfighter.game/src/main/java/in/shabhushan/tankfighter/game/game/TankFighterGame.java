@@ -4,9 +4,9 @@ import in.shabhushan.tankfighter.game.engine.EnemyTankHandler;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.objects.EnemyTank;
-import in.shabhushan.tankfighter.game.objects.PlayerTank;
-import in.shabhushan.tankfighter.game.objects.Tank;
+import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
+import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
+import in.shabhushan.tankfighter.game.model.Tank;
 
 import java.awt.*;
 

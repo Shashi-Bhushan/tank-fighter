@@ -2,7 +2,7 @@ package in.shabhushan.tankfighter.game.util;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
-import in.shabhushan.tankfighter.game.objects.GameObject;
+import in.shabhushan.tankfighter.game.model.GameObject;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
 
