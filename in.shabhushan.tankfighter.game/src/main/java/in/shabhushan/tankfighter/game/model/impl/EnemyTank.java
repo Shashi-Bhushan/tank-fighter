@@ -10,6 +10,7 @@ import in.shabhushan.tankfighter.game.util.GameUtil;
 import java.awt.*;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
+import static in.shabhushan.tankfighter.game.util.GameUtil.getShortestDistanceDirection;
 import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
 import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
@@ -33,12 +34,10 @@ public class EnemyTank extends GenericTank {
      * Enemy tank has to move in direction of {@link PlayerTank}, hence before updating the position, it checks what is
      * the direction with shortest distance towards {@link PlayerTank} and updates the direction.
      * Secondly, It moves 1 unit into that direction as well.
-     *
-     * TODO: Fire Bullet if PlayerTank is in Line of Sight
      */
     @Override
     public void update() {
-        Direction direction = GameUtil.getShortestDistanceDirection(this, TankFighterGame.getPlayerTank());
+        Direction direction = getShortestDistanceDirection(this, TankFighterGame.getPlayerTank());
 
         this.setDirection(direction);
 

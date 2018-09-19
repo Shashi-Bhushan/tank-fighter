@@ -3,8 +3,6 @@ package in.shabhushan.tankfighter.game.util;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.model.GameObject;
-import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
 
@@ -67,7 +65,7 @@ public final class GameUtil {
     }
 
     public static boolean objectInLineOfSight(GameObject enemyTank, GameObject playerTank) {
-        return enemyTank.getHorizontalPosition() == playerTank.getHorizontalPosition()
-                || enemyTank.getVerticalPosition() == playerTank.getVerticalPosition() ? true : false;
+        return Math.abs(enemyTank.getHorizontalPosition() - playerTank.getHorizontalPosition()) < 10
+                || Math.abs(enemyTank.getVerticalPosition() - playerTank.getVerticalPosition()) < 10;
     }
 }
