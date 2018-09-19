@@ -3,7 +3,7 @@ package in.shabhushan.tankfighter.game.game;
 import in.shabhushan.tankfighter.game.engine.EnemyTankHandler;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
-import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
 import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
@@ -31,7 +31,7 @@ public class TankFighterGame extends GameEngine {
         enemyTankHandler = new EnemyTankHandler();
 
         playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
-                ID.PLAYER, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
+                ObjectType.PLAYER_TANK, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
 
         handler.addObject(playerTank);
 

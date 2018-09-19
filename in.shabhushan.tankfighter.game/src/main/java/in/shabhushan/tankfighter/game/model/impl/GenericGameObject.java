@@ -2,7 +2,7 @@ package in.shabhushan.tankfighter.game.model.impl;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
-import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
 
 import java.awt.*;
@@ -27,14 +27,14 @@ public abstract class GenericGameObject implements GameObject {
     protected Color color;
 
     // Unique Identifier of Game Object
-    protected ID id;
+    protected ObjectType objectType;
 
     protected GameEngine game;
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, ID id, GameEngine game) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
-        this.id = id;
+        this.objectType = objectType;
         this.game = game;
     }
 
@@ -70,12 +70,12 @@ public abstract class GenericGameObject implements GameObject {
         this.verticalPosition = verticalPosition;
     }
 
-    public ID getId() {
-        return id;
+    public ObjectType getObjectType() {
+        return objectType;
     }
 
-    public void setId(ID id) {
-        this.id = id;
+    public void setObjectType(ObjectType objectType) {
+        this.objectType = objectType;
     }
 
     public int getSpeed() {

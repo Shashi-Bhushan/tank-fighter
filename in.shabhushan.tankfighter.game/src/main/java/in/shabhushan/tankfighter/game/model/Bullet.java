@@ -10,7 +10,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_SPEED;
 public class Bullet extends GenericGameObject {
 
     public Bullet(Tank tank) {
-        super(tank.getHorizontalPosition(), tank.getVerticalPosition(), tank.getId(), tank.getGame());
+        super(tank.getHorizontalPosition(), tank.getVerticalPosition(), tank.getObjectType(), tank.getGame());
         setDirection(tank.getDirection());
         setSpeed(DEFAULT_BULLET_SPEED);
     }

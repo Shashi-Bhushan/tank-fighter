@@ -3,7 +3,7 @@ package in.shabhushan.tankfighter.game.model.impl;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
-import in.shabhushan.tankfighter.game.enumeration.ID;
+import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
 
@@ -27,23 +27,23 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     protected int timeToSleep = 1000;
 
 
-    public GenericTank(int positionX, int positionY, ID id, GameEngine game) {
-        super(positionX, positionY, id, game);
+    public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
+        super(positionX, positionY, objectType, game);
 
         setColor(DEFAULT_PLAYER_TANK_COLOR);
         setSpeed(DEFAULT_PLAYER_TANK_SPEED);
     }
 
-    public GenericTank(int positionX, int positionY, ID id, GameEngine game, int speed, Color color) {
-        this(positionX, positionY, id, game);
+    public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game, int speed, Color color) {
+        this(positionX, positionY, objectType, game);
 
         setColor(color);
         setSpeed(speed);
     }
 
 
-    public GenericTank(int positionX, int positionY, ID id, GameEngine game, Direction direction) {
-        this(positionX, positionY, id, game);
+    public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game, Direction direction) {
+        this(positionX, positionY, objectType, game);
 
         setDirection(direction);
     }
