@@ -4,12 +4,10 @@ package in.shabhushan.tankfighter.game.objects;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ID;
-import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
@@ -48,26 +46,6 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         setDirection(direction);
     }
 
-    /**
-     *
-     */
-    @Override
-    public void update() {
-        // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
-
-        ListIterator<Bullet> bulletListIterator = bullets.listIterator();
-        while(bulletListIterator.hasNext()) {
-            Bullet bullet = bulletListIterator.next();
-
-            // Remove Last Bullet if it exceeds boundary
-            if(!GameUtil.objectWithinBoundary(bullet, game)) {
-                bulletListIterator.remove();
-            }
-
-            bullet.update();
-        }
-    }
-
     public void addBullet(Bullet bullet) {
         if(bullets.size() < DEFAULT_BULLET_COUNT) {
             bullets.add(bullet);
@@ -79,7 +57,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     }
 
     /**
-     * Draw Tank based on Direction
+     * Draw Tank based on it's Direction
      * @param graphics
      */
     @Override
@@ -125,17 +103,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     }
 
     /**
-     * Thread will call update method periodically
+     * Do Nothing By Default in the Thread.
      */
     @Override
-    public void run() {
-        while(!interrupted) {
-            try {
-                Thread.currentThread().sleep(timeToSleep);
-                update();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    public void run() {}
 }

@@ -11,6 +11,7 @@ import java.awt.*;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
 
 public class EnemyTank extends GenericTank {
+
     public EnemyTank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
     }
@@ -38,7 +39,6 @@ public class EnemyTank extends GenericTank {
 
         this.setDirection(direction);
 
-        // TODO: set speed in direction of tank
         if(GameUtil.objectWithinBoundary(this, game)) {
             switch(direction) {
                 case UP:
@@ -53,6 +53,22 @@ public class EnemyTank extends GenericTank {
                 case RIGHT:
                     horizontalPosition += DEFAULT_AI_TANK_SPEED;
                     break;
+            }
+        }
+    }
+
+    /**
+     * Since The tank needs to update it's position once a second, Thus update method should be called only once in a second
+     * to update Enemy Tank's position and direction.
+     */
+    @Override
+    public void run() {
+        while(!interrupted) {
+            try {
+                Thread.currentThread().sleep(timeToSleep);
+                update();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

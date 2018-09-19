@@ -92,9 +92,5 @@ public abstract class GenericGameObject implements GameObject {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
-
-    public abstract void update();
-
-    public abstract void draw(Graphics2D graphics);
 }
 

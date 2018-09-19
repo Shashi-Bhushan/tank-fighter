@@ -18,14 +18,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_S
  * This is an Implementation of {@link Tank} for Player.
  * This will have listener attached, So Player can move the tank around and Fire Bullets.
  */
-public class PlayerTank extends GenericGameObject implements Tank {
-
-    final protected List<Bullet> bullets = new ArrayList<>();
-
-    protected boolean interrupted = false;
-
-    protected int timeToSleep = 1000;
-
+public class PlayerTank extends GenericTank {
 
     public PlayerTank(int positionX, int positionY, ID id, GameEngine game) {
         super(positionX, positionY, id, game);
@@ -62,77 +55,6 @@ public class PlayerTank extends GenericGameObject implements Tank {
             }
 
             bullet.update();
-        }
-    }
-
-    public void addBullet(Bullet bullet) {
-        if(bullets.size() < DEFAULT_BULLET_COUNT) {
-            bullets.add(bullet);
-        }
-    }
-
-    public void removeBullet(Bullet bullet) {
-        bullets.remove(bullet);
-    }
-
-    /**
-     * Draw Tank based on Direction
-     * @param graphics
-     */
-    @Override
-    public void draw(Graphics2D graphics) {
-        graphics.setColor(color);
-
-        switch (direction) {
-            case UP:
-                graphics.fill3DRect(horizontalPosition, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 15, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 10, 20, false);
-                graphics.fillOval(horizontalPosition + 4, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 9, verticalPosition + 15, horizontalPosition + 9, verticalPosition - 4);
-                break;
-
-            case DOWN:
-                graphics.fill3DRect(horizontalPosition, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 15, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 10, 20, false);
-                graphics.fillOval(horizontalPosition + 4, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 9, verticalPosition + 15, horizontalPosition + 9, verticalPosition + 28);
-                break;
-
-            case LEFT:
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 30, 5, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 20, 30, 4, false);
-                graphics.fill3DRect(horizontalPosition + 10, verticalPosition + 10, 20, 10, false);
-                graphics.fillOval(horizontalPosition + 15, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 20, verticalPosition + 15, horizontalPosition - 5, verticalPosition + 15);
-                break;
-
-            case RIGHT:
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 30, 5, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 20, 30, 4, false);
-                graphics.fill3DRect(horizontalPosition + 10, verticalPosition + 10, 20, 10, false);
-                graphics.fillOval(horizontalPosition + 15, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 20, verticalPosition + 15, horizontalPosition + 40, verticalPosition + 15);
-                break;
-        }
-        for(Bullet bullet: bullets) {
-            bullet.draw(graphics);
-        }
-    }
-
-    /**
-     * Thread will call update method periodically
-     */
-    @Override
-    public void run() {
-        while(!interrupted) {
-            try {
-                Thread.currentThread().sleep(timeToSleep);
-                update();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
