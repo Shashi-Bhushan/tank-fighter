@@ -13,6 +13,12 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED
 import static in.shabhushan.tankfighter.game.util.GameUtil.getShortestDistanceDirection;
 import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
 
+/**
+ * This class represents Enemy Tanks which are trying to destroy Player Tanks.
+ * Enemy Tank will always move in direction of Player Tank and will shoot if it's in line of sight.
+ *
+ * TODO: Create an AI for Enemy Tank to roam around and start following the Player tank only if it's in line of sight and within a certain proximity.
+ */
 public class EnemyTank extends GenericTank {
 
     public EnemyTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
