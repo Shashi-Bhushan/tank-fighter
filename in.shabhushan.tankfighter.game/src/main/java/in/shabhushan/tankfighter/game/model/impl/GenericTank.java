@@ -14,6 +14,7 @@ import java.util.List;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
+import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
  * This is a Generic Implementation for Tank, which gives default functionality to the implementation Tank class
@@ -56,6 +57,13 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     public void removeBullet(Bullet bullet) {
         bullets.remove(bullet);
+    }
+
+    @Override
+    public void update() {
+        // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
+
+        updateBulletsPosition(bullets, game);
     }
 
     /**

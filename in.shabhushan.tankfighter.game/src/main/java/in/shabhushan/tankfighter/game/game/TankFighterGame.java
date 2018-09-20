@@ -48,6 +48,7 @@ public class TankFighterGame extends GameEngine {
     @Override
     public void update() {
         handler.update();
+        enemyTankHandler.update();
     }
 
     @Override

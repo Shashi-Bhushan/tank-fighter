@@ -37,11 +37,4 @@ public class PlayerTank extends GenericTank {
 
         setDirection(direction);
     }
-
-    @Override
-    public void update() {
-        // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
-
-        updateBulletsPosition(bullets, game);
-    }
 }

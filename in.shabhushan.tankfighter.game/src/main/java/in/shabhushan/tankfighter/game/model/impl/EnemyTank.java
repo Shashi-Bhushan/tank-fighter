@@ -35,8 +35,7 @@ public class EnemyTank extends GenericTank {
      * the direction with shortest distance towards {@link PlayerTank} and updates the direction.
      * Secondly, It moves 1 unit into that direction as well.
      */
-    @Override
-    public void update() {
+    public void updateTankPosition() {
         Direction direction = getShortestDistanceDirection(this, TankFighterGame.getPlayerTank());
 
         this.setDirection(direction);
@@ -61,8 +60,6 @@ public class EnemyTank extends GenericTank {
         if(objectInLineOfSight(this, TankFighterGame.getPlayerTank())) {
             this.addBullet(new Bullet(this));
         }
-
-        updateBulletsPosition(bullets, game);
     }
 
     /**
@@ -74,7 +71,7 @@ public class EnemyTank extends GenericTank {
         while(!interrupted) {
             try {
                 Thread.currentThread().sleep(timeToSleep);
-                update();
+                updateTankPosition();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
