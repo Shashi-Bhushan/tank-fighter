@@ -35,21 +35,18 @@ public class Bullet extends GenericGameObject {
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(DEFAULT_BULLET_COLOR);
-        int width = DEFAULT_TANK_BLOCK_DISTANCE;
-        int size = DEFAULT_TANK_BLOCK_DISTANCE;
-
         switch(direction) {
             case UP:
-                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+                graphics.fill3DRect(horizontalPosition + DEFAULT_BULLET_BLOCK_DISTANCE, verticalPosition, DEFAULT_BULLET_BLOCK_WIDTH, DEFAULT_BULLET_BLOCK_WIDTH, false);
                 break;
             case DOWN:
-                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + DEFAULT_BULLET_BLOCK_DISTANCE, verticalPosition + 2 * DEFAULT_TANK_BLOCK_DISTANCE, DEFAULT_BULLET_BLOCK_WIDTH, DEFAULT_BULLET_BLOCK_WIDTH, false);
                 break;
             case RIGHT:
-                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * DEFAULT_TANK_BLOCK_DISTANCE, verticalPosition + DEFAULT_BULLET_BLOCK_DISTANCE, DEFAULT_BULLET_BLOCK_WIDTH, DEFAULT_BULLET_BLOCK_WIDTH, false);
                 break;
             case LEFT:
-                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition, verticalPosition + DEFAULT_BULLET_BLOCK_DISTANCE, DEFAULT_BULLET_BLOCK_WIDTH, DEFAULT_BULLET_BLOCK_WIDTH, false);
                 break;
         }
     }
