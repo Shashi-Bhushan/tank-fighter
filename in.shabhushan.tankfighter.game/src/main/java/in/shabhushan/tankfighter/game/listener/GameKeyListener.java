@@ -14,6 +14,9 @@ import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
 /**
  * @author Shashi Bhushan
  * @date 17/9/18
+ *
+ * TODO: Update the key listener to Key Bindings to Have smooth gaming experience with multiple keys pressed simultaneously.
+ * Check {@link https://tips4java.wordpress.com/2013/06/09/motion-using-the-keyboard/} for Reference
  */
 public class GameKeyListener extends KeyAdapter {
 

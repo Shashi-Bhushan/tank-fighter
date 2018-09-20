@@ -9,7 +9,6 @@ import java.awt.*;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
-import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
  * This is an Implementation of {@link Tank} for Player.

@@ -4,13 +4,16 @@ import in.shabhushan.tankfighter.game.engine.EnemyTankHandler;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
+import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
 import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
@@ -26,6 +29,7 @@ public class TankFighterGameEngine extends GameEngine {
     private EnemyTankHandler enemyTankHandler;
 
     private static Tank playerTank;
+    private static List<Tank> enemyTanks = new LinkedList<>();
 
     public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
@@ -40,9 +44,13 @@ public class TankFighterGameEngine extends GameEngine {
         for(int index = 0; index < DEFAULT_AI_TANK_NUMBER; index++) {
             Tank tank = new EnemyTank(100 * (index + 1),(int)resolution.getHeight() / 4,
                      this, DOWN, DEFAULT_AI_TANK_SPEED, DEFAULT_AI_TANK_COLOR);
+            // Add to List
+            enemyTanks.add(tank);
 
+            // Add to Handler
             enemyTankHandler.addObject(tank);
 
+            // Add to Executor Thread Pool
             executorService.execute(tank);
         }
     }
@@ -64,5 +72,48 @@ public class TankFighterGameEngine extends GameEngine {
 
     public static Tank getPlayerTank() {
         return playerTank;
+    }
+
+    @Override
+    public void checkForCollisions() {
+        // Get Player Tank's Bullets
+        // check against position
+
+        // Check if Player's Bullet has hit any enemy tank
+        ListIterator<Bullet> playerBulletIterator = playerTank.getBullets().listIterator();
+        while(playerBulletIterator.hasNext()) {
+            Bullet playerBullet = playerBulletIterator.next();
+
+            for(Tank enemyTank: enemyTanks) {
+                if(GameUtil.isTankHitByBullet(enemyTank, playerBullet)) {
+                    // Remove Player's Bullet
+                    playerBulletIterator.remove();
+                    enemyTank.setDead(true);
+
+                    System.out.println(">>>>>>>>>>> ENEMY TANK is DEAD");
+                    // enemyTank is x_x, check for next tank
+                    break;
+                }
+            }
+        }
+
+        // Check if Enemy Tank has hit player
+        OUTER_LOOP:
+        for(Tank enemyTank: enemyTanks) {
+            ListIterator<Bullet> enemyBulletIterator = enemyTank.getBullets().listIterator();
+
+            while(enemyBulletIterator.hasNext()) {
+                Bullet enemyBullet = enemyBulletIterator.next();
+
+                if(GameUtil.isTankHitByBullet(playerTank, enemyBullet)) {
+                    enemyBulletIterator.remove();
+                    playerTank.setDead(true);
+
+                    System.out.println(">>>>>>>>>>> PLAYER TANK is DEAD");
+                    // break out of all loops, Player is x_x
+                    break OUTER_LOOP;
+                }
+            }
+        }
     }
 }

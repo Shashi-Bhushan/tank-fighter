@@ -24,6 +24,9 @@ import java.util.concurrent.Executors;
  * Container, and call the GameEngine's start() method. Parent
  * must be made visible prior to calling start(). Override update()
  * and draw() for custom game content.
+ *
+ * TODO: Change to JPanel for Supporting KeyBindings.
+ * See {@link https://docs.oracle.com/javase/tutorial/uiswing/TOC.html} for Reference.
  */
 public abstract class GameEngine extends Canvas implements Runnable {
 
@@ -80,6 +83,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
         while (running) {
             long timeBeforeLoop = System.nanoTime(); // time when game loop starts
 
+            checkForCollisions();
             update();
             draw();
             render();
@@ -90,6 +94,8 @@ public abstract class GameEngine extends Canvas implements Runnable {
             }
         }
     }
+
+    abstract public void checkForCollisions();
 
     // update everything in the game, should be overridden
     abstract public void update();

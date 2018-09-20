@@ -6,14 +6,14 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
 import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
@@ -27,12 +27,10 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     protected int timeToSleep = 1000;
 
+    protected boolean dead = false;
 
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
         super(positionX, positionY, objectType, game);
-
-        setColor(DEFAULT_PLAYER_TANK_COLOR);
-        setSpeed(DEFAULT_PLAYER_TANK_SPEED);
     }
 
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game, int speed, Color color) {
@@ -49,14 +47,29 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         setDirection(direction);
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    @Override
     public void addBullet(Bullet bullet) {
         if(bullets.size() < DEFAULT_BULLET_COUNT) {
             bullets.add(bullet);
         }
     }
 
+    @Override
     public void removeBullet(Bullet bullet) {
         bullets.remove(bullet);
+    }
+
+    @Override
+    public List<Bullet> getBullets() {
+        return bullets;
     }
 
     @Override
@@ -64,47 +77,96 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
 
         updateBulletsPosition(bullets, game);
+
+        ListIterator<Bullet> bulletListIterator = bullets.listIterator();
+        while(bulletListIterator.hasNext()) {
+            Bullet bullet = bulletListIterator.next();
+
+            // Remove Bullet if it has hit a tank
+            if(!GameUtil.isTankHitByBullet(this, bullet)) {
+                bulletListIterator.remove();
+                this.dead = true;
+            }
+
+            bullet.update();
+        }
     }
 
     /**
      * Draw Tank based on it's Direction
+     *
+     * use a Box Model to Build Tank on 9 Boxes
+     * First ROW
+     * graphics.fill3DRect(horizontalPosition, verticalPosition, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition, width, width, false);
+     *
+     * Second ROW
+     * graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+     *
+     * Third ROW
+     * graphics.fill3DRect(horizontalPosition, verticalPosition + 2 * size, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
+     * graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + 2 * size, width, width, false);
+     *
      * @param graphics
      */
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(color);
 
+        int width = 9;
+        int size = 10;
+
         switch (direction) {
             case UP:
-                graphics.fill3DRect(horizontalPosition, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 15, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 10, 20, false);
-                graphics.fillOval(horizontalPosition + 4, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 9, verticalPosition + 15, horizontalPosition + 9, verticalPosition - 4);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + 2 * size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + 2 * size, width, width, false);
                 break;
 
             case DOWN:
-                graphics.fill3DRect(horizontalPosition, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 15, verticalPosition, 5, 30, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 10, 20, false);
-                graphics.fillOval(horizontalPosition + 4, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 9, verticalPosition + 15, horizontalPosition + 9, verticalPosition + 28);
+                graphics.fill3DRect(horizontalPosition, verticalPosition, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
                 break;
 
             case LEFT:
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 30, 5, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 20, 30, 4, false);
-                graphics.fill3DRect(horizontalPosition + 10, verticalPosition + 10, 20, 10, false);
-                graphics.fillOval(horizontalPosition + 15, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 20, verticalPosition + 15, horizontalPosition - 5, verticalPosition + 15);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + 2 * size, width, width, false);
                 break;
 
             case RIGHT:
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 5, 30, 5, false);
-                graphics.fill3DRect(horizontalPosition + 5, verticalPosition + 20, 30, 4, false);
-                graphics.fill3DRect(horizontalPosition + 10, verticalPosition + 10, 20, 10, false);
-                graphics.fillOval(horizontalPosition + 15, verticalPosition + 10, 10, 10);
-                graphics.drawLine(horizontalPosition + 20, verticalPosition + 15, horizontalPosition + 40, verticalPosition + 15);
+                graphics.fill3DRect(horizontalPosition, verticalPosition, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition, verticalPosition + 2 * size, width, width, false);
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
                 break;
         }
         for(Bullet bullet: bullets) {
