@@ -9,6 +9,8 @@ import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
 
 import java.awt.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
@@ -40,8 +42,8 @@ public class TankFighterGameEngine extends GameEngine {
                      this, DOWN, DEFAULT_AI_TANK_SPEED, DEFAULT_AI_TANK_COLOR);
 
             enemyTankHandler.addObject(tank);
-            Thread enemyTankThread = new Thread(tank);
-            enemyTankThread.start();
+
+            executorService.execute(tank);
         }
     }
 

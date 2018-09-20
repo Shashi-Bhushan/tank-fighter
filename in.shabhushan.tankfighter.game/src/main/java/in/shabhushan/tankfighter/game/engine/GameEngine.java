@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author Shashi Bhushan
@@ -40,7 +42,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     protected boolean running;
 
-    private Thread gameThread;
+    protected ExecutorService executorService = Executors.newCachedThreadPool();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GameEngine() {
@@ -66,12 +68,10 @@ public abstract class GameEngine extends Canvas implements Runnable {
     public void start() {
         createBufferStrategy(2); // double buffering
         running = true;
-        gameThread = new Thread(this);
-        gameThread.start();// start game loop
+        executorService.execute(this);
     }
 
     public void stop() {
-        gameThread.stop();
     }
 
     @Override
