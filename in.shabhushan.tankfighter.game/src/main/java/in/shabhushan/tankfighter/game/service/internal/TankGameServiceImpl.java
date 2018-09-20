@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.service.internal;
 
-import in.shabhushan.tankfighter.game.game.TankFighterGame;
+import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 public class TankGameServiceImpl implements TankGameService {
 
     JFrame gameFrame;
-    private TankFighterGame tankFighterGame;
+    private TankFighterGameEngine tankFighterGameEngine;
 
     @Override
     public void startGame() {
@@ -24,21 +24,21 @@ public class TankGameServiceImpl implements TankGameService {
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = defaultToolkit.getScreenSize();
 
-        tankFighterGame = new TankFighterGame(screenSize);
+        tankFighterGameEngine = new TankFighterGameEngine(screenSize);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.add(tankFighterGame);
+        gameFrame.add(tankFighterGameEngine);
         gameFrame.pack();
         gameFrame.setVisible(true);
-        gameFrame.addKeyListener(new GameKeyListener(tankFighterGame.getPlayerTank()));
-        tankFighterGame.start();
+        gameFrame.addKeyListener(new GameKeyListener(tankFighterGameEngine.getPlayerTank()));
+        tankFighterGameEngine.start();
 
     }
 
     @Override
     public void stopGame() {
-        tankFighterGame.stop();
+        tankFighterGameEngine.stop();
 
-        tankFighterGame = null;
+        tankFighterGameEngine = null;
         gameFrame.dispatchEvent(new WindowEvent(gameFrame, WindowEvent.WINDOW_CLOSING));
     }
 }

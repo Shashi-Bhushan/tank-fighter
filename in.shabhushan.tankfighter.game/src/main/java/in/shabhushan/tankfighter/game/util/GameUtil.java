@@ -2,13 +2,15 @@ package in.shabhushan.tankfighter.game.util;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
+import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.GameObject;
+import in.shabhushan.tankfighter.game.model.Tank;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
 
 public final class GameUtil {
 
-    public static boolean objectWithinBoundary(GameObject gameObject, GameEngine game) {
+    public static final boolean objectWithinBoundary(GameObject gameObject, GameEngine game) {
         boolean withoutBoundary = false;
 
         switch (gameObject.getDirection()) {
@@ -38,7 +40,7 @@ public final class GameUtil {
         return withoutBoundary;
     }
 
-    public static Direction getShortestDistanceDirection(GameObject source, GameObject target) {
+    public static final Direction getShortestDistanceDirection(GameObject source, GameObject target) {
         Direction direction;
 
         // Get horizontalDistance and Vertical Distance Between both tank Objects
@@ -64,8 +66,23 @@ public final class GameUtil {
         return direction;
     }
 
-    public static boolean objectInLineOfSight(GameObject enemyTank, GameObject playerTank) {
+    public static final boolean objectInLineOfSight(GameObject enemyTank, GameObject playerTank) {
         return Math.abs(enemyTank.getHorizontalPosition() - playerTank.getHorizontalPosition()) < 10
                 || Math.abs(enemyTank.getVerticalPosition() - playerTank.getVerticalPosition()) < 10;
+    }
+
+    public static final boolean isTankHitByBullet(Tank tank, Bullet bullet) {
+        int tankHorizontalPosition = tank.getHorizontalPosition();
+        int tankVerticalPosition = tank.getVerticalPosition();
+
+        int bulletHorizontalPosition = bullet.getHorizontalPosition();
+        int bulletVerticalPosition = bullet.getVerticalPosition();
+
+        // if bullet is within tank's horizontal or vertical position
+        return objectWithinTankBoundary(tankHorizontalPosition, bulletHorizontalPosition) || objectWithinTankBoundary(tankVerticalPosition, bulletVerticalPosition);
+    }
+
+    private static boolean objectWithinTankBoundary(int tankPositionCoordinate, int bulletPositionCoordinate) {
+        return tankPositionCoordinate <= bulletPositionCoordinate && bulletPositionCoordinate <= tankPositionCoordinate + 30;
     }
 }

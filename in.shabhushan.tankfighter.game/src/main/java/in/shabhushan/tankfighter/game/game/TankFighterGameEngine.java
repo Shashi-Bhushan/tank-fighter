@@ -17,7 +17,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.*;
  * @author Shashi Bhushan
  * @date 17/9/18
  */
-public class TankFighterGame extends GameEngine {
+public class TankFighterGameEngine extends GameEngine {
 
     private Handler handler;
 
@@ -25,7 +25,7 @@ public class TankFighterGame extends GameEngine {
 
     private static Tank playerTank;
 
-    public TankFighterGame(Dimension resolution) {
+    public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
         handler = new Handler();
         enemyTankHandler = new EnemyTankHandler();

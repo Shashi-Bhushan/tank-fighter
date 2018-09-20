@@ -3,7 +3,7 @@ package in.shabhushan.tankfighter.game.model.impl;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
-import in.shabhushan.tankfighter.game.game.TankFighterGame;
+import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
@@ -12,7 +12,6 @@ import java.awt.*;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
 import static in.shabhushan.tankfighter.game.util.GameUtil.getShortestDistanceDirection;
 import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
-import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 public class EnemyTank extends GenericTank {
 
@@ -36,7 +35,7 @@ public class EnemyTank extends GenericTank {
      * Secondly, It moves 1 unit into that direction as well.
      */
     public void updateTankPosition() {
-        Direction direction = getShortestDistanceDirection(this, TankFighterGame.getPlayerTank());
+        Direction direction = getShortestDistanceDirection(this, TankFighterGameEngine.getPlayerTank());
 
         this.setDirection(direction);
 
@@ -57,7 +56,7 @@ public class EnemyTank extends GenericTank {
             }
         }
 
-        if(objectInLineOfSight(this, TankFighterGame.getPlayerTank())) {
+        if(objectInLineOfSight(this, TankFighterGameEngine.getPlayerTank())) {
             this.addBullet(new Bullet(this));
         }
     }
