@@ -4,8 +4,7 @@ import in.shabhushan.tankfighter.game.model.impl.GenericGameObject;
 
 import java.awt.*;
 
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COLOR;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_SPEED;
+import static in.shabhushan.tankfighter.game.util.Defaults.*;
 
 public class Bullet extends GenericGameObject {
 
@@ -36,6 +35,22 @@ public class Bullet extends GenericGameObject {
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(DEFAULT_BULLET_COLOR);
-        graphics.drawLine(horizontalPosition + 5, verticalPosition + 5, horizontalPosition + 8, verticalPosition + 8);
+        int width = DEFAULT_TANK_BLOCK_DISTANCE;
+        int size = DEFAULT_TANK_BLOCK_DISTANCE;
+
+        switch(direction) {
+            case UP:
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
+                break;
+            case DOWN:
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
+                break;
+            case RIGHT:
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
+                break;
+            case LEFT:
+                graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
+                break;
+        }
     }
 }

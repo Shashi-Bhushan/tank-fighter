@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DISTANCE;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_WIDTH;
 import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
@@ -117,8 +119,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     public void draw(Graphics2D graphics) {
         graphics.setColor(color);
 
-        int width = 9;
-        int size = 10;
+        int width = DEFAULT_TANK_BLOCK_WIDTH;
+        int size = DEFAULT_TANK_BLOCK_DISTANCE;
 
         switch (direction) {
             case UP:
@@ -147,12 +149,12 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
             case LEFT:
                 graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
-                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition, width, width, false);
 
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition, width, width, false);
                 graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
                 graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
-                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
 
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
                 graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
                 graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + 2 * size, width, width, false);
                 break;
@@ -160,11 +162,11 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
             case RIGHT:
                 graphics.fill3DRect(horizontalPosition, verticalPosition, width, width, false);
                 graphics.fill3DRect(horizontalPosition + size, verticalPosition, width, width, false);
-
                 graphics.fill3DRect(horizontalPosition, verticalPosition + size, width, width, false);
-                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
-                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
 
+                graphics.fill3DRect(horizontalPosition + size, verticalPosition + size, width, width, false);
+
+                graphics.fill3DRect(horizontalPosition + 2 * size, verticalPosition + size, width, width, false);
                 graphics.fill3DRect(horizontalPosition, verticalPosition + 2 * size, width, width, false);
                 graphics.fill3DRect(horizontalPosition + size, verticalPosition + 2 * size, width, width, false);
                 break;

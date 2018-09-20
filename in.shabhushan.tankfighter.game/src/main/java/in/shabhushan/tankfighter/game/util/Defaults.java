@@ -7,6 +7,13 @@ public final class Defaults {
 
     public static final Color DEFAULT_BG_COLOR = Color.WHITE;
 
+    public static final int DEFAULT_TANK_BLOCK_WIDTH = 9;
+    public static final int DEFAULT_TANK_BLOCK_DISTANCE = 10;
+
+    public static final int DEFAULT_BULLET_BLOCK_WIDTH = 6;
+    public static final int DEFAULT_BULLET_BLOCK_DISTANCE = 12;
+
+
     public static final Color DEFAULT_PLAYER_TANK_COLOR = Color.DARK_GRAY;
     public static final int DEFAULT_PLAYER_TANK_SPEED = 15;
 
