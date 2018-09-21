@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_BULLET_COLOR;
 import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
 
 /**
@@ -60,7 +61,7 @@ public class GameKeyListener extends KeyAdapter {
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE ) {
-            Bullet bullet = new Bullet(playerTank);
+            Bullet bullet = new Bullet(playerTank, DEFAULT_PLAYER_BULLET_COLOR);
 
             playerTank.addBullet(bullet);
         }

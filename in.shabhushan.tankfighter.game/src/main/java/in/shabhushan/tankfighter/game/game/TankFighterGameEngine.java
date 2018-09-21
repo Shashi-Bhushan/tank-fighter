@@ -86,6 +86,7 @@ public class TankFighterGameEngine extends GameEngine {
 
             for(Tank enemyTank: enemyTanks) {
                 if(GameUtil.isTankHitByBullet(enemyTank, playerBullet)) {
+                    System.out.println("Remove Player Bullet as Enemy is Dead.");
                     // Remove Player's Bullet
                     playerBulletIterator.remove();
                     enemyTank.setDead(true);
@@ -106,6 +107,7 @@ public class TankFighterGameEngine extends GameEngine {
                 Bullet enemyBullet = enemyBulletIterator.next();
 
                 if(GameUtil.isTankHitByBullet(playerTank, enemyBullet)) {
+                    System.out.println("Remove Enemy Bullet as Player is Dead.");
                     enemyBulletIterator.remove();
                     playerTank.setDead(true);
 

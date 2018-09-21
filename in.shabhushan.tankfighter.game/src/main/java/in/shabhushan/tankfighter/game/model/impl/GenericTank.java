@@ -6,12 +6,10 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DISTANCE;
@@ -79,19 +77,6 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         // bullets.removeIf(bullet -> !GameUtil.objectWithinBoundary(bullet, game));
 
         updateBulletsPosition(bullets, game);
-
-        ListIterator<Bullet> bulletListIterator = bullets.listIterator();
-        while(bulletListIterator.hasNext()) {
-            Bullet bullet = bulletListIterator.next();
-
-            // Remove Bullet if it has hit a tank
-            if(!GameUtil.isTankHitByBullet(this, bullet)) {
-                bulletListIterator.remove();
-                this.dead = true;
-            }
-
-            bullet.update();
-        }
     }
 
     /**

@@ -67,8 +67,8 @@ public final class GameUtil {
     }
 
     public static final boolean objectInLineOfSight(GameObject enemyTank, GameObject playerTank) {
-        return Math.abs(enemyTank.getHorizontalPosition() - playerTank.getHorizontalPosition()) < 10
-                || Math.abs(enemyTank.getVerticalPosition() - playerTank.getVerticalPosition()) < 10;
+        return Math.abs(enemyTank.getHorizontalPosition() - playerTank.getHorizontalPosition()) < 20
+                || Math.abs(enemyTank.getVerticalPosition() - playerTank.getVerticalPosition()) < 20;
     }
 
     public static final boolean isTankHitByBullet(Tank tank, Bullet bullet) {
@@ -79,7 +79,7 @@ public final class GameUtil {
         int bulletVerticalPosition = bullet.getVerticalPosition();
 
         // if bullet is within tank's horizontal or vertical position
-        return objectWithinTankBoundary(tankHorizontalPosition, bulletHorizontalPosition) || objectWithinTankBoundary(tankVerticalPosition, bulletVerticalPosition);
+        return objectWithinTankBoundary(tankHorizontalPosition, bulletHorizontalPosition) && objectWithinTankBoundary(tankVerticalPosition, bulletVerticalPosition);
     }
 
     private static boolean objectWithinTankBoundary(int tankPositionCoordinate, int bulletPositionCoordinate) {

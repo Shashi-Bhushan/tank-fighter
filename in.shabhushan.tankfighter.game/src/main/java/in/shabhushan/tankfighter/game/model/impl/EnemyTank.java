@@ -11,6 +11,7 @@ import in.shabhushan.tankfighter.game.util.GameUtil;
 import java.awt.*;
 import java.util.ListIterator;
 
+import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_BULLET_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
 import static in.shabhushan.tankfighter.game.util.GameUtil.getShortestDistanceDirection;
 import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
@@ -65,7 +66,7 @@ public class EnemyTank extends GenericTank {
         }
 
         if(objectInLineOfSight(this, TankFighterGameEngine.getPlayerTank())) {
-            this.addBullet(new Bullet(this));
+            this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR));
         }
     }
 

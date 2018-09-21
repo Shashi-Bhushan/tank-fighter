@@ -21,7 +21,8 @@ public final class Defaults {
     public static final Color DEFAULT_AI_TANK_COLOR = Color.BLACK;
     public static final int DEFAULT_AI_TANK_SPEED = 10;
 
-    public static final Color DEFAULT_BULLET_COLOR = Color.RED;
+    public static final Color DEFAULT_AI_BULLET_COLOR = Color.RED;
+    public static final Color DEFAULT_PLAYER_BULLET_COLOR = Color.BLUE;
     public static final int DEFAULT_BULLET_SPEED = 40;
     public static final int DEFAULT_BULLET_COUNT = 5;
 
