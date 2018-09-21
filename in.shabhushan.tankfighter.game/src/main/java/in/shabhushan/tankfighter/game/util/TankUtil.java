@@ -14,7 +14,6 @@ public class TankUtil {
 
             // Remove Last Bullet if it exceeds boundary
             if(!GameUtil.objectWithinBoundary(bullet, game)) {
-                System.out.println("Remove Bullet as it Exits ");
                 bulletListIterator.remove();
             }
 

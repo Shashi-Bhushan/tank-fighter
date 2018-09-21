@@ -38,23 +38,24 @@ public class Bomb extends GenericGameObject implements Runnable {
         counterToDie--;
     }
 
+    /**
+     * Draw Method will draw an image based on how much time is left to die for this Bomb
+     *
+     * Create Image[], add 3 images here
+     * in draw method, draw bomb according to how much life is left in Bomb
+     * when reaches zero, destroy bomb
+     */
     @Override
     public void draw(Graphics2D graphics) {
-        System.out.println("Bomb's Draw Method " + counterToDie);
         if(0 <= counterToDie) {
             graphics.drawImage(images[counterToDie], horizontalPosition, verticalPosition,
                     DEFAULT_TANK_BLOCK_DISTANCE * 3, DEFAULT_TANK_BLOCK_DISTANCE * 3, this);
         }
-        /*
-         * Create Image[],, add 3 images here
-         * in draw method, draw bomb according to how much life is left in Bomb
-         * when reaches zero, destroy bomb
-         */
+
     }
 
     @Override
     public void run() {
-        System.out.println("Bomb Run method " + counterToDie);
         while(counterToDie >= 0) {
             try {
                 Thread.sleep(timeToSleep);

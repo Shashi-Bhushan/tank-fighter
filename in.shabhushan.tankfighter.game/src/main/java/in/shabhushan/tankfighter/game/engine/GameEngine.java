@@ -63,7 +63,6 @@ public abstract class GameEngine extends Canvas implements Runnable {
         this.frameRate = frameRate;
 
         timePerFrame = nanosecondsPerSecond / frameRate;
-        System.out.println("Time per Frame is " + timePerFrame);
         setPreferredSize(resolution);
     }
 
@@ -136,7 +135,7 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
         // if you see this in the console when running, it means the game loop isn't keeping up with frame rate
         if (timeToSleep < 0) {
-            System.out.println("sleep time is < 0");
+            System.out.println("sleep time is < 0. DO SOMETHING.");
         }
         return (timeToSleep > 0) ? timeToSleep : 0; // if timeToSleep is < 0, frame took longer than timePerFrame, so sleep time is 0
     }
