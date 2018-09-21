@@ -5,10 +5,11 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public abstract class GenericGameObject implements GameObject {
+public abstract class GenericGameObject extends JPanel implements GameObject {
 
     protected static final Random random = new Random();
 

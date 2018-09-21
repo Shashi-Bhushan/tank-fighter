@@ -3,6 +3,7 @@ package in.shabhushan.tankfighter.game.game;
 import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
+import in.shabhushan.tankfighter.game.model.Bomb;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
 import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
@@ -25,10 +26,13 @@ public class TankFighterGameEngine extends GameEngine {
 
     private Handler<Tank> enemyTankHandler;
 
+    private Handler<Bomb> bombsHandler;
+
     public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
         handler = new Handler<>();
         enemyTankHandler = new Handler<>();
+        bombsHandler = new Handler<>();
 
         Tank playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
                 ObjectType.PLAYER_TANK, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
@@ -50,6 +54,7 @@ public class TankFighterGameEngine extends GameEngine {
     public void update() {
         handler.update();
         enemyTankHandler.update();
+        bombsHandler.update();
     }
 
     @Override
@@ -59,6 +64,8 @@ public class TankFighterGameEngine extends GameEngine {
         handler.draw(drawGraphics);
 
         enemyTankHandler.draw(drawGraphics);
+
+        bombsHandler.draw(drawGraphics);
     }
 
     public Tank getPlayerTank() {
@@ -77,9 +84,16 @@ public class TankFighterGameEngine extends GameEngine {
                 Tank enemyTank = enemyTanksIterator.next();
 
                 if(GameUtil.isTankHitByBullet(enemyTank, playerBullet)) {
+                    // Create a Bomb Here
+                    Bomb bomb = new Bomb(enemyTank.getHorizontalPosition(), enemyTank.getVerticalPosition(), this);
+                    bombsHandler.addObject(bomb);
+                    // Add to Executor Thread Pool
+                    executorService.execute(bomb);
+
                     // Remove Player's Bullet
                     playerBulletIterator.remove();
                     enemyTanksIterator.remove();
+
                     // enemyTank is x_x with the bullet
                     // Bullet is already removed, tank is destroyed no need to iterate for this bullet further
                     // check for next bullet
@@ -105,6 +119,15 @@ public class TankFighterGameEngine extends GameEngine {
                     // break out of all loops, Player is x_x
                     break OUTER_LOOP;
                 }
+            }
+        }
+
+        ListIterator<Bomb> bombsIterator = bombsHandler.getGameObjects().listIterator();
+        while(bombsIterator.hasNext()) {
+            Bomb bomb = bombsIterator.next();
+
+            if(!bomb.isLive()) {
+                bombsIterator.remove();
             }
         }
     }

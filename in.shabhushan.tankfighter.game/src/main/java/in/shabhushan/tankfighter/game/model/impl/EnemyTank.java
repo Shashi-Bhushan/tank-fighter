@@ -5,11 +5,9 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
-import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
-import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_BULLET_COLOR;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_AI_TANK_SPEED;
