@@ -46,6 +46,7 @@
             <!--
              | each module can override these defaults in their osgi.bnd file
             -->
+            <Embed-Transitive>true</Embed-Transitive>
             <_include>-osgi.bnd</_include>
           </instructions>
         </configuration>

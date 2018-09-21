@@ -32,7 +32,7 @@
    | describe your project here
   -->
 
-  <description>Generated using Pax-Construct</description>
+  <description>Tank Fighter Classic Game - Implemented in Java, Deployable on OSGi Container</description>
 
   <properties>
     <!--
