@@ -31,6 +31,10 @@ public abstract class GenericGameObject implements GameObject {
 
     protected GameEngine game;
 
+    public GenericGameObject(int horizontalPosition, int verticalPosition, GameEngine game) {
+        this(horizontalPosition, verticalPosition, null, game);
+    }
+
     public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;

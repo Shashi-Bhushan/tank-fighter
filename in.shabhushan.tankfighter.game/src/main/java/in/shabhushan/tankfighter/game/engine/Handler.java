@@ -10,13 +10,13 @@ import java.util.List;
  * @author Shashi Bhushan
  * @date 16/9/18
  */
-public class Handler {
-    List<GameObject> gameObjects = new LinkedList<>();
+public class Handler<T extends GameObject> {
+    List<T> gameObjects = new LinkedList<>();
 
     public void update() {
         // TODO: Check why it's Giving Error
         // gameObjects.forEach(GameObject::update);
-        for(GameObject gameObject: gameObjects) {
+        for(T gameObject: gameObjects) {
             gameObject.update();
         }
     }
@@ -36,11 +36,15 @@ public class Handler {
         }
     }
 
-    public void addObject(GameObject gameObject) {
+    public void addObject(T gameObject) {
         gameObjects.add(gameObject);
     }
 
-    public boolean removeObject(GameObject gameObject) {
+    public boolean removeObject(T gameObject) {
         return gameObjects.remove(gameObject);
+    }
+
+    public List<T> getGameObjects() {
+        return gameObjects;
     }
 }
