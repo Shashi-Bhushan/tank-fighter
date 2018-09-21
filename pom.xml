@@ -49,7 +49,7 @@
   <modules>
     <module>poms</module>
     <module>provision</module>
-    <module>in.shabhushan.tankfighter.game</module>
+    <module>core</module>
   </modules>
 
   <build>
