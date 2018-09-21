@@ -44,7 +44,7 @@ public class EnemyTank extends GenericTank {
      * Secondly, It moves 1 unit into that direction as well.
      */
     public void updateTankPosition() {
-        Direction direction = getShortestDistanceDirection(this, TankFighterGameEngine.getPlayerTank());
+        Direction direction = getShortestDistanceDirection(this, ((TankFighterGameEngine)game).getPlayerTank());
 
         this.setDirection(direction);
 
@@ -65,7 +65,7 @@ public class EnemyTank extends GenericTank {
             }
         }
 
-        if(objectInLineOfSight(this, TankFighterGameEngine.getPlayerTank())) {
+        if(objectInLineOfSight(this, ((TankFighterGameEngine)game).getPlayerTank())) {
             this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR));
         }
     }

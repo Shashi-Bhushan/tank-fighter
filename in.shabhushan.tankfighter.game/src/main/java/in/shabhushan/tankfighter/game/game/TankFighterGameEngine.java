@@ -25,14 +25,12 @@ public class TankFighterGameEngine extends GameEngine {
 
     private Handler<Tank> enemyTankHandler;
 
-    private static Tank playerTank;
-
     public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
         handler = new Handler<>();
         enemyTankHandler = new Handler<>();
 
-        playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
+        Tank playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
                 ObjectType.PLAYER_TANK, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
 
         handler.addObject(playerTank);
@@ -63,17 +61,14 @@ public class TankFighterGameEngine extends GameEngine {
         enemyTankHandler.draw(drawGraphics);
     }
 
-    public static Tank getPlayerTank() {
-        return playerTank;
+    public Tank getPlayerTank() {
+        return handler.getGameObjects().get(0);
     }
 
     @Override
     public void checkForCollisions() {
-        // Get Player Tank's Bullets
-        // check against position
-
         // Check if Player's Bullet has hit any enemy tank
-        ListIterator<Bullet> playerBulletIterator = playerTank.getBullets().listIterator();
+        ListIterator<Bullet> playerBulletIterator = getPlayerTank().getBullets().listIterator();
         while(playerBulletIterator.hasNext()) {
             Bullet playerBullet = playerBulletIterator.next();
 
@@ -101,13 +96,12 @@ public class TankFighterGameEngine extends GameEngine {
             while(enemyBulletIterator.hasNext()) {
                 Bullet enemyBullet = enemyBulletIterator.next();
 
-                if(GameUtil.isTankHitByBullet(playerTank, enemyBullet)) {
-                    //System.out.println("Remove Enemy Bullet as Player is Dead.");
+                if(GameUtil.isTankHitByBullet(getPlayerTank(), enemyBullet)) {
                     enemyBulletIterator.remove();
-                    playerTank.setDead(true);
+                    // Remove Player Tank
+                    // TODO: Uncomment when playing fairly :p
+                    // handler.getGameObjects().remove(getPlayerTank());
 
-
-                    //System.out.println(">>>>>>>>>>> PLAYER TANK is DEAD");
                     // break out of all loops, Player is x_x
                     break OUTER_LOOP;
                 }
