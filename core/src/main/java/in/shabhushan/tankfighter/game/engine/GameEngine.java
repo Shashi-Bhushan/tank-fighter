@@ -45,6 +45,8 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     protected boolean running;
 
+    protected boolean gameFinished = false;
+
     protected ExecutorService executorService = Executors.newCachedThreadPool();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
@@ -86,6 +88,10 @@ public abstract class GameEngine extends Canvas implements Runnable {
             update();
             draw();
             render();
+
+            if(gameFinished) {
+                break;
+            }
 
             try {
                 Thread.sleep(calculateSleepTime(timeBeforeLoop));

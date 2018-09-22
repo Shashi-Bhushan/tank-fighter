@@ -144,7 +144,7 @@ public class TankFighterGameEngine extends GameEngine {
         }
 
         if(getEnemyTanks().isEmpty()) {
-            running = false;
+            gameFinished = true;
         }
     }
 }

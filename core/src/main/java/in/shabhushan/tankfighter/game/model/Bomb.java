@@ -8,7 +8,8 @@ import java.awt.*;
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DISTANCE;
 
 /**
- * TODO: Add Bomb Object when Tank's Destroyed
+ * Bomb Class that is initialized when a {@link GameObject} is destroyed.
+ * It has 3 images, which will play one by one and it shall be destroyed when all 3 images has been displayed.
  */
 public class Bomb extends GenericGameObject implements Runnable {
 
