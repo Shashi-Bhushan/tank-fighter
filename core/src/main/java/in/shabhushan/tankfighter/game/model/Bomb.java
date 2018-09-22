@@ -12,7 +12,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DI
  */
 public class Bomb extends GenericGameObject implements Runnable {
 
-    private static final int timeToSleep = 300;
+    private static final int timeToSleep = 200;
     private int counterToDie = 2;
     private boolean isLive = true;
 

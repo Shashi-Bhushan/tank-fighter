@@ -6,6 +6,7 @@ import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.util.GameUtil;
+import in.shabhushan.tankfighter.game.util.TankUtil;
 
 import java.awt.*;
 
@@ -49,16 +50,24 @@ public class EnemyTank extends GenericTank {
         if(GameUtil.objectWithinBoundary(this, game)) {
             switch(direction) {
                 case UP:
-                    verticalPosition -= DEFAULT_AI_TANK_SPEED;
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition - DEFAULT_AI_TANK_SPEED, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                        verticalPosition -= DEFAULT_AI_TANK_SPEED;
+                    }
                     break;
                 case DOWN:
-                    verticalPosition += DEFAULT_AI_TANK_SPEED;
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition + DEFAULT_AI_TANK_SPEED, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                        verticalPosition += DEFAULT_AI_TANK_SPEED;
+                    }
                     break;
                 case LEFT:
-                    horizontalPosition -= DEFAULT_AI_TANK_SPEED;
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition - DEFAULT_AI_TANK_SPEED, verticalPosition, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                        horizontalPosition -= DEFAULT_AI_TANK_SPEED;
+                    }
                     break;
                 case RIGHT:
-                    horizontalPosition += DEFAULT_AI_TANK_SPEED;
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition + DEFAULT_AI_TANK_SPEED, verticalPosition, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                        horizontalPosition += DEFAULT_AI_TANK_SPEED;
+                    }
                     break;
             }
         }

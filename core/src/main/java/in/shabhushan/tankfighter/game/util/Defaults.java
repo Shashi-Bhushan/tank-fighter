@@ -23,7 +23,7 @@ public final class Defaults {
 
     public static final Color DEFAULT_AI_BULLET_COLOR = Color.RED;
     public static final Color DEFAULT_PLAYER_BULLET_COLOR = Color.BLUE;
-    public static final int DEFAULT_BULLET_SPEED = 40;
+    public static final int DEFAULT_BULLET_SPEED = 20;
     public static final int DEFAULT_BULLET_COUNT = 5;
 
     public static final int DEFAULT_FRAME_RATE = 60;

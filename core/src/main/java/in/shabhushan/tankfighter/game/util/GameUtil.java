@@ -82,7 +82,7 @@ public final class GameUtil {
         return objectWithinTankBoundary(tankHorizontalPosition, bulletHorizontalPosition) && objectWithinTankBoundary(tankVerticalPosition, bulletVerticalPosition);
     }
 
-    private static boolean objectWithinTankBoundary(int tankPositionCoordinate, int bulletPositionCoordinate) {
+    public static boolean objectWithinTankBoundary(int tankPositionCoordinate, int bulletPositionCoordinate) {
         return tankPositionCoordinate <= bulletPositionCoordinate && bulletPositionCoordinate <= tankPositionCoordinate + 30;
     }
 }

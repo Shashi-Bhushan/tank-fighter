@@ -10,11 +10,13 @@ import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
+import java.util.List;
 import java.awt.*;
 import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
+import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinTankBoundary;
 
 /**
  * @author Shashi Bhushan
@@ -72,6 +74,10 @@ public class TankFighterGameEngine extends GameEngine {
         return handler.getGameObjects().get(0);
     }
 
+    public List<Tank> getEnemyTanks() {
+        return enemyTankHandler.getGameObjects();
+    }
+
     @Override
     public void checkForCollisions() {
         // Check if Player's Bullet has hit any enemy tank
@@ -83,6 +89,12 @@ public class TankFighterGameEngine extends GameEngine {
             while(enemyTanksIterator.hasNext()) {
                 Tank enemyTank = enemyTanksIterator.next();
 
+                /*
+                System.out.println("Is Tank Hit by Bullet : " + GameUtil.isTankHitByBullet(enemyTank, playerBullet));
+                System.out.println("Tank : " + enemyTank.getVerticalPosition() + " Bullet : " + playerBullet.getVerticalPosition() + " | " +
+                        objectWithinTankBoundary(enemyTank.getHorizontalPosition(), playerBullet.getHorizontalPosition()) + " | " +
+                        objectWithinTankBoundary(enemyTank.getVerticalPosition(), playerBullet.getVerticalPosition()));
+                */
                 if(GameUtil.isTankHitByBullet(enemyTank, playerBullet)) {
                     // Create a Bomb Here
                     Bomb bomb = new Bomb(enemyTank.getHorizontalPosition(), enemyTank.getVerticalPosition(), this);
@@ -129,6 +141,10 @@ public class TankFighterGameEngine extends GameEngine {
             if(!bomb.isLive()) {
                 bombsIterator.remove();
             }
+        }
+
+        if(getEnemyTanks().isEmpty()) {
+            running = false;
         }
     }
 }
