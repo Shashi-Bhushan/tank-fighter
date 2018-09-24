@@ -86,6 +86,26 @@
         <artifactId>org.apache.felix.configadmin</artifactId>
         <version>1.8.8</version>
       </dependency>
+      <!-- Felix Webconsole Plugin Dependencies -->
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.http.servlet-api</artifactId>
+        <version>1.1.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.http.jetty</artifactId>
+        <version>4.0.4</version>
+      </dependency>
+      <!--
+        DOES NOT INCLUDE WEBCONSOLE-ALL DEPENDENCIES
+        http://mirrors.wuchna.com/apachemirror/felix/org.apache.felix.webconsole-4.3.8-all.jar
+      -->
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.webconsole</artifactId>
+        <version>4.3.8</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

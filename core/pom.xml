@@ -54,6 +54,22 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.configadmin</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.http.servlet-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.http.jetty</artifactId>
+    </dependency>
+    <!--
+      DOES NOT INCLUDE WEBCONSOLE-ALL DEPENDENCIES
+      http://mirrors.wuchna.com/apachemirror/felix/org.apache.felix.webconsole-4.3.8-all.jar
+    -->
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.webconsole</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
