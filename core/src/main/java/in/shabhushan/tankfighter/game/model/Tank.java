@@ -31,4 +31,6 @@ public interface Tank extends Runnable, GameObject{
     public List<Bullet> getBullets();
 
     public void setDead(boolean isDead);
+
+    public void destroy();
 }

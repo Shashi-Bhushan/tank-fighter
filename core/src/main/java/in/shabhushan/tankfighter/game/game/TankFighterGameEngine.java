@@ -16,7 +16,6 @@ import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
-import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinTankBoundary;
 
 /**
  * @author Shashi Bhushan
@@ -104,6 +103,8 @@ public class TankFighterGameEngine extends GameEngine {
 
                     // Remove Player's Bullet
                     playerBulletIterator.remove();
+
+                    enemyTank.destroy();
                     enemyTanksIterator.remove();
 
                     // enemyTank is x_x with the bullet

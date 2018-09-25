@@ -170,4 +170,12 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
      */
     @Override
     public void run() {}
+
+    /**
+     * Vacate Space when Dying
+     */
+    @Override
+    public void destroy() {
+        vacantSpace();
+    }
 }

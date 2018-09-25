@@ -34,6 +34,7 @@ public class GameKeyListener extends KeyAdapter {
         GameEngine game = playerTank.getGame();
         GameGrid gameGrid = game.getGameGrid();
 
+        // Vacant Space, otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.
         playerTank.vacantSpace();
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
