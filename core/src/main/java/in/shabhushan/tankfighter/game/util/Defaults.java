@@ -9,6 +9,7 @@ public final class Defaults {
 
     public static final int DEFAULT_TANK_BLOCK_WIDTH = 9;
     public static final int DEFAULT_TANK_BLOCK_DISTANCE = 10;
+    public static final int DEFAULT_TANK_OBJECT_SIZE = DEFAULT_TANK_BLOCK_DISTANCE * 3;
 
     public static final int DEFAULT_BULLET_BLOCK_WIDTH = 6;
     public static final int DEFAULT_BULLET_BLOCK_DISTANCE = 12;

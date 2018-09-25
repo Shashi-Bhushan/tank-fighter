@@ -58,7 +58,7 @@ public class GameKeyListener extends KeyAdapter {
 
             // if player tank's x position is zero, don't allow further left move
             if(objectWithinBoundary(playerTank, game)
-                && !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition() - playerTank.getHorizontalPosition(), playerTank.getVerticalPosition(), playerTank)) {
+                && !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition() - playerTank.getSpeed(), playerTank.getVerticalPosition(), playerTank)) {
                 playerTank.setHorizontalPosition(playerTank.getHorizontalPosition() - playerTank.getSpeed());
             }
         }

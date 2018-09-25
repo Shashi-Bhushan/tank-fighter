@@ -38,7 +38,7 @@ public class TankFighterGameEngine extends GameEngine {
 
         Tank playerTank = new PlayerTankBuilder(
                 (int) resolution.getWidth() / 2,(int) resolution.getHeight() / 2,
-                        ObjectType.PLAYER_TANK, this)
+                        ObjectType.PLAYER_TANK, DEFAULT_TANK_OBJECT_SIZE, this)
                 .setSpeed(DEFAULT_PLAYER_TANK_SPEED)
                 .setColor(DEFAULT_PLAYER_TANK_COLOR)
                 .setDirection(UP)
@@ -50,7 +50,7 @@ public class TankFighterGameEngine extends GameEngine {
         for(int index = 0; index < DEFAULT_AI_TANK_NUMBER; index++) {
             Tank enemyTank = new EnemyTankBuilder(
                         100 * (index + 1), (int) resolution.getHeight() / 4,
-                        ObjectType.ENEMY_TANK, this)
+                        ObjectType.ENEMY_TANK, DEFAULT_TANK_OBJECT_SIZE, this)
                     .setDirection(DOWN)
                     .setSpeed(DEFAULT_AI_TANK_SPEED)
                     .setColor(DEFAULT_AI_TANK_COLOR)

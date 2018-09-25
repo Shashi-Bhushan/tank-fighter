@@ -12,10 +12,11 @@ import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
  */
 public class PlayerTankBuilder extends GenericTankBuilder<PlayerTankBuilder> {
 
-    public PlayerTankBuilder(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game) {
+    public PlayerTankBuilder(int horizontalPosition, int verticalPosition, ObjectType objectType, int objectSize, GameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
+        this.objectSize = objectSize;
         this.game = game;
     }
 
