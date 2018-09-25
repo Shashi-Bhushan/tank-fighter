@@ -5,10 +5,8 @@ import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bomb;
 import in.shabhushan.tankfighter.game.model.Bullet;
-import in.shabhushan.tankfighter.game.model.GameObject;
+import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
-import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
-import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
@@ -17,6 +15,7 @@ import java.awt.*;
 import java.util.ListIterator;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
+import static in.shabhushan.tankfighter.game.enumeration.Direction.UP;
 import static in.shabhushan.tankfighter.game.util.Defaults.*;
 
 /**
@@ -42,19 +41,26 @@ public class TankFighterGameEngine extends GameEngine {
                         ObjectType.PLAYER_TANK, this)
                 .setSpeed(DEFAULT_PLAYER_TANK_SPEED)
                 .setColor(DEFAULT_PLAYER_TANK_COLOR)
+                .setDirection(UP)
                 .build();
 
 
         handler.addObject(playerTank);
 
         for(int index = 0; index < DEFAULT_AI_TANK_NUMBER; index++) {
-            Tank tank = new EnemyTank(100 * (index + 1),(int)resolution.getHeight() / 4,
-                     this, DOWN, DEFAULT_AI_TANK_SPEED, DEFAULT_AI_TANK_COLOR);
+            Tank enemyTank = new EnemyTankBuilder(
+                        100 * (index + 1), (int) resolution.getHeight() / 4,
+                        ObjectType.ENEMY_TANK, this)
+                    .setDirection(DOWN)
+                    .setSpeed(DEFAULT_AI_TANK_SPEED)
+                    .setColor(DEFAULT_AI_TANK_COLOR)
+                    .build();
+
             // Add to Handler
-            enemyTankHandler.addObject(tank);
+            enemyTankHandler.addObject(enemyTank);
 
             // Add to Executor Thread Pool
-            executorService.execute(tank);
+            executorService.execute(enemyTank);
         }
     }
 

@@ -5,6 +5,8 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
+import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
+import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 import in.shabhushan.tankfighter.game.util.TankUtil;
 
@@ -34,6 +36,10 @@ public class EnemyTank extends GenericTank {
     public EnemyTank(int positionX, int positionY, GameEngine game, Direction direction, int speed, Color color) {
         super(positionX, positionY, ObjectType.ENEMY_TANK, game, speed, color);
         setDirection(direction);
+    }
+
+    public EnemyTank(EnemyTankBuilder enemyTankBuilder) {
+        super(enemyTankBuilder);
     }
 
     /**

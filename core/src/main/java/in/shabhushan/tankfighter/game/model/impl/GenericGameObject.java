@@ -68,7 +68,7 @@ public abstract class GenericGameObject extends JPanel implements GameObject {
         this.direction = genericGameObjectBuilder.getDirection();
         this.speed = genericGameObjectBuilder.getSpeed();
 
-        // Occupt Current Position in Playing Grid
+        // Occupy Current Position in Playing Grid
         occupySpace();
     }
 
