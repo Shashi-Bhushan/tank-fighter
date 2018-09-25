@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.model.impl;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.engine.GameGrid;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
@@ -32,6 +33,8 @@ public abstract class GenericGameObject extends JPanel implements GameObject {
 
     protected GameEngine game;
 
+    protected int objectSize;
+
     public GenericGameObject(int horizontalPosition, int verticalPosition, GameEngine game) {
         this(horizontalPosition, verticalPosition, null, game);
     }
@@ -41,6 +44,16 @@ public abstract class GenericGameObject extends JPanel implements GameObject {
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
         this.game = game;
+    }
+
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game, int objectSize) {
+        this.horizontalPosition = horizontalPosition;
+        this.verticalPosition = verticalPosition;
+        this.objectType = objectType;
+        this.game = game;
+        this.objectSize = objectSize;
+
+        occupySpace();
     }
 
     public int getHorizontalPosition() {
@@ -97,6 +110,28 @@ public abstract class GenericGameObject extends JPanel implements GameObject {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    @Override
+    public int getObjectSize() {
+        return objectSize;
+    }
+
+    @Override
+    public void setObjectSize(int objectSize) {
+        this.objectSize = objectSize;
+    }
+
+    @Override
+    public void occupySpace() {
+        final GameGrid gameGrid = game.getGameGrid();
+        gameGrid.occupySpace(verticalPosition, horizontalPosition, objectSize);
+    }
+
+    @Override
+    public void vacantSpace() {
+        final GameGrid gameGrid = game.getGameGrid();
+        gameGrid.vacantSpace(verticalPosition, horizontalPosition, objectSize);
     }
 }
 

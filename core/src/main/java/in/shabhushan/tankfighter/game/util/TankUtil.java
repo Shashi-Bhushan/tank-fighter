@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.util;
 
 import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.engine.GameGrid;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
 
@@ -22,29 +23,9 @@ public class TankUtil {
         }
     }
 
-    public static boolean isSpaceOccupied(int horizontalPosition, int verticalPosition, Tank self, List<Tank> tanks) {
-        boolean isSpaceOccupied = false;
+    public static boolean isSpaceOccupied(int newHorizontalPosition, int newVerticalPosition, Tank self) {
+        GameGrid gameGrid = self.getGame().getGameGrid();
 
-        for(Tank tank: tanks) {
-            if(tank != self) {
-                int a = horizontalPosition + 15;
-                int b = tank.getHorizontalPosition() + 15;
-
-                int c = Math.abs(a - b);
-
-                if (c < 30) {
-                    a = verticalPosition + 15;
-                    b = tank.getVerticalPosition() + 15;
-
-                    c = Math.abs(a - b);
-                    if (c < 30) {
-                        isSpaceOccupied = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        return isSpaceOccupied;
+        return gameGrid.isSpaceOccupied(newVerticalPosition, newHorizontalPosition, self.getObjectSize());
     }
 }

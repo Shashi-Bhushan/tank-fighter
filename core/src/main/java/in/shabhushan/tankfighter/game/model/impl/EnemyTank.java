@@ -46,31 +46,34 @@ public class EnemyTank extends GenericTank {
         Direction direction = getShortestDistanceDirection(this, ((TankFighterGameEngine)game).getPlayerTank());
 
         this.setDirection(direction);
+        this.vacantSpace();
 
         if(GameUtil.objectWithinBoundary(this, game)) {
             switch(direction) {
                 case UP:
-                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition - DEFAULT_AI_TANK_SPEED, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition - DEFAULT_AI_TANK_SPEED, this)) {
                         verticalPosition -= DEFAULT_AI_TANK_SPEED;
                     }
                     break;
                 case DOWN:
-                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition + DEFAULT_AI_TANK_SPEED, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition + DEFAULT_AI_TANK_SPEED, this)) {
                         verticalPosition += DEFAULT_AI_TANK_SPEED;
                     }
                     break;
                 case LEFT:
-                    if(!TankUtil.isSpaceOccupied(horizontalPosition - DEFAULT_AI_TANK_SPEED, verticalPosition, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition - DEFAULT_AI_TANK_SPEED, verticalPosition, this)) {
                         horizontalPosition -= DEFAULT_AI_TANK_SPEED;
                     }
                     break;
                 case RIGHT:
-                    if(!TankUtil.isSpaceOccupied(horizontalPosition + DEFAULT_AI_TANK_SPEED, verticalPosition, this, ((TankFighterGameEngine)game).getEnemyTanks())) {
+                    if(!TankUtil.isSpaceOccupied(horizontalPosition + DEFAULT_AI_TANK_SPEED, verticalPosition, this)) {
                         horizontalPosition += DEFAULT_AI_TANK_SPEED;
                     }
                     break;
             }
         }
+
+        this.occupySpace();
 
         if(objectInLineOfSight(this, ((TankFighterGameEngine)game).getPlayerTank())) {
             this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR));

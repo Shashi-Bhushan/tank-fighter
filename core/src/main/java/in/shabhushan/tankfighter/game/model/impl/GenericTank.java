@@ -32,7 +32,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     protected boolean dead = false;
 
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
-        super(positionX, positionY, objectType, game);
+        super(positionX, positionY, objectType, game, DEFAULT_TANK_BLOCK_DISTANCE * 3);
     }
 
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game, int speed, Color color) {
@@ -40,6 +40,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
         setColor(color);
         setSpeed(speed);
+        setObjectSize(DEFAULT_TANK_BLOCK_DISTANCE * 3);
     }
 
 
@@ -47,6 +48,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         this(positionX, positionY, objectType, game);
 
         setDirection(direction);
+        setObjectSize(DEFAULT_TANK_BLOCK_DISTANCE * 3);
     }
 
     public boolean isDead() {

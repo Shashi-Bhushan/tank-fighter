@@ -1,5 +1,7 @@
 package in.shabhushan.tankfighter.game.engine;
 
+import in.shabhushan.tankfighter.game.model.Tank;
+
 import java.awt.*;
 
 public class GameGrid {
@@ -24,7 +26,9 @@ public class GameGrid {
     public void occupySpace(int verticalPosition, int horizontalPosition, int verticalSize, int horizontalSize) {
         for(int row = 0; row < verticalSize && row < gameGrid.length; row++) {
             for(int column = 0; column < horizontalSize && column < gameGrid[row].length; column++) {
-                gameGrid[verticalPosition + row][horizontalPosition + column] = true;
+                synchronized (Tank.class) {
+                    gameGrid[verticalPosition + row][horizontalPosition + column] = true;
+                }
             }
         }
     }
@@ -40,7 +44,9 @@ public class GameGrid {
     public void vacantSpace(int verticalPosition, int horizontalPosition, int verticalSize, int horizontalSize) {
         for(int row = 0; row < verticalSize && row < gameGrid.length; row++) {
             for(int column = 0; column < horizontalSize && column < gameGrid[row].length; column++) {
-                gameGrid[verticalPosition + row][horizontalPosition + column] = false;
+                synchronized (Tank.class) {
+                    gameGrid[verticalPosition + row][horizontalPosition + column] = false;
+                }
             }
         }
     }

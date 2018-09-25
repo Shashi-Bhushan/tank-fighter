@@ -72,6 +72,10 @@ public abstract class GameEngine extends Canvas implements Runnable {
         setPreferredSize(resolution);
     }
 
+    public GameGrid getGameGrid() {
+        return gameGrid;
+    }
+
     // final set up and starts game loop
     public void start() {
         createBufferStrategy(2); // double buffering

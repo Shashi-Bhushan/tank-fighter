@@ -112,4 +112,26 @@ public interface GameObject {
      * @param graphics
      */
     public void draw(Graphics2D graphics);
+
+    /**
+     * TODO: Add Support for Non Square objects
+     * Updates the objectSize
+     */
+    public void setObjectSize(int objectSize);
+
+    /**
+     * Returns the Object Size in Game Grid
+     * @return
+     */
+    public int getObjectSize();
+
+    /**
+     * Occupied the Space in Game Grid
+     */
+    public void occupySpace();
+
+    /**
+     * Vacants the Space in Game Grid
+     */
+    public void vacantSpace();
 }
