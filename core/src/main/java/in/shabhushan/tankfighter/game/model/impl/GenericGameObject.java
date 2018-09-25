@@ -5,6 +5,7 @@ import in.shabhushan.tankfighter.game.engine.GameGrid;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
+import in.shabhushan.tankfighter.game.model.builder.GenericGameObjectBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,6 +54,21 @@ public abstract class GenericGameObject extends JPanel implements GameObject {
         this.game = game;
         this.objectSize = objectSize;
 
+        occupySpace();
+    }
+
+    public GenericGameObject(GenericGameObjectBuilder genericGameObjectBuilder) {
+        this.horizontalPosition = genericGameObjectBuilder.getHorizontalPosition();
+        this.verticalPosition = genericGameObjectBuilder.getVerticalPosition();
+        this.objectType = genericGameObjectBuilder.getObjectType();
+        this.game = genericGameObjectBuilder.getGame();
+        this.objectSize = genericGameObjectBuilder.getObjectSize();
+        this.objectType = genericGameObjectBuilder.getObjectType();
+        this.color = genericGameObjectBuilder.getColor();
+        this.direction = genericGameObjectBuilder.getDirection();
+        this.speed = genericGameObjectBuilder.getSpeed();
+
+        // Occupt Current Position in Playing Grid
         occupySpace();
     }
 

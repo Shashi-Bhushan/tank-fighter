@@ -6,6 +6,7 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.model.builder.GenericTankBuilder;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,6 +50,10 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
         setDirection(direction);
         setObjectSize(DEFAULT_TANK_BLOCK_DISTANCE * 3);
+    }
+
+    public GenericTank(GenericTankBuilder genericTankBuilder) {
+        super(genericTankBuilder);
     }
 
     public boolean isDead() {

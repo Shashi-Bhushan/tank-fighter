@@ -5,6 +5,8 @@ import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bomb;
 import in.shabhushan.tankfighter.game.model.Bullet;
+import in.shabhushan.tankfighter.game.model.GameObject;
+import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.model.impl.EnemyTank;
 import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
 import in.shabhushan.tankfighter.game.model.Tank;
@@ -35,8 +37,13 @@ public class TankFighterGameEngine extends GameEngine {
         enemyTankHandler = new Handler<>();
         bombsHandler = new Handler<>();
 
-        Tank playerTank = new PlayerTank((int)resolution.getWidth() / 2,(int)resolution.getHeight() / 2,
-                ObjectType.PLAYER_TANK, this, DEFAULT_PLAYER_TANK_SPEED, DEFAULT_PLAYER_TANK_COLOR);
+        Tank playerTank = new PlayerTankBuilder(
+                (int) resolution.getWidth() / 2,(int) resolution.getHeight() / 2,
+                        ObjectType.PLAYER_TANK, this)
+                .setSpeed(DEFAULT_PLAYER_TANK_SPEED)
+                .setColor(DEFAULT_PLAYER_TANK_COLOR)
+                .build();
+
 
         handler.addObject(playerTank);
 
