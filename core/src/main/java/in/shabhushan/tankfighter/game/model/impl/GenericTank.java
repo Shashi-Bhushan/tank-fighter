@@ -18,6 +18,8 @@ import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition
 
 /**
  * This is a Generic Implementation for Tank, which gives default functionality to the implementation Tank class
+ *
+ * TODO: Move in 8 Directions instead of 4
  */
 public abstract class GenericTank extends GenericGameObject implements Tank {
 

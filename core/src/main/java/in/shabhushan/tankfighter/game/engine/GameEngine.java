@@ -47,6 +47,8 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     protected boolean gameFinished = false;
 
+    protected final GameGrid gameGrid;
+
     protected ExecutorService executorService = Executors.newCachedThreadPool();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
@@ -61,6 +63,8 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     // creates GameEngine with passed resolution at passed fps
     public GameEngine(Dimension resolution, int frameRate) {
+        gameGrid = new GameGrid(resolution);
+
         this.resolution = resolution;
         this.frameRate = frameRate;
 
