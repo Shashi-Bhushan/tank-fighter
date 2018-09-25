@@ -7,6 +7,21 @@ import in.shabhushan.tankfighter.game.model.GameObject;
 
 import java.awt.*;
 
+/**
+ * Generic Game Object Builder has been implemented as a builder pattern for Creating Game Objects.
+ * There are an umptienth number of parameters for Game Object, some of which are required. For eg verticalPosition and horizontalPosition.
+ * These would have required a lot of constructors and in some constructors, i would need to call another constructor using this() with some values as null.
+ *
+ * Thus a need to implement Builder Pattern arises here.
+ * But, Builder for GenericGameObject should work for Builder of say GenericTank as well.
+ * Hence, each setter will return the parameterized type B instead of GenericGameObjectBuilder, enabling sub classes to use this Setter
+ * with chaining. Without returning the parameterized type B, setters say #setHorizontalPosition() will return GenericGameObjectBuilder and hence a #build()
+ * on this will return GenericGameObject and not the actual intended class object.
+ *
+ * @see https://stackoverflow.com/questions/21086417/builder-pattern-and-inheritance
+ *
+ * @param <B> The Actual implementation class for Builder
+ */
 public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilder> {
     protected int horizontalPosition;
     protected int verticalPosition;
@@ -100,7 +115,13 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
 
     public abstract GameObject build();
 
-    final B self() {
+    /**
+     * Self returns this builder object casted to the parameterized type B.
+     * intended to be called by all setters while enabling method chaining functionality
+     *
+     * @return builder object casted to the parameterized type B
+     */
+    final public B self() {
         return (B) this;
     }
 }
