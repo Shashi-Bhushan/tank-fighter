@@ -25,13 +25,13 @@ public class Handler<T extends GameObject> {
      * Loops through all the game model and render them on the Frame
      * @param graphics
      */
-    public void draw(Graphics2D graphics) {
+    public void draw(Graphics graphics) {
         /* TODO: Check why it's not working
         gameObjects.forEach((GameObject gameObject) -> {
             gameObject.draw(graphics);
         });*/
 
-        for(GameObject gameObject : gameObjects) {
+        for(T gameObject : gameObjects) {
            gameObject.draw(graphics);
         }
     }

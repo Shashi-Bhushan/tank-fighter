@@ -5,7 +5,7 @@ import java.awt.*;
 public final class Defaults {
     private Defaults() {}
 
-    public static final Color DEFAULT_BG_COLOR = Color.WHITE;
+    public static final Color DEFAULT_BG_COLOR = Color.GREEN;
 
     public static final int DEFAULT_TANK_BLOCK_WIDTH = 9;
     public static final int DEFAULT_TANK_BLOCK_DISTANCE = 10;

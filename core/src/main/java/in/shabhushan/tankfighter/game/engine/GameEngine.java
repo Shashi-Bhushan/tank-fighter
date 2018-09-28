@@ -2,14 +2,8 @@ package in.shabhushan.tankfighter.game.engine;
 
 import in.shabhushan.tankfighter.game.util.Defaults;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.image.BufferStrategy;
+import javax.swing.*;
+import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,7 +22,7 @@ import java.util.concurrent.Executors;
  * TODO: Change to JPanel for Supporting KeyBindings.
  * See {@link https://docs.oracle.com/javase/tutorial/uiswing/TOC.html} for Reference.
  */
-public abstract class GameEngine extends Canvas implements Runnable {
+public abstract class GameEngine extends JPanel implements Runnable {
 
     private static final long nanosecondsPerSecond = 10000000000L;
     private static final long millisecondsPerNanosecond = 1000000L;
@@ -37,9 +31,6 @@ public abstract class GameEngine extends Canvas implements Runnable {
     private long timePerFrame; // nanoseconds per frame based on framerate
 
     protected Dimension resolution; // holds the width/height of game's canvas
-
-    private Image drawImage;
-    protected Graphics2D drawGraphics; // reference to drawImage's graphics
 
     protected Color backgroundColor = Defaults.DEFAULT_BG_COLOR;
 
@@ -78,7 +69,6 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
     // final set up and starts game loop
     public void start() {
-        createBufferStrategy(2); // double buffering
         running = true;
         executorService.execute(this);
     }
@@ -94,8 +84,9 @@ public abstract class GameEngine extends Canvas implements Runnable {
 
             checkForCollisions();
             update();
-            draw();
-            render();
+            //render();
+            validate();
+            repaint();
 
             if(gameFinished) {
                 break;
@@ -113,32 +104,9 @@ public abstract class GameEngine extends Canvas implements Runnable {
     // update everything in the game, should be overridden
     abstract public void update();
 
-    // draw everything in the game, should be overridden
-    public void draw() {
-        if (drawImage == null)
-            drawImage = createImage((int) resolution.getWidth(), (int) resolution.getHeight());
-
-        drawGraphics = (Graphics2D) drawImage.getGraphics();
-        drawGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        drawGraphics.setColor(backgroundColor);
-        drawGraphics.fillRect(0, 0, getWidth(), getHeight()); // draw background
-    }
-
-    // render the graphics, buffer strategy uses volatile images, so deal with possible content loss
-    private void render() {
-        drawGraphics.dispose();
-        BufferStrategy strategy = getBufferStrategy();
-        do {
-            do {
-                Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-                g.drawImage(drawImage, 0, 0, null);
-                g.dispose();
-            } while (strategy.contentsRestored());
-
-            strategy.show(); // Display the buffer
-        } while (strategy.contentsLost()); // Repeat the rendering if the drawing buffer was lost
-        Toolkit.getDefaultToolkit().sync();
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
     }
 
     // figure out how long the thread should sleep to keep a consistent frame rate

@@ -6,7 +6,6 @@ import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
-import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 import in.shabhushan.tankfighter.game.util.TankUtil;
 

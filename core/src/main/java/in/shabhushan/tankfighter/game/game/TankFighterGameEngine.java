@@ -24,17 +24,14 @@ import static in.shabhushan.tankfighter.game.util.Defaults.*;
  */
 public class TankFighterGameEngine extends GameEngine {
 
-    private Handler<Tank> handler;
+    private Handler<Tank> handler = new Handler<>();
 
-    private Handler<Tank> enemyTankHandler;
+    private Handler<Tank> enemyTankHandler = new Handler<>();
 
-    private Handler<Bomb> bombsHandler;
+    private Handler<Bomb> bombsHandler = new Handler<>();
 
     public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
-        handler = new Handler<>();
-        enemyTankHandler = new Handler<>();
-        bombsHandler = new Handler<>();
 
         Tank playerTank = new PlayerTankBuilder(
                 (int) resolution.getWidth() / 2,(int) resolution.getHeight() / 2,
@@ -72,14 +69,12 @@ public class TankFighterGameEngine extends GameEngine {
     }
 
     @Override
-    public void draw() {
-        super.draw();
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-        handler.draw(drawGraphics);
-
-        enemyTankHandler.draw(drawGraphics);
-
-        bombsHandler.draw(drawGraphics);
+        handler.draw(g);
+        enemyTankHandler.draw(g);
+        bombsHandler.draw(g);
     }
 
     public Tank getPlayerTank() {

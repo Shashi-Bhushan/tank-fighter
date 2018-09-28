@@ -47,7 +47,7 @@ public class Bomb extends GenericGameObject implements Runnable {
      * when reaches zero, destroy bomb
      */
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(Graphics graphics) {
         if(0 <= counterToDie) {
             graphics.drawImage(images[counterToDie], horizontalPosition, verticalPosition,
                     DEFAULT_TANK_BLOCK_DISTANCE * 3, DEFAULT_TANK_BLOCK_DISTANCE * 3, this);

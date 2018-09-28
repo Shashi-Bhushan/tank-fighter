@@ -110,7 +110,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
      * @param graphics
      */
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(Graphics graphics) {
         graphics.setColor(color);
 
         int width = DEFAULT_TANK_BLOCK_WIDTH;

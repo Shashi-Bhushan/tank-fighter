@@ -34,7 +34,7 @@ public class Bullet extends GenericGameObject {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(Graphics graphics) {
         graphics.setColor(color);
         switch(direction) {
             case UP:

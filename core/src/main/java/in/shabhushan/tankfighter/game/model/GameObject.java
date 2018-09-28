@@ -4,8 +4,7 @@ import in.shabhushan.tankfighter.game.engine.GameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 
-import java.awt.Graphics2D;
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * This is a Game Object, which all the model in the Game that are going to be placed, inherits from.
@@ -111,7 +110,7 @@ public interface GameObject {
      * Draw Object based on it's position and Direction
      * @param graphics
      */
-    public void draw(Graphics2D graphics);
+    public void draw(Graphics graphics);
 
     /**
      * TODO: Add Support for Non Square objects
