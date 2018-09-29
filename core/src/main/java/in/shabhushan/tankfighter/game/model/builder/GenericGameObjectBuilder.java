@@ -41,6 +41,8 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
 
     protected int objectSize;
 
+    protected boolean outsideGameGrid;
+
     public B setHorizontalPosition(int horizontalPosition) {
         this.horizontalPosition = horizontalPosition;
         return self();
@@ -78,6 +80,15 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
 
     public B setObjectSize(int objectSize) {
         this.objectSize = objectSize;
+        return self();
+    }
+
+    public boolean isOutsideGameGrid() {
+        return outsideGameGrid;
+    }
+
+    public B setOutsideGameGrid(boolean outsideGameGrid) {
+        this.outsideGameGrid = outsideGameGrid;
         return self();
     }
 

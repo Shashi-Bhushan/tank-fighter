@@ -101,6 +101,10 @@ public interface GameObject {
      */
     public int getSpeed();
 
+    public boolean isOutsideGameGrid();
+
+    public void setOutsideGameGrid(boolean outsideGameGrid);
+
     /**
      * Update Position, Speed, Direction etc of Game Object
      */

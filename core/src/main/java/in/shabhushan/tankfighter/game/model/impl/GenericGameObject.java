@@ -35,6 +35,8 @@ public abstract class GenericGameObject extends Component implements GameObject 
 
     protected int objectSize;
 
+    protected boolean outsideGameGrid;
+
     public GenericGameObject(int horizontalPosition, int verticalPosition, GameEngine game) {
         this(horizontalPosition, verticalPosition, null, game);
     }
@@ -53,7 +55,9 @@ public abstract class GenericGameObject extends Component implements GameObject 
         this.game = game;
         this.objectSize = objectSize;
 
-        occupySpace();
+        if(!outsideGameGrid) {
+            occupySpace();
+        }
     }
 
     public GenericGameObject(GenericGameObjectBuilder genericGameObjectBuilder) {
@@ -66,9 +70,12 @@ public abstract class GenericGameObject extends Component implements GameObject 
         this.color = genericGameObjectBuilder.getColor();
         this.direction = genericGameObjectBuilder.getDirection();
         this.speed = genericGameObjectBuilder.getSpeed();
+        this.outsideGameGrid = genericGameObjectBuilder.isOutsideGameGrid();
 
         // Occupy Current Position in Playing Grid
-        occupySpace();
+        if(!outsideGameGrid) {
+            occupySpace();
+        }
     }
 
     public int getHorizontalPosition() {
@@ -125,6 +132,14 @@ public abstract class GenericGameObject extends Component implements GameObject 
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public boolean isOutsideGameGrid() {
+        return outsideGameGrid;
+    }
+
+    public void setOutsideGameGrid(boolean outsideGameGrid) {
+        this.outsideGameGrid = outsideGameGrid;
     }
 
     @Override

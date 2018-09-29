@@ -2,6 +2,8 @@ package in.shabhushan.tankfighter.game.service.internal;
 
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
+import in.shabhushan.tankfighter.game.model.builder.HeadUpDisplayBuilder;
+import in.shabhushan.tankfighter.game.model.impl.HeadUpDisplay;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
 import javax.swing.*;
@@ -34,18 +36,14 @@ public class TankGameServiceImpl implements TankGameService {
         lpane.setBounds(0, 0, screenSize.width, screenSize.height);
 
         TankFighterGameEngine tankFighterGameEngine = new TankFighterGameEngine(screenSize);
-        //tankFighterGameEngine.setBackground(Color.GREEN);
+        tankFighterGameEngine.setBackground(Color.GREEN);
         tankFighterGameEngine.setBounds(0, 0, screenSize.width, screenSize.height);
         tankFighterGameEngine.setOpaque(true);
         lpane.add(tankFighterGameEngine, new Integer(0), 0);
 
-        JProgressBar progressBar = new JProgressBar();
-        progressBar.setMaximum(0);
-        progressBar.setMaximum(100);
-        progressBar.setValue(36);
-        progressBar.setOpaque(true);
-        progressBar.setBounds(screenSize.width - 120, 0, 100, 50);
-        lpane.add(progressBar, new Integer(1), 0);
+        HeadUpDisplay headUpDisplay = new HeadUpDisplayBuilder(screenSize.width - 120, 0, 120, 8, lpane)
+                .setValue(65)
+                .build();
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.pack();
