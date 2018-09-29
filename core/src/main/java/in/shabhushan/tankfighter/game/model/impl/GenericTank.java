@@ -89,6 +89,11 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     }
 
     @Override
+    public void reducePointsBy(int healthPoints) {
+        this.healthPoints -= healthPoints;
+    }
+
+    @Override
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }

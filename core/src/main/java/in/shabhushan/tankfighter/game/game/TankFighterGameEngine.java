@@ -96,28 +96,28 @@ public class TankFighterGameEngine extends GameEngine {
             while(enemyTanksIterator.hasNext()) {
                 Tank enemyTank = enemyTanksIterator.next();
 
-                /*
-                System.out.println("Is Tank Hit by Bullet : " + GameUtil.isTankHitByBullet(enemyTank, playerBullet));
-                System.out.println("Tank : " + enemyTank.getVerticalPosition() + " Bullet : " + playerBullet.getVerticalPosition() + " | " +
-                        objectWithinTankBoundary(enemyTank.getHorizontalPosition(), playerBullet.getHorizontalPosition()) + " | " +
-                        objectWithinTankBoundary(enemyTank.getVerticalPosition(), playerBullet.getVerticalPosition()));
-                */
                 if(GameUtil.isTankHitByBullet(enemyTank, playerBullet)) {
-                    // Create a Bomb Here
-                    Bomb bomb = new Bomb(enemyTank.getHorizontalPosition(), enemyTank.getVerticalPosition(), this);
-                    bombsHandler.addObject(bomb);
-                    // Add to Executor Thread Pool
-                    executorService.execute(bomb);
+
+                    enemyTank.reducePointsBy(playerBullet.getDamagePoints());
+
+                    if(enemyTank.getHealthPoints() <= 0) {
+                        // Create a Bomb Here
+                        Bomb bomb = new Bomb(enemyTank.getHorizontalPosition(), enemyTank.getVerticalPosition(), this);
+                        bombsHandler.addObject(bomb);
+                        // Add to Executor Thread Pool
+                        executorService.execute(bomb);
+
+                        enemyTank.destroy();
+                        enemyTanksIterator.remove();
+
+                        // enemyTank is x_x with the bullet
+                        // Bullet is already removed, tank is destroyed no need to iterate for this bullet further
+                        // check for next bullet
+                    }
 
                     // Remove Player's Bullet
                     playerBulletIterator.remove();
 
-                    enemyTank.destroy();
-                    enemyTanksIterator.remove();
-
-                    // enemyTank is x_x with the bullet
-                    // Bullet is already removed, tank is destroyed no need to iterate for this bullet further
-                    // check for next bullet
                     break;
                 }
             }

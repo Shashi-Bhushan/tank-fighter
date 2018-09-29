@@ -34,6 +34,8 @@ public interface Tank extends Runnable, GameObject{
 
     public int getHealthPoints();
 
+    public void reducePointsBy(int healthPoints);
+
     public void setDead(boolean isDead);
 
     public void destroy();

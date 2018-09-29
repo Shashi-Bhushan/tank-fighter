@@ -8,11 +8,14 @@ import static in.shabhushan.tankfighter.game.util.Defaults.*;
 
 public class Bullet extends GenericGameObject {
 
+    private int damagePoints;
+
     public Bullet(Tank tank, Color bulletColor) {
         super(tank.getHorizontalPosition(), tank.getVerticalPosition(), tank.getObjectType(), tank.getGame());
         setDirection(tank.getDirection());
         setSpeed(DEFAULT_BULLET_SPEED);
         setColor(bulletColor);
+        this.damagePoints = 25;
     }
 
     @Override
@@ -50,5 +53,13 @@ public class Bullet extends GenericGameObject {
                 graphics.fill3DRect(horizontalPosition, verticalPosition + DEFAULT_BULLET_BLOCK_DISTANCE, DEFAULT_BULLET_BLOCK_WIDTH, DEFAULT_BULLET_BLOCK_WIDTH, false);
                 break;
         }
+    }
+
+    public int getDamagePoints() {
+        return damagePoints;
+    }
+
+    public void setDamagePoints(int damagePoints) {
+        this.damagePoints = damagePoints;
     }
 }

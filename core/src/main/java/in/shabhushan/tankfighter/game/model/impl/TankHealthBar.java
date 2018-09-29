@@ -56,7 +56,7 @@ public class TankHealthBar extends GenericGameObject implements GameObject {
     public void update() {
         this.horizontalPosition = tank.getHorizontalPosition();
         this.verticalPosition = tank.getVerticalPosition();
-        this.health = width * (tank.getHealthPoints() / DEFAULT_AI_TANK_MAX_HEALTH_POINTS);
+        this.health = (int)(width * (float)tank.getHealthPoints() / DEFAULT_AI_TANK_MAX_HEALTH_POINTS);
     }
 
     @Override
