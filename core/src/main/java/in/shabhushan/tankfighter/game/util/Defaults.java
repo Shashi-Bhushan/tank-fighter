@@ -21,6 +21,7 @@ public final class Defaults {
     public static final int DEFAULT_AI_TANK_NUMBER = 10;
     public static final Color DEFAULT_AI_TANK_COLOR = Color.BLACK;
     public static final int DEFAULT_AI_TANK_SPEED = 10;
+    public static final int DEFAULT_AI_TANK_MAX_HEALTH_POINTS = 100;
 
     public static final Color DEFAULT_AI_BULLET_COLOR = Color.RED;
     public static final Color DEFAULT_PLAYER_BULLET_COLOR = Color.BLUE;

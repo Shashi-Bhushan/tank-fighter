@@ -12,9 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_BULLET_COUNT;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DISTANCE;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_WIDTH;
+import static in.shabhushan.tankfighter.game.util.Defaults.*;
 import static in.shabhushan.tankfighter.game.util.TankUtil.updateBulletsPosition;
 
 /**
@@ -31,6 +29,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     protected int timeToSleep = 1000;
 
     protected boolean dead = false;
+
+    protected int healthPoints;
 
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
         super(positionX, positionY, objectType, game, DEFAULT_TANK_BLOCK_DISTANCE * 3);
@@ -54,6 +54,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     public GenericTank(GenericTankBuilder genericTankBuilder) {
         super(genericTankBuilder);
+
+        this.healthPoints = DEFAULT_AI_TANK_MAX_HEALTH_POINTS;
     }
 
     public boolean isDead() {
@@ -79,6 +81,16 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     @Override
     public List<Bullet> getBullets() {
         return bullets;
+    }
+
+    @Override
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    @Override
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     @Override

@@ -6,6 +6,7 @@ import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
+import in.shabhushan.tankfighter.game.model.builder.TankHealthBarBuilder;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 import in.shabhushan.tankfighter.game.util.TankUtil;
 
@@ -24,6 +25,8 @@ import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
  */
 public class EnemyTank extends GenericTank {
 
+    private TankHealthBar tankHealthBar;
+
     public EnemyTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
         super(positionX, positionY, objectType, game);
     }
@@ -39,6 +42,8 @@ public class EnemyTank extends GenericTank {
 
     public EnemyTank(EnemyTankBuilder enemyTankBuilder) {
         super(enemyTankBuilder);
+
+        tankHealthBar = new TankHealthBarBuilder(this).build();
     }
 
     /**
@@ -79,7 +84,20 @@ public class EnemyTank extends GenericTank {
         }
 
         this.occupySpace();
+    }
 
+    public void updateHealthBarPosition() {
+        this.tankHealthBar.update();
+    }
+
+    @Override
+    public void draw(Graphics graphics) {
+        super.draw(graphics);
+
+        tankHealthBar.draw(graphics);
+    }
+
+    public void fireBullet() {
         if(objectInLineOfSight(this, ((TankFighterGameEngine)game).getPlayerTank())) {
             this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR));
         }
@@ -95,6 +113,8 @@ public class EnemyTank extends GenericTank {
             try {
                 Thread.currentThread().sleep(timeToSleep);
                 updateTankPosition();
+                updateHealthBarPosition();
+                fireBullet();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

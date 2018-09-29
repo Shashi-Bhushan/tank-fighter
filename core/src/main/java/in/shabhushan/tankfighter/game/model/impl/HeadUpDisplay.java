@@ -26,6 +26,7 @@ public class HeadUpDisplay extends GenericGameObject implements GameObject {
         progressBar.setOpaque(true);
         progressBar.setMinimum(0);
         progressBar.setMaximum(100);
+        progressBar.setBackground(Color.LIGHT_GRAY);
         progressBar.setValue(value);
         progressBar.setBounds(horizontalPosition, verticalPosition, width, height);
 

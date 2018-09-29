@@ -36,7 +36,7 @@ public class TankGameServiceImpl implements TankGameService {
         lpane.setBounds(0, 0, screenSize.width, screenSize.height);
 
         TankFighterGameEngine tankFighterGameEngine = new TankFighterGameEngine(screenSize);
-        tankFighterGameEngine.setBackground(Color.GREEN);
+        tankFighterGameEngine.setBackground(Color.LIGHT_GRAY);
         tankFighterGameEngine.setBounds(0, 0, screenSize.width, screenSize.height);
         tankFighterGameEngine.setOpaque(true);
         lpane.add(tankFighterGameEngine, new Integer(0), 0);
