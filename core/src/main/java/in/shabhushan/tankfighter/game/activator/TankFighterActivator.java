@@ -32,7 +32,8 @@ public class TankFighterActivator implements BundleActivator {
         tankProperties.put("osgi.command.scope", "tank");
         tankProperties.put("osgi.command.function", new String[]{"startGame", "stopGame"});
 
-        bundleContext.registerService(TankGameService.class.getName(), new TankGameServiceImpl(), tankProperties);
+        //bundleContext.registerService(TankGameService.class.getName(), new TankGameServiceImpl(), tankProperties);
+        new TankGameServiceImpl().startGame();
     }
 
     /**

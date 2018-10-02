@@ -63,7 +63,11 @@ public class TankHealthBar extends GenericGameObject implements GameObject {
     public void draw(Graphics graphics) {
         graphics.setColor(Color.WHITE);
         graphics.fill3DRect(horizontalPosition, verticalPosition, width, height, false);
-        graphics.setColor(Color.GREEN);
+        graphics.setColor(getColor(tank.getHealthPoints()));
         graphics.fill3DRect(horizontalPosition, verticalPosition, health, height, false);
+    }
+
+    private static Color getColor(int healthPoints) {
+        return healthPoints <= 30 ? Color.RED : (healthPoints <= 60 ? Color.CYAN : Color.GREEN);
     }
 }
