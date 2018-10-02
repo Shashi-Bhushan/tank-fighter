@@ -33,6 +33,10 @@ public class HeadUpDisplay extends GenericGameObject implements GameObject {
         headUpDisplayBuilder.getLayeredPane().add(this.progressBar, new Integer(1), 0);
     }
 
+    public void setValue(int healthPoints) {
+        this.progressBar.setValue(healthPoints);
+    }
+
     @Override
     public void update() {
         System.out.println("update");
@@ -40,6 +44,6 @@ public class HeadUpDisplay extends GenericGameObject implements GameObject {
 
     @Override
     public void draw(Graphics graphics) {
-        System.out.println("draw");
+        progressBar.repaint();
     }
 }

@@ -8,6 +8,7 @@ import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.model.impl.HeadUpDisplay;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.util.List;
@@ -30,8 +31,12 @@ public class TankFighterGameEngine extends GameEngine {
 
     private Handler<Bomb> bombsHandler = new Handler<>();
 
-    public TankFighterGameEngine(Dimension resolution) {
+    private HeadUpDisplay headUpDisplay;
+
+    public TankFighterGameEngine(Dimension resolution, HeadUpDisplay headUpDisplay) {
         super(resolution);
+
+        this.headUpDisplay = headUpDisplay;
 
         Tank playerTank = new PlayerTankBuilder(
                 (int) resolution.getWidth() / 2,(int) resolution.getHeight() / 2,
@@ -59,6 +64,8 @@ public class TankFighterGameEngine extends GameEngine {
             // Add to Executor Thread Pool
             executorService.execute(enemyTank);
         }
+
+        updateHeadUpDisplayHealthPoints();
     }
 
     @Override
@@ -83,6 +90,10 @@ public class TankFighterGameEngine extends GameEngine {
 
     public boolean isPlayerTankDead() {
         return handler.getGameObjects().isEmpty();
+    }
+
+    public void updateHeadUpDisplayHealthPoints() {
+        headUpDisplay.setValue(this.getPlayerTank().getHealthPoints());
     }
 
     public List<Tank> getEnemyTanks() {
@@ -139,6 +150,7 @@ public class TankFighterGameEngine extends GameEngine {
 
                     Tank playerTank = getPlayerTank();
                     playerTank.reducePointsBy(enemyBullet.getDamagePoints());
+                    updateHeadUpDisplayHealthPoints();
 
                     if(playerTank.getHealthPoints() <= 0) {
                         // Create a Bomb Here
