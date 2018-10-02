@@ -99,7 +99,7 @@ public class EnemyTank extends GenericTank {
 
     public void fireBullet() {
         if(objectInLineOfSight(this, ((TankFighterGameEngine)game).getPlayerTank())) {
-            this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR));
+            this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR, 10));
         }
     }
 
@@ -109,12 +109,12 @@ public class EnemyTank extends GenericTank {
      */
     @Override
     public void run() {
-        while(!interrupted) {
+        while(!interrupted & !((TankFighterGameEngine)game).isPlayerTankDead()) {
             try {
-                Thread.currentThread().sleep(timeToSleep);
                 updateTankPosition();
                 updateHealthBarPosition();
                 fireBullet();
+                Thread.currentThread().sleep(timeToSleep);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

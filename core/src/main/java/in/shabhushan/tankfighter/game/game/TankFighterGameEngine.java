@@ -81,6 +81,10 @@ public class TankFighterGameEngine extends GameEngine {
         return handler.getGameObjects().get(0);
     }
 
+    public boolean isPlayerTankDead() {
+        return handler.getGameObjects().isEmpty();
+    }
+
     public List<Tank> getEnemyTanks() {
         return enemyTankHandler.getGameObjects();
     }
@@ -132,12 +136,24 @@ public class TankFighterGameEngine extends GameEngine {
                 Bullet enemyBullet = enemyBulletIterator.next();
 
                 if(GameUtil.isTankHitByBullet(getPlayerTank(), enemyBullet)) {
-                    enemyBulletIterator.remove();
-                    // Remove Player Tank
-                    // TODO: Uncomment when playing fairly :p
-                    // handler.getGameObjects().remove(getPlayerTank());
 
-                    // break out of all loops, Player is x_x
+                    Tank playerTank = getPlayerTank();
+                    playerTank.reducePointsBy(enemyBullet.getDamagePoints());
+
+                    if(playerTank.getHealthPoints() <= 0) {
+                        // Create a Bomb Here
+                        Bomb bomb = new Bomb(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition(), this);
+                        bombsHandler.addObject(bomb);
+                        // Add to Executor Thread Pool
+                        executorService.execute(bomb);
+
+                        playerTank.destroy();
+                        // Remove Player Tank
+                        // TODO: Uncomment when playing fairly :p
+                        handler.getGameObjects().remove(getPlayerTank());
+                        // break out of all loops, Player is x_x
+                    }
+                    enemyBulletIterator.remove();
                     break OUTER_LOOP;
                 }
             }
@@ -152,7 +168,7 @@ public class TankFighterGameEngine extends GameEngine {
             }
         }
 
-        if(getEnemyTanks().isEmpty()) {
+        if(getEnemyTanks().isEmpty() || isPlayerTankDead()) {
             gameFinished = true;
         }
     }

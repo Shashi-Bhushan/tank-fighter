@@ -10,12 +10,12 @@ public class Bullet extends GenericGameObject {
 
     private int damagePoints;
 
-    public Bullet(Tank tank, Color bulletColor) {
+    public Bullet(Tank tank, Color bulletColor, int damagePoints) {
         super(tank.getHorizontalPosition(), tank.getVerticalPosition(), tank.getObjectType(), tank.getGame());
         setDirection(tank.getDirection());
         setSpeed(DEFAULT_BULLET_SPEED);
         setColor(bulletColor);
-        this.damagePoints = 25;
+        this.damagePoints = damagePoints;
     }
 
     @Override

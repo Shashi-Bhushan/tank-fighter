@@ -71,7 +71,7 @@ public class GameKeyListener extends KeyAdapter {
             }
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE ) {
-            Bullet bullet = new Bullet(playerTank, DEFAULT_PLAYER_BULLET_COLOR);
+            Bullet bullet = new Bullet(playerTank, DEFAULT_PLAYER_BULLET_COLOR, 25);
 
             playerTank.addBullet(bullet);
         }
