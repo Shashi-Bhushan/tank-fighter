@@ -5,11 +5,9 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
+import in.shabhushan.tankfighter.game.model.builder.TankHealthBarBuilder;
 
 import java.awt.*;
-
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_COLOR;
-import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_TANK_SPEED;
 
 /**
  * This is an Implementation of {@link Tank} for Player.
@@ -33,5 +31,12 @@ public class PlayerTank extends GenericTank {
 
     public PlayerTank(PlayerTankBuilder playerTankBuilder) {
         super(playerTankBuilder);
+
+        tankHealthBar = new TankHealthBarBuilder(this)
+                .setHorizontalPosition(playerTankBuilder.getGame().getGameGrid().getHorizontalSize() - 120)
+                .setVerticalPosition(0)
+                .setWidth(120)
+                .setHeight(8)
+                .build();
     }
 }

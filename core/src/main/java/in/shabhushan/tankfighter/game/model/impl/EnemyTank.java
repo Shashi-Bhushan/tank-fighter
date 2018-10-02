@@ -25,8 +25,6 @@ import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
  */
 public class EnemyTank extends GenericTank {
 
-    private TankHealthBar tankHealthBar;
-
     public EnemyTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
         super(positionX, positionY, objectType, game);
     }
@@ -87,14 +85,7 @@ public class EnemyTank extends GenericTank {
     }
 
     public void updateHealthBarPosition() {
-        this.tankHealthBar.update();
-    }
-
-    @Override
-    public void draw(Graphics graphics) {
-        super.draw(graphics);
-
-        tankHealthBar.draw(graphics);
+        this.tankHealthBar.updateHealthBarPosition();
     }
 
     public void fireBullet() {
@@ -113,6 +104,7 @@ public class EnemyTank extends GenericTank {
             try {
                 updateTankPosition();
                 updateHealthBarPosition();
+                this.tankHealthBar.update();
                 fireBullet();
                 Thread.currentThread().sleep(timeToSleep);
             } catch (InterruptedException e) {

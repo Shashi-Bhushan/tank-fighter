@@ -1,5 +1,7 @@
 package in.shabhushan.tankfighter.game.model;
 
+import in.shabhushan.tankfighter.game.model.impl.TankHealthBar;
+
 import java.util.List;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_TANK_BLOCK_DISTANCE;
@@ -39,4 +41,6 @@ public interface Tank extends Runnable, GameObject{
     public void setDead(boolean isDead);
 
     public void destroy();
+
+    public TankHealthBar getTankHealthBar();
 }

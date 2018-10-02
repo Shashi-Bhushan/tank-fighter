@@ -32,6 +32,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     protected int healthPoints;
 
+    protected TankHealthBar tankHealthBar;
+
     public GenericTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
         super(positionX, positionY, objectType, game, DEFAULT_TANK_BLOCK_DISTANCE * 3);
     }
@@ -64,6 +66,11 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+    }
+
+    @Override
+    public TankHealthBar getTankHealthBar() {
+        return tankHealthBar;
     }
 
     @Override
@@ -185,6 +192,8 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
         for(Bullet bullet: bullets) {
             bullet.draw(graphics);
         }
+
+        tankHealthBar.draw(graphics);
     }
 
     /**

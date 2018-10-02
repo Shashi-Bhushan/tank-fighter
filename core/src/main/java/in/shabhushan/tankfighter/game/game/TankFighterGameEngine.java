@@ -8,7 +8,6 @@ import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.model.impl.HeadUpDisplay;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.util.List;
@@ -31,12 +30,8 @@ public class TankFighterGameEngine extends GameEngine {
 
     private Handler<Bomb> bombsHandler = new Handler<>();
 
-    private HeadUpDisplay headUpDisplay;
-
-    public TankFighterGameEngine(Dimension resolution, HeadUpDisplay headUpDisplay) {
+    public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
-
-        this.headUpDisplay = headUpDisplay;
 
         Tank playerTank = new PlayerTankBuilder(
                 (int) resolution.getWidth() / 2,(int) resolution.getHeight() / 2,
@@ -45,7 +40,6 @@ public class TankFighterGameEngine extends GameEngine {
                 .setColor(DEFAULT_PLAYER_TANK_COLOR)
                 .setDirection(UP)
                 .build();
-
 
         handler.addObject(playerTank);
 
@@ -93,7 +87,7 @@ public class TankFighterGameEngine extends GameEngine {
     }
 
     public void updateHeadUpDisplayHealthPoints() {
-        headUpDisplay.setValue(this.getPlayerTank().getHealthPoints());
+        getPlayerTank().getTankHealthBar().update();
     }
 
     public List<Tank> getEnemyTanks() {

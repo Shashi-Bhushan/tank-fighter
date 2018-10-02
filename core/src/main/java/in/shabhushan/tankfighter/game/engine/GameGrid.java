@@ -7,12 +7,31 @@ import java.awt.*;
 public class GameGrid {
     private final boolean[][] gameGrid;
 
+    private int horizontalSize;
+    private int verticalSize;
+
     public GameGrid(Dimension dimension) {
-        int horizontalSize = (int)dimension.getWidth();
-        int verticalSize = (int)dimension.getHeight();
+        horizontalSize = (int)dimension.getWidth();
+        verticalSize = (int)dimension.getHeight();
 
         // 600 rows and 800 columns
         gameGrid = new boolean[verticalSize][horizontalSize];
+    }
+
+    public int getHorizontalSize() {
+        return horizontalSize;
+    }
+
+    public void setHorizontalSize(int horizontalSize) {
+        this.horizontalSize = horizontalSize;
+    }
+
+    public int getVerticalSize() {
+        return verticalSize;
+    }
+
+    public void setVerticalSize(int verticalSize) {
+        this.verticalSize = verticalSize;
     }
 
     public void occupySpace(int verticalPosition, int horizontalPosition) {

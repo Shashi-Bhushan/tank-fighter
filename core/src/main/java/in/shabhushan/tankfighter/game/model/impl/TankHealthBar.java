@@ -50,12 +50,15 @@ public class TankHealthBar extends GenericGameObject implements GameObject {
     }
 
     /**
-     * Get Health Points as percentage of width ans assign to value
+     * Get Health Points as percentage of width and assign to value
      */
-    @Override
-    public void update() {
+    public void updateHealthBarPosition() {
         this.horizontalPosition = tank.getHorizontalPosition();
         this.verticalPosition = tank.getVerticalPosition();
+    }
+
+    @Override
+    public void update() {
         this.health = (int)(width * (float)tank.getHealthPoints() / DEFAULT_AI_TANK_MAX_HEALTH_POINTS);
     }
 
@@ -68,6 +71,6 @@ public class TankHealthBar extends GenericGameObject implements GameObject {
     }
 
     private static Color getColor(int healthPoints) {
-        return healthPoints <= 30 ? Color.RED : (healthPoints <= 60 ? Color.CYAN : Color.GREEN);
+        return healthPoints <= 30 ? Color.RED : (healthPoints <= 60 ? Color.ORANGE : Color.GREEN);
     }
 }
