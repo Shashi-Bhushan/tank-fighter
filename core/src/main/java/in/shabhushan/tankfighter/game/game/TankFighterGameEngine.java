@@ -5,9 +5,11 @@ import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bomb;
 import in.shabhushan.tankfighter.game.model.Bullet;
+import in.shabhushan.tankfighter.game.model.builder.BrickWallBuilder;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.PlayerTankBuilder;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.model.impl.BrickWall;
 import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.util.List;
@@ -29,6 +31,8 @@ public class TankFighterGameEngine extends GameEngine {
     private Handler<Tank> enemyTankHandler = new Handler<>();
 
     private Handler<Bomb> bombsHandler = new Handler<>();
+
+    private Handler<BrickWall> wallHandler = new Handler<>();
 
     public TankFighterGameEngine(Dimension resolution) {
         super(resolution);
@@ -60,6 +64,20 @@ public class TankFighterGameEngine extends GameEngine {
         }
 
         updateHeadUpDisplayHealthPoints();
+
+        BrickWall wall = new BrickWallBuilder()
+                .setHorizontalPosition(100)
+                .setVerticalPosition(100)
+                .setGame(this)
+                .build();
+        BrickWall secondWall = new BrickWallBuilder()
+                .setHorizontalPosition(130)
+                .setVerticalPosition(100)
+                .setGame(this)
+                .build();
+
+        wallHandler.addObject(wall);
+        wallHandler.addObject(secondWall);
     }
 
     @Override
@@ -76,6 +94,7 @@ public class TankFighterGameEngine extends GameEngine {
         handler.draw(g);
         enemyTankHandler.draw(g);
         bombsHandler.draw(g);
+        wallHandler.draw(g);
     }
 
     public Tank getPlayerTank() {
@@ -155,7 +174,6 @@ public class TankFighterGameEngine extends GameEngine {
 
                         playerTank.destroy();
                         // Remove Player Tank
-                        // TODO: Uncomment when playing fairly :p
                         handler.getGameObjects().remove(getPlayerTank());
                         // break out of all loops, Player is x_x
                     }
