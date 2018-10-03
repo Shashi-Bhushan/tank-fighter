@@ -65,16 +65,8 @@ public class TankFighterGameEngine extends GameEngine {
 
         updateHeadUpDisplayHealthPoints();
 
-        BrickWall wall = new BrickWallBuilder()
-                .setHorizontalPosition(100)
-                .setVerticalPosition(100)
-                .setGame(this)
-                .build();
-        BrickWall secondWall = new BrickWallBuilder()
-                .setHorizontalPosition(130)
-                .setVerticalPosition(100)
-                .setGame(this)
-                .build();
+        BrickWall wall = new BrickWallBuilder(100, 100, this).build();
+        BrickWall secondWall = new BrickWallBuilder(130, 100, this).build();
 
         wallHandler.addObject(wall);
         wallHandler.addObject(secondWall);
