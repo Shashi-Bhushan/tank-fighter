@@ -15,29 +15,29 @@ import java.awt.event.WindowEvent;
 public class TankGameServiceImpl implements TankGameService {
 
     private JFrame gameFrame = new JFrame();
-    private JLayeredPane lpane = new JLayeredPane();
+    private JLayeredPane gamePane = new JLayeredPane();
 
     private TankFighterGameEngine tankFighterGameEngine;
 
     @Override
     public void startGame() {
         gameFrame = new JFrame();
-        lpane = new JLayeredPane();
+        gamePane = new JLayeredPane();
 
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = defaultToolkit.getScreenSize();
 
         gameFrame.setPreferredSize(screenSize);
-        gameFrame.setLayout(new BorderLayout());
-        gameFrame.add(lpane, BorderLayout.CENTER);
+        gameFrame.setLayout(new CardLayout());
+        gameFrame.add(gamePane, "gameFrame");
 
-        lpane.setBounds(0, 0, screenSize.width, screenSize.height);
+        gamePane.setBounds(0, 0, screenSize.width, screenSize.height);
 
         TankFighterGameEngine tankFighterGameEngine = new TankFighterGameEngine(screenSize);
         tankFighterGameEngine.setBackground(Color.LIGHT_GRAY);
         tankFighterGameEngine.setBounds(0, 0, screenSize.width, screenSize.height);
         tankFighterGameEngine.setOpaque(true);
-        lpane.add(tankFighterGameEngine, new Integer(0), 0);
+        gamePane.add(tankFighterGameEngine, new Integer(0), 0);
 
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
