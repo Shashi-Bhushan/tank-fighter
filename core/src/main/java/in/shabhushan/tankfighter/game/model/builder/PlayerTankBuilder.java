@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.model.builder;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
@@ -12,7 +12,7 @@ import in.shabhushan.tankfighter.game.model.impl.PlayerTank;
  */
 public class PlayerTankBuilder extends GenericTankBuilder<PlayerTankBuilder> {
 
-    public PlayerTankBuilder(int horizontalPosition, int verticalPosition, ObjectType objectType, int objectSize, GameEngine game) {
+    public PlayerTankBuilder(int horizontalPosition, int verticalPosition, ObjectType objectType, int objectSize, GenericGameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;

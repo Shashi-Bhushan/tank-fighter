@@ -1,4 +1,4 @@
-package in.shabhushan.tankfighter.game.engine;
+package in.shabhushan.tankfighter.game.core;
 
 import in.shabhushan.tankfighter.game.util.Defaults;
 
@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
  * TODO: Change to JPanel for Supporting KeyBindings.
  * See {@link https://docs.oracle.com/javase/tutorial/uiswing/TOC.html} for Reference.
  */
-public abstract class GameEngine extends JPanel implements Runnable {
+public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     private static final long nanosecondsPerSecond = 10000000000L;
     private static final long millisecondsPerNanosecond = 1000000L;
@@ -43,17 +43,17 @@ public abstract class GameEngine extends JPanel implements Runnable {
     protected ExecutorService executorService = Executors.newCachedThreadPool();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
-    public GameEngine() {
+    public GenericGameEngine() {
         this(new Dimension(800, 600), Defaults.DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at 60 fps
-    public GameEngine(Dimension resolution) {
+    public GenericGameEngine(Dimension resolution) {
         this(resolution, Defaults.DEFAULT_FRAME_RATE);
     }
 
     // creates GameEngine with passed resolution at passed fps
-    public GameEngine(Dimension resolution, int frameRate) {
+    public GenericGameEngine(Dimension resolution, int frameRate) {
         gameGrid = new GameGrid(resolution);
 
         this.resolution = resolution;

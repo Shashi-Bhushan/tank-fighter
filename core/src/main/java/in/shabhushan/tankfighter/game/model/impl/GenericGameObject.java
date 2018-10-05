@@ -1,7 +1,7 @@
 package in.shabhushan.tankfighter.game.model.impl;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.engine.GameGrid;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.GameGrid;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
@@ -31,24 +31,24 @@ public abstract class GenericGameObject extends Component implements GameObject 
     // Unique Identifier of Game Object
     protected ObjectType objectType;
 
-    protected GameEngine game;
+    protected GenericGameEngine game;
 
     protected int objectSize;
 
     protected boolean outsideGameGrid;
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, GameEngine game) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
         this(horizontalPosition, verticalPosition, null, game);
     }
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GenericGameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
         this.game = game;
     }
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GameEngine game, int objectSize) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GenericGameEngine game, int objectSize) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
@@ -94,11 +94,11 @@ public abstract class GenericGameObject extends Component implements GameObject 
         this.color = color;
     }
 
-    public GameEngine getGame() {
+    public GenericGameEngine getGame() {
         return game;
     }
 
-    public void setGame(GameEngine game) {
+    public void setGame(GenericGameEngine game) {
         this.game = game;
     }
 

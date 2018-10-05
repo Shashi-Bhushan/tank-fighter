@@ -1,9 +1,9 @@
 package in.shabhushan.tankfighter.game.model.impl;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
-import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.TankHealthBarBuilder;
@@ -25,15 +25,15 @@ import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
  */
 public class EnemyTank extends GenericTank {
 
-    public EnemyTank(int positionX, int positionY, ObjectType objectType, GameEngine game) {
+    public EnemyTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game) {
         super(positionX, positionY, objectType, game);
     }
 
-    public EnemyTank(int positionX, int positionY, ObjectType objectType, GameEngine game, int speed, Color color) {
+    public EnemyTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, int speed, Color color) {
         super(positionX, positionY, objectType, game, speed, color);
     }
 
-    public EnemyTank(int positionX, int positionY, GameEngine game, Direction direction, int speed, Color color) {
+    public EnemyTank(int positionX, int positionY, GenericGameEngine game, Direction direction, int speed, Color color) {
         super(positionX, positionY, ObjectType.ENEMY_TANK, game, speed, color);
         setDirection(direction);
     }

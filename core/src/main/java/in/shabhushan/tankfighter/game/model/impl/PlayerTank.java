@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.model.impl;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Tank;
@@ -15,7 +15,7 @@ import java.awt.*;
  */
 public class PlayerTank extends GenericTank {
 
-    public PlayerTank(int positionX, int positionY, ObjectType objectType, GameEngine game, int speed, Color color) {
+    public PlayerTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, int speed, Color color) {
         super(positionX, positionY, objectType, game);
 
         setColor(color);
@@ -23,7 +23,7 @@ public class PlayerTank extends GenericTank {
     }
 
 
-    public PlayerTank(int positionX, int positionY, ObjectType objectType, GameEngine game, Direction direction) {
+    public PlayerTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, Direction direction) {
         super(positionX, positionY, objectType, game);
 
         setDirection(direction);

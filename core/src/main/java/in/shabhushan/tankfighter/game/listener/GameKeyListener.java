@@ -1,7 +1,7 @@
 package in.shabhushan.tankfighter.game.listener;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.engine.GameGrid;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.GameGrid;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
@@ -31,7 +31,7 @@ public class GameKeyListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        GameEngine game = playerTank.getGame();
+        GenericGameEngine game = playerTank.getGame();
         GameGrid gameGrid = game.getGameGrid();
 
         // Vacant Space, otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.

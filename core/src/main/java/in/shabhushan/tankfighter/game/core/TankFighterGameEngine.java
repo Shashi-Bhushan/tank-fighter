@@ -1,7 +1,5 @@
-package in.shabhushan.tankfighter.game.game;
+package in.shabhushan.tankfighter.game.core;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.engine.Handler;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bomb;
 import in.shabhushan.tankfighter.game.model.Bullet;
@@ -24,7 +22,7 @@ import static in.shabhushan.tankfighter.game.util.Defaults.*;
  * @author Shashi Bhushan
  * @date 17/9/18
  */
-public class TankFighterGameEngine extends GameEngine {
+public class TankFighterGameEngine extends GenericGameEngine {
 
     private Handler<Tank> handler = new Handler<>();
 

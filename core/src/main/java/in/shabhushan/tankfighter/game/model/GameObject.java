@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.model;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 
@@ -53,17 +53,17 @@ public interface GameObject {
     public void setDirection(Direction direction);
 
     /**
-     * Sets {@link GameEngine} for this Game Object.
-     * @param game The {@link GameEngine} for this Game Object
+     * Sets {@link GenericGameEngine} for this Game Object.
+     * @param game The {@link GenericGameEngine} for this Game Object
      */
-    public void setGame(GameEngine game);
+    public void setGame(GenericGameEngine game);
 
     /**
-     * Returns the {@link GameEngine} for this Game Object.
+     * Returns the {@link GenericGameEngine} for this Game Object.
      * It can be used to fetch properties pertaining to the Game viz. window dimensions etc
-     * @return {@link GameEngine} for this Game Object
+     * @return {@link GenericGameEngine} for this Game Object
      */
-    public GameEngine getGame();
+    public GenericGameEngine getGame();
 
     /**
      * Sets the {@link Color} for this Game Object

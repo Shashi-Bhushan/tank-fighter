@@ -1,4 +1,4 @@
-package in.shabhushan.tankfighter.game.engine;
+package in.shabhushan.tankfighter.game.core;
 
 import in.shabhushan.tankfighter.game.model.GameObject;
 

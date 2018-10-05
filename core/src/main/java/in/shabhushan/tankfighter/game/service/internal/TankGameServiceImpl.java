@@ -1,6 +1,6 @@
 package in.shabhushan.tankfighter.game.service.internal;
 
-import in.shabhushan.tankfighter.game.game.TankFighterGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
@@ -24,11 +24,16 @@ public class TankGameServiceImpl implements TankGameService {
         gameFrame = new JFrame();
         gamePane = new JLayeredPane();
 
+        JPanel panel = new JPanel();
+
+        panel.add(new Button("Hey"));
+
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = defaultToolkit.getScreenSize();
 
         gameFrame.setPreferredSize(screenSize);
         gameFrame.setLayout(new CardLayout());
+        //gameFrame.add(panel, "panel");
         gameFrame.add(gamePane, "gameFrame");
 
         gamePane.setBounds(0, 0, screenSize.width, screenSize.height);

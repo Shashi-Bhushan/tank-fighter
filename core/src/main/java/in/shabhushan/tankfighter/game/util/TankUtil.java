@@ -1,7 +1,7 @@
 package in.shabhushan.tankfighter.game.util;
 
-import in.shabhushan.tankfighter.game.engine.GameEngine;
-import in.shabhushan.tankfighter.game.engine.GameGrid;
+import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.GameGrid;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class TankUtil {
-    public static void updateBulletsPosition(List<Bullet> bullets, GameEngine game) {
+    public static void updateBulletsPosition(List<Bullet> bullets, GenericGameEngine game) {
         ListIterator<Bullet> bulletListIterator = bullets.listIterator();
         while(bulletListIterator.hasNext()) {
             Bullet bullet = bulletListIterator.next();
