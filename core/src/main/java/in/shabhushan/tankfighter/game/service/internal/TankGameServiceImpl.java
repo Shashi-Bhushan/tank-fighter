@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.service.internal;
 
 import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
+import in.shabhushan.tankfighter.game.core.TankGameFrame;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
@@ -14,42 +15,30 @@ import java.awt.event.WindowEvent;
  */
 public class TankGameServiceImpl implements TankGameService {
 
-    private JFrame gameFrame = new JFrame();
-    private JLayeredPane gamePane = new JLayeredPane();
+    private JFrame gameFrame;
 
     private TankFighterGameEngine tankFighterGameEngine;
 
     @Override
     public void startGame() {
         gameFrame = new JFrame();
-        gamePane = new JLayeredPane();
-
-        JPanel panel = new JPanel();
-
-        panel.add(new Button("Hey"));
 
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = defaultToolkit.getScreenSize();
 
         gameFrame.setPreferredSize(screenSize);
-        gameFrame.setLayout(new CardLayout());
-        //gameFrame.add(panel, "panel");
-        gameFrame.add(gamePane, "gameFrame");
 
-        gamePane.setBounds(0, 0, screenSize.width, screenSize.height);
+        //gameFrame.add(gamePane, "gameFrame");
 
-        TankFighterGameEngine tankFighterGameEngine = new TankFighterGameEngine(screenSize);
-        tankFighterGameEngine.setBackground(Color.LIGHT_GRAY);
-        tankFighterGameEngine.setBounds(0, 0, screenSize.width, screenSize.height);
-        tankFighterGameEngine.setOpaque(true);
-        gamePane.add(tankFighterGameEngine, new Integer(0), 0);
+        //gamePane.setBounds(0, 0, screenSize.width, screenSize.height);
 
+        TankGameFrame tankGameFrame = new TankGameFrame(screenSize);
+        gameFrame.add(tankGameFrame);
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.pack();
         gameFrame.setVisible(true);
-        gameFrame.addKeyListener(new GameKeyListener(tankFighterGameEngine.getPlayerTank()));
-        tankFighterGameEngine.start();
+        gameFrame.addKeyListener(new GameKeyListener(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
     }
 
     @Override

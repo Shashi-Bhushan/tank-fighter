@@ -1,6 +1,7 @@
 package in.shabhushan.tankfighter.game.util;
 
 import java.awt.*;
+import java.util.Locale;
 
 public final class Defaults {
     private Defaults() {}
@@ -29,4 +30,6 @@ public final class Defaults {
     public static final int DEFAULT_BULLET_COUNT = 5;
 
     public static final int DEFAULT_FRAME_RATE = 60;
+
+    public static final Locale GAME_LOCALE = new Locale("ES", "US");
 }
