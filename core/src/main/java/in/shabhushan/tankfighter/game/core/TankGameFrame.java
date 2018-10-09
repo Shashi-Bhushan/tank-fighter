@@ -58,9 +58,8 @@ public class TankGameFrame extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cardLayout.show(this, "gameFrame");
-
         if(e.getActionCommand().equals("New Game")) {
+            cardLayout.show(this, "gameFrame");
             tankFighterGameEngine.start();
         }
     }
