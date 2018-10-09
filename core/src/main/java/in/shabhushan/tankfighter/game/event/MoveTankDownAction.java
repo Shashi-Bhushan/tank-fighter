@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,11 +40,13 @@ public class MoveTankDownAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         tank.setDirection(Direction.DOWN);
 
+        // Vacant Space, otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.
         tank.vacantSpace();
         if(objectWithinBoundary(tank, tank.getGame())
                 && !TankUtil.isSpaceOccupied(tank.getHorizontalPosition(), tank.getVerticalPosition() + tank.getSpeed(), tank)) {
             tank.setVerticalPosition(tank.getVerticalPosition() + tank.getSpeed());
         }
+        // occupy Space Again
         tank.occupySpace();
     }
 }

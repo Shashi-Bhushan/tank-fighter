@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,13 @@
  */
 package in.shabhushan.tankfighter.game.event;
 
-import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.util.TankUtil;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 import static in.shabhushan.tankfighter.game.util.Defaults.DEFAULT_PLAYER_BULLET_COLOR;
-import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
 
 public class FireTankBulletAction extends AbstractAction {
 
