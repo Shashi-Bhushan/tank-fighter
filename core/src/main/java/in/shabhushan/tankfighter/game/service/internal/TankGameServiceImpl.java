@@ -2,8 +2,7 @@ package in.shabhushan.tankfighter.game.service.internal;
 
 import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.core.TankGameFrame;
-import in.shabhushan.tankfighter.game.event.MoveTankDownAction;
-import in.shabhushan.tankfighter.game.event.MoveTankUpAction;
+import in.shabhushan.tankfighter.game.event.*;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
@@ -49,6 +48,15 @@ public class TankGameServiceImpl implements TankGameService {
 
         tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "down");
         tankGameFrame.getTankFighterGameEngine().getActionMap().put("down", new MoveTankDownAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
+        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "left");
+        tankGameFrame.getTankFighterGameEngine().getActionMap().put("left", new MoveTankLeftAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
+        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "right");
+        tankGameFrame.getTankFighterGameEngine().getActionMap().put("right", new MoveTankRightAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
+        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "space");
+        tankGameFrame.getTankFighterGameEngine().getActionMap().put("space", new FireTankBulletAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
 
     }
 
