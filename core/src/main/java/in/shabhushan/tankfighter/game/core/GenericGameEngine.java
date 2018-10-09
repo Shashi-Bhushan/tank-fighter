@@ -82,7 +82,6 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
         while (running) {
             long timeBeforeLoop = System.nanoTime(); // time when game loop starts
 
-            checkForCollisions();
             update();
             //render();
             validate();
@@ -98,8 +97,6 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
             }
         }
     }
-
-    abstract public void checkForCollisions();
 
     // update everything in the game, should be overridden
     abstract public void update();

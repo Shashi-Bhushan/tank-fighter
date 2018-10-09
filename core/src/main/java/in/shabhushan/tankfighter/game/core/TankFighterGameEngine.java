@@ -69,6 +69,8 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
     @Override
     public void update() {
+        checkForCollisions();
+        
         handler.update();
         enemyTankHandler.update();
         bombsHandler.update();
@@ -110,7 +112,6 @@ public class TankFighterGameEngine extends GenericGameEngine {
         }
     }
 
-    @Override
     public void checkForCollisions() {
         // Check if Player's Bullet has hit any enemy tank
         ListIterator<Bullet> playerBulletIterator = getPlayerTank().getBullets().listIterator();
