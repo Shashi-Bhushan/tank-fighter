@@ -56,9 +56,6 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
             // Add to Handler
             enemyTankHandler.addObject(enemyTank);
-
-            // Add to Executor Thread Pool
-            executorService.execute(enemyTank);
         }
 
         updateHeadUpDisplayHealthPoints();
@@ -101,6 +98,16 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
     public List<Tank> getEnemyTanks() {
         return enemyTankHandler.getGameObjects();
+    }
+
+    @Override
+    public void start() {
+        super.start();
+
+        // Start Thread for Each Enemy Tank
+        for(Tank enemyTank: getEnemyTanks()) {
+            executorService.execute(enemyTank);
+        }
     }
 
     @Override
