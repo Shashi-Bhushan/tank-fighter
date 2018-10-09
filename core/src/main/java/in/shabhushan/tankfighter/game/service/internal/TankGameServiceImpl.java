@@ -2,11 +2,14 @@ package in.shabhushan.tankfighter.game.service.internal;
 
 import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.core.TankGameFrame;
+import in.shabhushan.tankfighter.game.event.MoveTankDownAction;
+import in.shabhushan.tankfighter.game.event.MoveTankUpAction;
 import in.shabhushan.tankfighter.game.listener.GameKeyListener;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 
 /**
@@ -38,7 +41,15 @@ public class TankGameServiceImpl implements TankGameService {
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.pack();
         gameFrame.setVisible(true);
-        gameFrame.addKeyListener(new GameKeyListener(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+        //gameFrame.addKeyListener(new GameKeyListener(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
+
+        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "up");
+        tankGameFrame.getTankFighterGameEngine().getActionMap().put("up", new MoveTankUpAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
+        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "down");
+        tankGameFrame.getTankFighterGameEngine().getActionMap().put("down", new MoveTankDownAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+
     }
 
     @Override
