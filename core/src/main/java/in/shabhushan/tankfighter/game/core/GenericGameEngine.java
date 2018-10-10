@@ -20,7 +20,6 @@ import java.util.concurrent.Executors;
  * must be made visible prior to calling start(). Override update()
  * and draw() for custom game content.
  *
- * TODO: Change to JPanel for Supporting KeyBindings.
  * See {@link https://docs.oracle.com/javase/tutorial/uiswing/TOC.html} for Reference.
  */
 public abstract class GenericGameEngine extends JPanel implements Runnable {

@@ -23,10 +23,12 @@ package in.shabhushan.tankfighter.game.service.internal;
 import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.core.TankGameFrame;
 import in.shabhushan.tankfighter.game.event.*;
+import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.service.TankGameService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 
 public class TankGameServiceImpl implements TankGameService {
@@ -57,21 +59,29 @@ public class TankGameServiceImpl implements TankGameService {
         //gameFrame.addKeyListener(new GameKeyListener(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
 
 
-        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "up");
-        tankGameFrame.getTankFighterGameEngine().getActionMap().put("up", new MoveTankUpAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+        addKeyBindings(tankGameFrame);
 
-        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "down");
-        tankGameFrame.getTankFighterGameEngine().getActionMap().put("down", new MoveTankDownAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+    }
 
-        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "left");
-        tankGameFrame.getTankFighterGameEngine().getActionMap().put("left", new MoveTankLeftAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+    private void addKeyBindings(TankGameFrame tankGameFrame) {
+        InputMap inputMap = tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = tankGameFrame.getTankFighterGameEngine().getActionMap();
+        Tank playerTank = tankGameFrame.getTankFighterGameEngine().getPlayerTank();
 
-        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "right");
-        tankGameFrame.getTankFighterGameEngine().getActionMap().put("right", new MoveTankRightAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
+        actionMap.put("up", new MoveTankUpAction(playerTank));
 
-        tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "space");
-        tankGameFrame.getTankFighterGameEngine().getActionMap().put("space", new FireTankBulletAction(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
+        actionMap.put("down", new MoveTankDownAction(playerTank));
 
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
+        actionMap.put("left", new MoveTankLeftAction(playerTank));
+
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+        actionMap.put("right", new MoveTankRightAction(playerTank));
+
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "space");
+        actionMap.put("space", new FireTankBulletAction(playerTank));
     }
 
     @Override
