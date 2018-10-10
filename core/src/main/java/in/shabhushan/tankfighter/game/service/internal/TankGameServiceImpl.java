@@ -35,8 +35,6 @@ public class TankGameServiceImpl implements TankGameService {
 
     private JFrame gameFrame;
 
-    private TankFighterGameEngine tankFighterGameEngine;
-
     @Override
     public void startGame() {
         gameFrame = new JFrame();
@@ -46,21 +44,14 @@ public class TankGameServiceImpl implements TankGameService {
 
         gameFrame.setPreferredSize(screenSize);
 
-        //gameFrame.add(gamePane, "gameFrame");
-
-        //gamePane.setBounds(0, 0, screenSize.width, screenSize.height);
-
         TankGameFrame tankGameFrame = new TankGameFrame(screenSize);
         gameFrame.add(tankGameFrame);
 
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.pack();
         gameFrame.setVisible(true);
-        //gameFrame.addKeyListener(new GameKeyListener(tankGameFrame.getTankFighterGameEngine().getPlayerTank()));
-
 
         addKeyBindings(tankGameFrame);
-
     }
 
     private void addKeyBindings(TankGameFrame tankGameFrame) {
@@ -86,9 +77,6 @@ public class TankGameServiceImpl implements TankGameService {
 
     @Override
     public void stopGame() {
-        tankFighterGameEngine.stop();
-
-        tankFighterGameEngine = null;
         gameFrame.dispatchEvent(new WindowEvent(gameFrame, WindowEvent.WINDOW_CLOSING));
     }
 }

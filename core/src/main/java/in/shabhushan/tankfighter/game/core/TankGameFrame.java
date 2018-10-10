@@ -48,7 +48,6 @@ public class TankGameFrame extends JPanel implements ActionListener {
         tankFighterGameEngine.setBackground(Color.LIGHT_GRAY);
         tankFighterGameEngine.setBounds(0, 0, screenSize.width, screenSize.height);
         tankFighterGameEngine.setOpaque(true);
-        //gamePane.add(tankFighterGameEngine, new Integer(0), 0);
         this.add(tankFighterGameEngine, "gameFrame");
     }
 
