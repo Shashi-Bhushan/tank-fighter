@@ -23,30 +23,19 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.model.Tank;
 import in.shabhushan.tankfighter.game.util.TankUtil;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-
-import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
-
-public class MoveTankUpAction extends AbstractAction {
-
-    private Tank tank;
+public class MoveTankUpAction extends AbstractMoveTankAction {
 
     public MoveTankUpAction(Tank tank) {
-        this.tank = tank;
+        super(tank, Direction.UP);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        tank.setDirection(Direction.UP);
+    protected boolean isSpaceVacant() {
+        return !TankUtil.isSpaceOccupied(tank.getHorizontalPosition(), tank.getVerticalPosition() - tank.getSpeed(), tank);
+    }
 
-        // Vacant Space, otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.
-        tank.vacantSpace();
-        if(objectWithinBoundary(tank, tank.getGame())
-                && !TankUtil.isSpaceOccupied(tank.getHorizontalPosition(), tank.getVerticalPosition() - tank.getSpeed(), tank)) {
-            tank.setVerticalPosition(tank.getVerticalPosition() - tank.getSpeed());
-        }
-        // occupy Space Again
-        tank.occupySpace();
+    @Override
+    protected void moveTank() {
+        tank.setVerticalPosition(tank.getVerticalPosition() - tank.getSpeed());
     }
 }
