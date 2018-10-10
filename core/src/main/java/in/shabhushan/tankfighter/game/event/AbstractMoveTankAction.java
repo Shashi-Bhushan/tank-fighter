@@ -15,6 +15,14 @@
  */
 
 /**
+ *
+ * AbstractMoveTankAction is meant to serve as a Abstract Super class for All {@link Tank} Movement Classes.
+ *
+ * AbstractMoveTankAction extends {@link AbstractAction} and defines {@link #actionPerformed(ActionEvent)} method, which
+ * sets the {@link Direction} for the {@code tank} and checks whether the tank could be feasibly moved to next position.
+ * Also, it makes use of two abstract methods {@link #isSpaceVacant()} and {@link #moveTank()}, which shall be defined
+ * by individual MoveTankAction classes.
+ *
  * @author Shashi Bhushan
  */
 package in.shabhushan.tankfighter.game.event;
@@ -37,6 +45,12 @@ public abstract class AbstractMoveTankAction extends AbstractAction {
         this.direction = direction;
     }
 
+    /**
+     * Sets direction of tank, checks for if it's feasible to move the tank to next position and finally, move the tank
+     * to next position if possible.
+     *
+     * @param e {@link ActionEvent} object associated with this Move Action
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         tank.setDirection(direction);
@@ -50,7 +64,17 @@ public abstract class AbstractMoveTankAction extends AbstractAction {
         tank.occupySpace();
     }
 
+    /**
+     * Checks for if the next space where {@code tank} is moving is vacant or not.
+     * This method should be overridden by MoveTankAction sub-classes to define how to check for vacancy for next position
+     *
+     * @return true if the next space is vacant, false otherwise
+     */
     protected abstract boolean isSpaceVacant();
 
+    /**
+     * Move the {@code tank} to the new position
+     * This method should be overridden by MoveTankAction sub-classes to define how to move the {@code tank} to the next position
+     */
     protected abstract void moveTank();
 }
