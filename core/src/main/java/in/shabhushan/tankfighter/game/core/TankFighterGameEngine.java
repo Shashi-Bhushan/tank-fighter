@@ -70,7 +70,7 @@ public class TankFighterGameEngine extends GenericGameEngine {
     @Override
     public void update() {
         checkForCollisions();
-        
+
         handler.update();
         enemyTankHandler.update();
         bombsHandler.update();
@@ -113,6 +113,62 @@ public class TankFighterGameEngine extends GenericGameEngine {
     }
 
     public void checkForCollisions() {
+        isEnemyTankHit();
+        isPlayerTankHit();
+
+        updateBombs();
+
+        if(getEnemyTanks().isEmpty() || isPlayerTankDead()) {
+            gameFinished = true;
+        }
+    }
+
+    private void updateBombs() {
+        ListIterator<Bomb> bombsIterator = bombsHandler.getGameObjects().listIterator();
+        while(bombsIterator.hasNext()) {
+            Bomb bomb = bombsIterator.next();
+
+            if(!bomb.isLive()) {
+                bombsIterator.remove();
+            }
+        }
+    }
+
+    private void isPlayerTankHit() {
+        // Check if Enemy Tank has hit player
+        OUTER_LOOP:
+        for(Tank enemyTank: enemyTankHandler.getGameObjects()) {
+            ListIterator<Bullet> enemyBulletIterator = enemyTank.getBullets().listIterator();
+
+            while(enemyBulletIterator.hasNext()) {
+                Bullet enemyBullet = enemyBulletIterator.next();
+
+                if(GameUtil.isTankHitByBullet(getPlayerTank(), enemyBullet)) {
+
+                    Tank playerTank = getPlayerTank();
+                    playerTank.reducePointsBy(enemyBullet.getDamagePoints());
+                    updateHeadUpDisplayHealthPoints();
+
+                    if(playerTank.getHealthPoints() <= 0) {
+                        // Create a Bomb Here
+                        Bomb bomb = new Bomb(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition(), this);
+                        bombsHandler.addObject(bomb);
+                        // Add to Executor Thread Pool
+                        executorService.execute(bomb);
+
+                        playerTank.destroy();
+                        // Remove Player Tank
+                        handler.getGameObjects().remove(getPlayerTank());
+                        // break out of all loops, Player is x_x
+                    }
+                    enemyBulletIterator.remove();
+                    break OUTER_LOOP;
+                }
+            }
+        }
+    }
+
+    private void isEnemyTankHit() {
         // Check if Player's Bullet has hit any enemy tank
         ListIterator<Bullet> playerBulletIterator = getPlayerTank().getBullets().listIterator();
         while(playerBulletIterator.hasNext()) {
@@ -147,51 +203,6 @@ public class TankFighterGameEngine extends GenericGameEngine {
                     break;
                 }
             }
-        }
-
-        // Check if Enemy Tank has hit player
-        OUTER_LOOP:
-        for(Tank enemyTank: enemyTankHandler.getGameObjects()) {
-            ListIterator<Bullet> enemyBulletIterator = enemyTank.getBullets().listIterator();
-
-            while(enemyBulletIterator.hasNext()) {
-                Bullet enemyBullet = enemyBulletIterator.next();
-
-                if(GameUtil.isTankHitByBullet(getPlayerTank(), enemyBullet)) {
-
-                    Tank playerTank = getPlayerTank();
-                    playerTank.reducePointsBy(enemyBullet.getDamagePoints());
-                    updateHeadUpDisplayHealthPoints();
-
-                    if(playerTank.getHealthPoints() <= 0) {
-                        // Create a Bomb Here
-                        Bomb bomb = new Bomb(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition(), this);
-                        bombsHandler.addObject(bomb);
-                        // Add to Executor Thread Pool
-                        executorService.execute(bomb);
-
-                        playerTank.destroy();
-                        // Remove Player Tank
-                        handler.getGameObjects().remove(getPlayerTank());
-                        // break out of all loops, Player is x_x
-                    }
-                    enemyBulletIterator.remove();
-                    break OUTER_LOOP;
-                }
-            }
-        }
-
-        ListIterator<Bomb> bombsIterator = bombsHandler.getGameObjects().listIterator();
-        while(bombsIterator.hasNext()) {
-            Bomb bomb = bombsIterator.next();
-
-            if(!bomb.isLive()) {
-                bombsIterator.remove();
-            }
-        }
-
-        if(getEnemyTanks().isEmpty() || isPlayerTankDead()) {
-            gameFinished = true;
         }
     }
 }
