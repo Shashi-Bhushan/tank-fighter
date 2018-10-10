@@ -26,6 +26,8 @@ import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.GameObject;
 import in.shabhushan.tankfighter.game.model.Tank;
 
+import java.math.BigInteger;
+
 import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
 
 public final class GameUtil {
@@ -104,5 +106,17 @@ public final class GameUtil {
 
     public static boolean objectWithinTankBoundary(int tankPositionCoordinate, int bulletPositionCoordinate) {
         return tankPositionCoordinate <= bulletPositionCoordinate && bulletPositionCoordinate <= tankPositionCoordinate + 30;
+    }
+
+    /**
+     * Gets Cantor Pairing for a given x and y.
+     *
+     * @see https://en.wikipedia.org/wiki/Pairing_function#Cantor_pairing_function
+     * @param x
+     * @param y
+     * @return
+     */
+    public static BigInteger getTileID(int x, int y) {
+        return BigInteger.valueOf(((x + y) * ( x + y + 1)) / 2);
     }
 }

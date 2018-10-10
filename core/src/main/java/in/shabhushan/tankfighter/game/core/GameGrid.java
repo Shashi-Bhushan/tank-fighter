@@ -2,6 +2,7 @@ package in.shabhushan.tankfighter.game.core;
 
 import in.shabhushan.tankfighter.game.model.GameObject;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.Dimension;
 import java.math.BigInteger;
@@ -28,23 +29,19 @@ public class GameGrid {
     }
 
     public void addGameObject(GameObject gameObject) {
-        gameObjects.put(getCantorPairing(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition()), gameObject);
+        gameObjects.put(GameUtil.getTileID(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition()), gameObject);
     }
 
     public boolean isSpaceOccupied(GameObject gameObject) {
-        BigInteger cantorPairing = getCantorPairing(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition());
+        BigInteger cantorPairing = GameUtil.getTileID(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition());
 
         return gameObjects.containsKey(cantorPairing);
     }
 
     public GameObject getGameObject(int horizontalPosition, int verticalPosition) {
-        BigInteger cantorPairing = getCantorPairing(horizontalPosition, verticalPosition);
+        BigInteger cantorPairing = GameUtil.getTileID(horizontalPosition, verticalPosition);
 
         return gameObjects.get(cantorPairing);
-    }
-
-    private BigInteger getCantorPairing(int x, int y) {
-        return BigInteger.valueOf(((x + y) * ( x + y + 1)) / 2);
     }
 
     public int getHorizontalSize() {

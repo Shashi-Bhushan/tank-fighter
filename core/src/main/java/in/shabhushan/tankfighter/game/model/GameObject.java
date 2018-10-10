@@ -24,6 +24,7 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 
 import java.awt.*;
+import java.math.BigInteger;
 
 /**
  * This is a Game Object, which all the model in the Game that are going to be placed, inherits from.
@@ -140,6 +141,10 @@ public interface GameObject {
      * Updates the objectSize
      */
     public void setObjectSize(int objectSize);
+
+    public void setTileID(BigInteger tileID);
+
+    public BigInteger getTileID();
 
     /**
      * Returns the Object Size in Game Grid

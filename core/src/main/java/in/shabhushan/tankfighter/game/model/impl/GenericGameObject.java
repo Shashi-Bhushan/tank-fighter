@@ -25,8 +25,10 @@ import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
 import in.shabhushan.tankfighter.game.model.builder.GenericGameObjectBuilder;
+import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.*;
+import java.math.BigInteger;
 import java.util.Random;
 
 public abstract class GenericGameObject extends Component implements GameObject {
@@ -55,6 +57,8 @@ public abstract class GenericGameObject extends Component implements GameObject 
     protected int objectSize;
 
     protected boolean outsideGameGrid;
+
+    protected BigInteger tileID;
 
     public GenericGameObject(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
         this(horizontalPosition, verticalPosition, null, game);
@@ -95,6 +99,8 @@ public abstract class GenericGameObject extends Component implements GameObject 
         if(!outsideGameGrid) {
             occupySpace();
         }
+
+        tileID = GameUtil.getTileID(this.horizontalPosition, this.verticalPosition);
     }
 
     public int getHorizontalPosition() {
@@ -169,6 +175,16 @@ public abstract class GenericGameObject extends Component implements GameObject 
     @Override
     public void setObjectSize(int objectSize) {
         this.objectSize = objectSize;
+    }
+
+    @Override
+    public BigInteger getTileID() {
+        return tileID;
+    }
+
+    @Override
+    public void setTileID(BigInteger tileID) {
+        this.tileID = tileID;
     }
 
     @Override
