@@ -45,6 +45,8 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
         handler.addObject(playerTank);
 
+        tileManager.addGameObject(playerTank);
+
         for(int index = 0; index < DEFAULT_AI_TANK_NUMBER; index++) {
             Tank enemyTank = new EnemyTankBuilder(
                         100 * (index + 1), (int) resolution.getHeight() / 4,
@@ -56,6 +58,7 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
             // Add to Handler
             enemyTankHandler.addObject(enemyTank);
+            tileManager.addGameObject(enemyTank);
         }
 
         updateHeadUpDisplayHealthPoints();
@@ -65,6 +68,9 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
         wallHandler.addObject(wall);
         wallHandler.addObject(secondWall);
+
+        tileManager.addGameObject(wall);
+        tileManager.addGameObject(secondWall);
     }
 
     @Override
@@ -156,6 +162,7 @@ public class TankFighterGameEngine extends GenericGameEngine {
                         // Add to Executor Thread Pool
                         executorService.execute(bomb);
 
+                        tileManager.removeGameObject(getPlayerTank());
                         playerTank.destroy();
                         // Remove Player Tank
                         handler.getGameObjects().remove(getPlayerTank());
@@ -189,6 +196,7 @@ public class TankFighterGameEngine extends GenericGameEngine {
                         // Add to Executor Thread Pool
                         executorService.execute(bomb);
 
+                        tileManager.removeGameObject(enemyTank);
                         enemyTank.destroy();
                         enemyTanksIterator.remove();
 

@@ -1,21 +1,14 @@
 package in.shabhushan.tankfighter.game.core;
 
-import in.shabhushan.tankfighter.game.model.GameObject;
 import in.shabhushan.tankfighter.game.model.Tank;
-import in.shabhushan.tankfighter.game.util.GameUtil;
 
 import java.awt.Dimension;
-import java.math.BigInteger;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 
 /**
  * TODO: Create WorldGrid and Tile Classes. Also Create a RoomManager Class with all instances.
  */
 public class GameGrid {
     private final boolean[][] gameGrid;
-    private Map<BigInteger ,GameObject> gameObjects = new ConcurrentHashMap<>();
 
     private int horizontalSize;
     private int verticalSize;
@@ -26,22 +19,6 @@ public class GameGrid {
 
         // 600 rows and 800 columns
         gameGrid = new boolean[verticalSize][horizontalSize];
-    }
-
-    public void addGameObject(GameObject gameObject) {
-        gameObjects.put(GameUtil.getTileID(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition()), gameObject);
-    }
-
-    public boolean isSpaceOccupied(GameObject gameObject) {
-        BigInteger cantorPairing = GameUtil.getTileID(gameObject.getHorizontalPosition(), gameObject.getVerticalPosition());
-
-        return gameObjects.containsKey(cantorPairing);
-    }
-
-    public GameObject getGameObject(int horizontalPosition, int verticalPosition) {
-        BigInteger cantorPairing = GameUtil.getTileID(horizontalPosition, verticalPosition);
-
-        return gameObjects.get(cantorPairing);
     }
 
     public int getHorizontalSize() {

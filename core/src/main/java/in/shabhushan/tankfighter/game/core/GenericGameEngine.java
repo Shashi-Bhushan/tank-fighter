@@ -1,5 +1,6 @@
 package in.shabhushan.tankfighter.game.core;
 
+import in.shabhushan.tankfighter.game.core.tile.TileManager;
 import in.shabhushan.tankfighter.game.util.Defaults;
 
 import javax.swing.*;
@@ -40,7 +41,9 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     protected final GameGrid gameGrid;
 
-    protected ExecutorService executorService = Executors.newCachedThreadPool();
+    protected final ExecutorService executorService = Executors.newCachedThreadPool();
+
+    protected final TileManager tileManager = new TileManager();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GenericGameEngine() {
@@ -65,6 +68,10 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     public GameGrid getGameGrid() {
         return gameGrid;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 
     // final set up and starts game loop
