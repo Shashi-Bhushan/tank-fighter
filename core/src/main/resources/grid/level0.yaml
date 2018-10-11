@@ -1,14 +1,13 @@
 name: Level Zero
-grid:
-  wall:
-    # horizontalPosition, verticalPosition
-    - horizontalPosition: 100
-      verticalPosition: 100
-    - horizontalPosition: 130
-      verticalPosition: 100
-  enemyTank:
-    # horizontalPosition, verticalPosition, Object Type, Object Size, Direction, Speed
-    - 400, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
-    - 500, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
-    - 600, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
-    - 700, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
+wall:
+  # horizontalPosition, verticalPosition
+  - horizontalPosition: 100
+    verticalPosition: 100
+  - horizontalPosition: 130
+    verticalPosition: 100
+enemyTank:
+  # horizontalPosition, verticalPosition, Object Type, Object Size, Direction, Speed
+  - 400, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
+  - 500, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
+  - 600, 100, ENEMY_TANK, 30, DOWN, 10, BLACK
+  - 700, 100, ENEMY_TANK, 30, DOWN, 10, BLACK

@@ -19,12 +19,17 @@
  */
 package in.shabhushan.tankfighter.game.model.builder;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.model.impl.BrickWall;
 
+@JsonPOJOBuilder(withPrefix = "set", buildMethodName = "build")
 public class BrickWallBuilder extends GenericGameObjectBuilder<BrickWallBuilder> {
 
-    public BrickWallBuilder(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
+    @JsonCreator
+    public BrickWallBuilder(@JsonProperty("horizontalPosition") int horizontalPosition, @JsonProperty("verticalPosition") int verticalPosition, GenericGameEngine game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.game = game;

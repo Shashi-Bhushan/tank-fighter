@@ -19,10 +19,12 @@
  */
 package in.shabhushan.tankfighter.game.model.impl;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import in.shabhushan.tankfighter.game.model.builder.BrickWallBuilder;
 
 import java.awt.*;
 
+@JsonDeserialize(builder = BrickWallBuilder.class)
 public class BrickWall extends GenericGameObject {
 
     public BrickWall(BrickWallBuilder brickWallBuilder) {

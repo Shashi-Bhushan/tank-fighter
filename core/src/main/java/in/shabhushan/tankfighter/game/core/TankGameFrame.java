@@ -1,5 +1,8 @@
 package in.shabhushan.tankfighter.game.core;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import in.shabhushan.tankfighter.game.model.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * This Tank Game Panel has two sub panels, one with button "New Game" and another one with the actual Game.
@@ -43,6 +48,18 @@ public class TankGameFrame extends JPanel implements ActionListener {
         panel.add(button);
 
         this.add(panel, "panel");
+        InputStream resource = this.getClass().getClassLoader().getResourceAsStream("grid/level0.yaml");
+
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        try {
+            Level level = mapper.readValue(resource, Level.class);
+
+            System.out.println(level.getName());
+
+            System.out.println(level.getWall().size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         tankFighterGameEngine = new TankFighterGameEngine(screenSize);
         tankFighterGameEngine.setBackground(Color.LIGHT_GRAY);
