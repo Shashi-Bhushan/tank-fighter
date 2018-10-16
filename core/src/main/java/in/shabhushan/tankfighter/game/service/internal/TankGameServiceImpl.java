@@ -56,7 +56,7 @@ public class TankGameServiceImpl implements TankGameService {
     private void addKeyBindings(TankGameFrame tankGameFrame) {
         InputMap inputMap = tankGameFrame.getTankFighterGameEngine().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = tankGameFrame.getTankFighterGameEngine().getActionMap();
-        Tank playerTank = tankGameFrame.getTankFighterGameEngine().getPlayerTank();
+        Tank playerTank = tankGameFrame.getTankFighterGameEngine().getTankFighterGame().getPlayerTank();
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
         actionMap.put("up", new MoveTankUpAction(playerTank));

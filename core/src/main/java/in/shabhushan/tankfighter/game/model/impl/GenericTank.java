@@ -21,6 +21,7 @@ package in.shabhushan.tankfighter.game.model.impl;
 
 
 import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.Bullet;
@@ -53,11 +54,11 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
 
     protected TankHealthBar tankHealthBar;
 
-    public GenericTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game) {
+    public GenericTank(int positionX, int positionY, ObjectType objectType, TankFighterGame game) {
         super(positionX, positionY, objectType, game, DEFAULT_TANK_BLOCK_DISTANCE * 3);
     }
 
-    public GenericTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, int speed, Color color) {
+    public GenericTank(int positionX, int positionY, ObjectType objectType, TankFighterGame game, int speed, Color color) {
         this(positionX, positionY, objectType, game);
 
         setColor(color);
@@ -66,7 +67,7 @@ public abstract class GenericTank extends GenericGameObject implements Tank {
     }
 
 
-    public GenericTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, Direction direction) {
+    public GenericTank(int positionX, int positionY, ObjectType objectType, TankFighterGame game, Direction direction) {
         this(positionX, positionY, objectType, game);
 
         setDirection(direction);

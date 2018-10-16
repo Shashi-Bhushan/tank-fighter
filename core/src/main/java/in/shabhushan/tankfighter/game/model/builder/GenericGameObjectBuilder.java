@@ -20,6 +20,7 @@
 package in.shabhushan.tankfighter.game.model.builder;
 
 import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
@@ -56,7 +57,7 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
     // Unique Identifier of Game Object
     protected ObjectType objectType;
 
-    protected GenericGameEngine game;
+    protected TankFighterGame game;
 
     protected int objectSize;
 
@@ -92,7 +93,7 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
         return self();
     }
 
-    public B setGame(GenericGameEngine game) {
+    public B setGame(TankFighterGame game) {
         this.game = game;
         return self();
     }
@@ -135,7 +136,7 @@ public abstract class GenericGameObjectBuilder<B extends GenericGameObjectBuilde
         return objectType;
     }
 
-    public GenericGameEngine getGame() {
+    public TankFighterGame getGame() {
         return game;
     }
 

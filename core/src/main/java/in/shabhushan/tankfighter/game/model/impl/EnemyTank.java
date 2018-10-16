@@ -19,10 +19,9 @@
  */
 package in.shabhushan.tankfighter.game.model.impl;
 
-import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
-import in.shabhushan.tankfighter.game.core.TankFighterGameEngine;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.builder.EnemyTankBuilder;
 import in.shabhushan.tankfighter.game.model.builder.TankHealthBarBuilder;
@@ -44,15 +43,15 @@ import static in.shabhushan.tankfighter.game.util.GameUtil.objectInLineOfSight;
  */
 public class EnemyTank extends GenericTank {
 
-    public EnemyTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game) {
+    public EnemyTank(int positionX, int positionY, ObjectType objectType, TankFighterGame game) {
         super(positionX, positionY, objectType, game);
     }
 
-    public EnemyTank(int positionX, int positionY, ObjectType objectType, GenericGameEngine game, int speed, Color color) {
+    public EnemyTank(int positionX, int positionY, ObjectType objectType, TankFighterGame game, int speed, Color color) {
         super(positionX, positionY, objectType, game, speed, color);
     }
 
-    public EnemyTank(int positionX, int positionY, GenericGameEngine game, Direction direction, int speed, Color color) {
+    public EnemyTank(int positionX, int positionY, TankFighterGame game, Direction direction, int speed, Color color) {
         super(positionX, positionY, ObjectType.ENEMY_TANK, game, speed, color);
         setDirection(direction);
     }
@@ -70,7 +69,7 @@ public class EnemyTank extends GenericTank {
      * Secondly, It moves 1 unit into that direction as well.
      */
     public void updateTankPosition() {
-        Direction direction = getShortestDistanceDirection(this, ((TankFighterGameEngine)game).getPlayerTank());
+        Direction direction = getShortestDistanceDirection(this, game.getPlayerTank());
 
         this.setDirection(direction);
         this.vacantSpace();
@@ -108,7 +107,7 @@ public class EnemyTank extends GenericTank {
     }
 
     public void fireBullet() {
-        if(objectInLineOfSight(this, ((TankFighterGameEngine)game).getPlayerTank())) {
+        if(objectInLineOfSight(this, game.getPlayerTank())) {
             this.addBullet(new Bullet(this, DEFAULT_AI_BULLET_COLOR, 10));
         }
     }
@@ -119,7 +118,7 @@ public class EnemyTank extends GenericTank {
      */
     @Override
     public void run() {
-        while(!interrupted & !((TankFighterGameEngine)game).isPlayerTankDead()) {
+        while(!interrupted & !game.isPlayerTankDead()) {
             try {
                 updateTankPosition();
                 updateHealthBarPosition();

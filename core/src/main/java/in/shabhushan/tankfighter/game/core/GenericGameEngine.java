@@ -1,10 +1,13 @@
 package in.shabhushan.tankfighter.game.core;
 
 import in.shabhushan.tankfighter.game.core.tile.TileManager;
+import in.shabhushan.tankfighter.game.model.GameObject;
 import in.shabhushan.tankfighter.game.util.Defaults;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,11 +41,11 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     protected boolean gameFinished = false;
 
-    protected final GameGrid gameGrid;
-
     protected final ExecutorService executorService = Executors.newCachedThreadPool();
 
     protected final TileManager tileManager = new TileManager();
+
+    protected final Queue<GameObject> pollingQueue = new ArrayDeque<>();
 
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GenericGameEngine() {
@@ -56,17 +59,11 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     // creates GameEngine with passed resolution at passed fps
     public GenericGameEngine(Dimension resolution, int frameRate) {
-        gameGrid = new GameGrid(resolution);
-
         this.resolution = resolution;
         this.frameRate = frameRate;
 
         timePerFrame = nanosecondsPerSecond / frameRate;
         setPreferredSize(resolution);
-    }
-
-    public GameGrid getGameGrid() {
-        return gameGrid;
     }
 
     public TileManager getTileManager() {
@@ -93,7 +90,7 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
             validate();
             repaint();
 
-            if(gameFinished) {
+            if(isGameFinished()) {
                 break;
             }
 
@@ -103,6 +100,8 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
             }
         }
     }
+
+    abstract public boolean isGameFinished();
 
     // update everything in the game, should be overridden
     abstract public void update();

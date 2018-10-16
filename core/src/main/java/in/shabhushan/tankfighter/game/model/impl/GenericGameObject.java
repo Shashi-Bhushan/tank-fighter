@@ -19,8 +19,8 @@
  */
 package in.shabhushan.tankfighter.game.model.impl;
 
-import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.core.GameGrid;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 import in.shabhushan.tankfighter.game.model.GameObject;
@@ -52,7 +52,7 @@ public abstract class GenericGameObject extends Component implements GameObject 
     // Unique Identifier of Game Object
     protected ObjectType objectType;
 
-    protected GenericGameEngine game;
+    protected TankFighterGame game;
 
     protected int objectSize;
 
@@ -60,18 +60,18 @@ public abstract class GenericGameObject extends Component implements GameObject 
 
     protected BigInteger tileID;
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, TankFighterGame game) {
         this(horizontalPosition, verticalPosition, null, game);
     }
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GenericGameEngine game) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, TankFighterGame game) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
         this.game = game;
     }
 
-    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, GenericGameEngine game, int objectSize) {
+    public GenericGameObject(int horizontalPosition, int verticalPosition, ObjectType objectType, TankFighterGame game, int objectSize) {
         this.horizontalPosition = horizontalPosition;
         this.verticalPosition = verticalPosition;
         this.objectType = objectType;
@@ -119,11 +119,11 @@ public abstract class GenericGameObject extends Component implements GameObject 
         this.color = color;
     }
 
-    public GenericGameEngine getGame() {
+    public TankFighterGame getGame() {
         return game;
     }
 
-    public void setGame(GenericGameEngine game) {
+    public void setGame(TankFighterGame game) {
         this.game = game;
     }
 

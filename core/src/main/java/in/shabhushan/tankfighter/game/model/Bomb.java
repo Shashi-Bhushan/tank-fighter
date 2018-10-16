@@ -19,7 +19,7 @@
  */
 package in.shabhushan.tankfighter.game.model;
 
-import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.model.impl.GenericGameObject;
 
 import java.awt.*;
@@ -47,7 +47,7 @@ public class Bomb extends GenericGameObject implements Runnable {
                     Bomb.class.getResource("/bomb_3.gif")),
     };
 
-    public Bomb(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
+    public Bomb(int horizontalPosition, int verticalPosition, TankFighterGame game) {
         super(horizontalPosition, verticalPosition, game);
     }
 

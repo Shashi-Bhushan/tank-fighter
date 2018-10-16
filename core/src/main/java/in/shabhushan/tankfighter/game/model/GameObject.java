@@ -20,6 +20,7 @@
 package in.shabhushan.tankfighter.game.model;
 
 import in.shabhushan.tankfighter.game.core.GenericGameEngine;
+import in.shabhushan.tankfighter.game.core.TankFighterGame;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.enumeration.ObjectType;
 
@@ -76,14 +77,14 @@ public interface GameObject {
      * Sets {@link GenericGameEngine} for this Game Object.
      * @param game The {@link GenericGameEngine} for this Game Object
      */
-    public void setGame(GenericGameEngine game);
+    public void setGame(TankFighterGame game);
 
     /**
      * Returns the {@link GenericGameEngine} for this Game Object.
      * It can be used to fetch properties pertaining to the Game viz. window dimensions etc
      * @return {@link GenericGameEngine} for this Game Object
      */
-    public GenericGameEngine getGame();
+    public TankFighterGame getGame();
 
     /**
      * Sets the {@link Color} for this Game Object
