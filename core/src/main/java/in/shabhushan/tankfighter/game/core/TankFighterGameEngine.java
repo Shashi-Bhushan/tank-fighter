@@ -1,5 +1,7 @@
 package in.shabhushan.tankfighter.game.core;
 
+import in.shabhushan.tankfighter.game.model.GameObject;
+
 import java.awt.*;
 
 /**
@@ -26,6 +28,15 @@ public class TankFighterGameEngine extends GenericGameEngine {
 
         setGameFinished(tankFighterGame.isGameFinished());
 
+        startPendingThreads();
+    }
+
+    private void startPendingThreads() {
+        while(!tankFighterGame.getPollingQueue().isEmpty()) {
+            Runnable runnable = tankFighterGame.getPollingQueue().remove();
+
+            executorService.execute(runnable);
+        }
     }
 
     @Override

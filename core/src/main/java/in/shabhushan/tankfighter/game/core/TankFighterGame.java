@@ -32,9 +32,8 @@ import in.shabhushan.tankfighter.game.util.GameUtil;
 import in.shabhushan.tankfighter.game.model.GameObject;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.concurrent.ExecutorService;
 
 import static in.shabhushan.tankfighter.game.enumeration.Direction.DOWN;
@@ -59,7 +58,7 @@ public class TankFighterGame {
     protected final GameGrid gameGrid;
 
     // TODO: use for polling Bomb objects
-    private List<GameObject> pollingQueue = new ArrayList<>();
+    private Queue<Runnable> pollingQueue = new PriorityQueue<>();
 
     public TankFighterGame(Dimension resolution) {
         gameGrid = new GameGrid(resolution);
@@ -150,6 +149,10 @@ public class TankFighterGame {
         return gameFinished;
     }
 
+    public Queue<Runnable> getPollingQueue() {
+        return pollingQueue;
+    }
+
     public void checkForCollisions() {
         isEnemyTankHit();
         isPlayerTankHit();
@@ -192,6 +195,8 @@ public class TankFighterGame {
                         Bomb bomb = new Bomb(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition(), this);
                         bombsHandler.addObject(bomb);
 
+                        pollingQueue.add(bomb);
+
                         //tileManager.removeGameObject(getPlayerTank());
                         playerTank.destroy();
                         // Remove Player Tank
@@ -223,6 +228,8 @@ public class TankFighterGame {
                         // Create a Bomb Here
                         Bomb bomb = new Bomb(enemyTank.getHorizontalPosition(), enemyTank.getVerticalPosition(), this);
                         bombsHandler.addObject(bomb);
+
+                        pollingQueue.add(bomb);
 
                         // TODO: Enable TileManager
                         //tileManager.removeGameObject(enemyTank);

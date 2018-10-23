@@ -45,8 +45,6 @@ public abstract class GenericGameEngine extends JPanel implements Runnable {
 
     protected final TileManager tileManager = new TileManager();
 
-    protected final Queue<GameObject> pollingQueue = new ArrayDeque<>();
-
     // creates GameEngine with default resolution of 800x600 at 60 fps
     public GenericGameEngine() {
         this(new Dimension(800, 600), Defaults.DEFAULT_FRAME_RATE);
