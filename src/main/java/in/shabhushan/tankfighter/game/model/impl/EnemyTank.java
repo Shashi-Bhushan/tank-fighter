@@ -75,7 +75,7 @@ public class EnemyTank extends GenericTank {
         this.setDirection(direction);
         this.vacantSpace();
 
-        if(GameUtil.objectWithinBoundary(this, game)) {
+        if(GameUtil.objectWithinGameBoundary(this)) {
             switch(direction) {
                 case UP:
                     if(!TankUtil.isSpaceOccupied(horizontalPosition, verticalPosition - DEFAULT_AI_TANK_SPEED, this)) {

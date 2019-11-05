@@ -1,8 +1,10 @@
 package in.shabhushan.tankfighter.game;
 
 import in.shabhushan.tankfighter.game.core.TankGameFrame;
+import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.event.*;
 import in.shabhushan.tankfighter.game.model.Tank;
+import in.shabhushan.tankfighter.game.util.TankUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,16 +37,28 @@ public class TankFighter {
         Tank playerTank = tankGameFrame.getTankFighterGameEngine().getPlayerTank();
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
-        actionMap.put("up", new MoveTankUpAction(playerTank));
+        actionMap.put("up", new MoveTankAction(playerTank, Direction.UP,
+                () -> !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition() - playerTank.getSpeed(), playerTank),
+                () -> playerTank.setVerticalPosition(playerTank.getVerticalPosition() - playerTank.getSpeed())
+        ));
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
-        actionMap.put("down", new MoveTankDownAction(playerTank));
+        actionMap.put("down", new MoveTankAction(playerTank, Direction.DOWN,
+                () -> !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition(), playerTank.getVerticalPosition() + playerTank.getSpeed(), playerTank),
+                () -> playerTank.setVerticalPosition(playerTank.getVerticalPosition() + playerTank.getSpeed())
+        ));
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
-        actionMap.put("left", new MoveTankLeftAction(playerTank));
+        actionMap.put("left", new MoveTankAction(playerTank, Direction.LEFT,
+                () -> !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition() - playerTank.getSpeed(), playerTank.getVerticalPosition(), playerTank),
+                () -> playerTank.setHorizontalPosition(playerTank.getHorizontalPosition() - playerTank.getSpeed())
+        ));
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
-        actionMap.put("right", new MoveTankRightAction(playerTank));
+        actionMap.put("right", new MoveTankAction(playerTank, Direction.RIGHT,
+                () -> !TankUtil.isSpaceOccupied(playerTank.getHorizontalPosition() + playerTank.getSpeed(), playerTank.getVerticalPosition(), playerTank),
+                () -> playerTank.setHorizontalPosition(playerTank.getHorizontalPosition() + playerTank.getSpeed())
+        ));
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "space");
         actionMap.put("space", new FireTankBulletAction(playerTank));

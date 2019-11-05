@@ -28,21 +28,27 @@
 package in.shabhushan.tankfighter.game.event;
 
 import in.shabhushan.tankfighter.game.enumeration.Direction;
+import in.shabhushan.tankfighter.game.event.function.CheckTile;
+import in.shabhushan.tankfighter.game.event.function.MoveTank;
 import in.shabhushan.tankfighter.game.model.Tank;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinBoundary;
+import static in.shabhushan.tankfighter.game.util.GameUtil.objectWithinGameBoundary;
 
-public abstract class AbstractMoveTankAction extends AbstractAction {
+public final class MoveTankAction extends AbstractAction {
 
     protected Tank tank;
     protected Direction direction;
+    private CheckTile checkTile;
+    private MoveTank moveTank;
 
-    public AbstractMoveTankAction(Tank tank, Direction direction) {
+    public MoveTankAction(Tank tank, Direction direction, CheckTile checkTile, MoveTank moveTank) {
         this.tank = tank;
         this.direction = direction;
+        this.checkTile = checkTile;
+        this.moveTank = moveTank;
     }
 
     /**
@@ -55,10 +61,11 @@ public abstract class AbstractMoveTankAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         tank.setDirection(direction);
 
-        // Vacant Space, otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.
+        // Vacant Space first,
+        // otherwise TankUtil.isSpaceOccupied will give true because You have occupied some part of the space you are checking for.
         tank.vacantSpace();
-        if(objectWithinBoundary(tank, tank.getGame()) && isSpaceVacant()) {
-            moveTank();
+        if(objectWithinGameBoundary(tank) && checkTile.isSpaceVacant()) {
+            moveTank.moveTank();
         }
         // occupy Space Again
         tank.occupySpace();
@@ -70,11 +77,11 @@ public abstract class AbstractMoveTankAction extends AbstractAction {
      *
      * @return true if the next space is vacant, false otherwise
      */
-    protected abstract boolean isSpaceVacant();
+    // protected abstract boolean isSpaceVacant();
 
     /**
      * Move the {@code tank} to the new position
      * This method should be overridden by MoveTankAction sub-classes to define how to move the {@code tank} to the next position
      */
-    protected abstract void moveTank();
+    // protected abstract void moveTank();
 }

@@ -20,7 +20,6 @@
  */
 package in.shabhushan.tankfighter.game.util;
 
-import in.shabhushan.tankfighter.game.core.GenericGameEngine;
 import in.shabhushan.tankfighter.game.enumeration.Direction;
 import in.shabhushan.tankfighter.game.model.Bullet;
 import in.shabhushan.tankfighter.game.model.GameObject;
@@ -32,7 +31,7 @@ import static in.shabhushan.tankfighter.game.enumeration.Direction.*;
 
 public final class GameUtil {
 
-    public static final boolean objectWithinBoundary(GameObject gameObject, GenericGameEngine game) {
+    public static final boolean objectWithinGameBoundary(GameObject gameObject) {
         boolean withoutBoundary = false;
 
         switch (gameObject.getDirection()) {
@@ -43,7 +42,7 @@ public final class GameUtil {
                 }
                 break;
             case DOWN:
-                if(gameObject.getVerticalPosition() < game.getHeight() - 33 ) {
+                if(gameObject.getVerticalPosition() < gameObject.getGame().getHeight() - 33 ) {
                     withoutBoundary = true;
                 }
                 break;
@@ -53,7 +52,7 @@ public final class GameUtil {
                 }
                 break;
             case RIGHT:
-                if(gameObject.getHorizontalPosition() < game.getWidth() - 33 ) {
+                if(gameObject.getHorizontalPosition() < gameObject.getGame().getWidth() - 33 ) {
                     withoutBoundary = true;
                 }
                 break;
