@@ -1,21 +1,30 @@
 ## Tank Fighter
-A Java Implementation of classic Tank Fighter game, deployable on an OSGi Container.
+A Java Implementation of classic Tank Fighter game
 
-Project has been created using Maven PAX Plugin.
+Scaffolding for the project has been generated using maven quickstart archetype
 
 ```
-mvn org.ops4j:maven-pax-plugin:create-project \
+mvn archetype:generate \
+  -DarchetypeArtifactId=maven-archetype-quickstart
   -DgroupId=in.shabhushan.tankfighter \
   -DartifactId=tank-fighter \
   -Dversion=1.0-SNAPSHOT
 ```
 
-The bundle is deployed on a felix container.
+## Run Instructions
+There are multiple ways to run the game.
+### Run on Terminal
+First, we need to compile the game and then we could run it on terminal
+> `mvn compile && mvn exec:java -D exec.mainClass="in.shabhushan.tankfighter.game.TankFighter"`
 
-## Installation Instructions
-To build the project run `mvn clean install`. It will download all the project Dependencies. 
+Here, `in.shabhushan.tankfighter.game.TankFighter` is the Main class.
 
-To initialize the felix container and deploy project to felix container run `mvn pax:provision` 
+### Run with install phase
+run `mvn install` to run game with install phase.
+
+### Run with profile
+run `mvn compile -P run-game` to run game via maven profile.
+
 
 This will start a new window, where game could be started using `New Game` button.
 

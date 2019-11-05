@@ -40,11 +40,11 @@ public class Bomb extends GenericGameObject implements Runnable {
 
     private static final Image[] images = {
             Toolkit.getDefaultToolkit().getImage(
-                    Bomb.class.getClassLoader().getResource("/bomb_1.gif")),
+                    Bomb.class.getClassLoader().getResource("bomb_1.gif")),
             Toolkit.getDefaultToolkit().getImage(
-                    Bomb.class.getResource("/bomb_2.gif")),
+                    Bomb.class.getClassLoader().getResource("bomb_2.gif")),
             Toolkit.getDefaultToolkit().getImage(
-                    Bomb.class.getResource("/bomb_3.gif")),
+                    Bomb.class.getClassLoader().getResource("bomb_3.gif")),
     };
 
     public Bomb(int horizontalPosition, int verticalPosition, GenericGameEngine game) {
